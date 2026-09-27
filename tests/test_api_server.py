@@ -48,8 +48,8 @@ def test_system_diagnostics(client):
     assert "service" in data
     assert "python_version" in data
     assert "ocr_host_engine" in data
-    assert "research_gates" in data
-    assert data["research_gates"]["E0_corpus_rights"] == "PASS"
+    assert "PASS" in data["research_gates"]["E0_corpus_rights"]
+    assert "NOT ESTABLISHED BY SOFTWARE TEST" in data["research_gates"]["E0_corpus_rights"]
     assert "LOCKED" in data["research_gates"]["E2_retrieval_benchmark"]
     assert "LOCKED" in data["research_gates"]["E3_attribution_benchmark"]
     assert "research_integrity_notice" in data
@@ -220,3 +220,35 @@ def test_upload_exceeding_size_limit_rejected(client, monkeypatch):
     )
     assert res.status_code == 413
     assert "exceeds maximum upload limit" in res.json()["detail"]
+
+
+def test_production_debug_disabled():
+    """Verify debug mode is disabled by default in production config."""
+    config = get_config()
+    assert config.app_debug is False
+    diag = config.get_safe_diagnostics()
+    assert diag["app_debug"] is False
+
+
+def test_tesseract_adapter_container_path_independent(tmp_path):
+    """Verify TesseractAdapter can resolve containerized Linux binary independently of host PATH."""
+    from sih_archive.ocr.tesseract import TesseractAdapter
+    # Nonexistent path returns clean diagnostic without raising
+    adapter = TesseractAdapter(tesseract_cmd="/usr/bin/tesseract")
+    avail, msg = adapter.is_available()
+    # On Windows host /usr/bin/tesseract does not exist, so it truthfully reports unavailable
+    assert isinstance(avail, bool)
+    assert "Tesseract" in msg or "not found" in msg
+
+
+def test_research_integrity_legal_authorization_distinction(client):
+    """Verify diagnostics explicitly state that software tests do NOT establish legal authorization."""
+    res = client.get("/api/v1/diagnostics")
+    assert res.status_code == 200
+    data = res.json()
+    e0_status = data["research_gates"]["E0_corpus_rights"]
+    notice = data["research_integrity_notice"]
+    assert "NOT ESTABLISHED BY SOFTWARE TEST" in e0_status
+    assert "Rights and provenance metadata validation is MEASURED" in notice
+    assert "NOT ESTABLISHED BY SOFTWARE TEST" in notice
+

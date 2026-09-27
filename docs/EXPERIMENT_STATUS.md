@@ -11,7 +11,7 @@
 
 | Milestone / Phase | Gate Status | Architecture Status | Empirical Status | Next Prerequisite to Unlock |
 | :--- | :--- | :--- | :--- | :--- |
-| **E0: Archival Corpus & Rights Intake** | **PASS** | Complete & Tested | **VERIFIED** | Ready for broader multi-lingual corpus ingestion. |
+| **E0: Archival Corpus & Rights Intake** | **PASS (Intake & Provenance Metadata Validation: MEASURED)** | Complete & Tested | **VERIFIED (Metadata Protocol)** | Legal authorization for a specific corpus: NOT ESTABLISHED BY SOFTWARE TEST. Requires custodial institutional clearance for production deployment. |
 | **E1: Archival OCR & Preprocessing Benchmark** | **BLOCKED** | Complete & Tested (`TesseractAdapter`, `MockOCRAdapter`, CLI, RapidFuzz CER/WER, IoU, Reading Order) | **BLOCKED ON HOST BINARY** | Install Tesseract OCR v5+ on host PATH with `eng`, `hin`, `mar` traineddata models + ingest physical degraded scan samples. |
 | **E2: Resilient Retrieval Benchmark** | **LOCKED** | Complete Preview (`BM25`, `NGram-3`, `Dense BGE-M3 Mock`, `Hybrid RRF`) | **LOCKED PREVIEW** | Gated strictly on completion of empirical E1 on real archival scans. |
 | **E3: Citation & Visual Attribution Grounding** | **LOCKED** | Complete Preview (`EvidenceGroundedAnswerPipeline`, Bounding Box Grounding, Refusal Engine) | **LOCKED PREVIEW** | Gated strictly on validated E1 and E2 outputs. |
@@ -33,7 +33,7 @@ To avoid scientific fraud, premature performance claims, and simulation fallacie
 | Component / Experiment | Classification | Empirical Value | Rationale & Evidence |
 | :--- | :--- | :--- | :--- |
 | **PDF Rasterization Pipeline** | **MEASURED** | 300 DPI, PyMuPDF, deterministic SHA-256 | Validated across 5 test pages with deterministic `{doc}_p{page:04d}` ID generation. |
-| **Intake Rights Compliance** | **MEASURED** | 100% compliant | Statutory defense recorded under Indian Copyright Act 1957 §52(1)(q) and §22. |
+| **Rights/Provenance Metadata Validation** | **MEASURED** | 100% compliant (schema & checksum verified) | Intake manifests record statutory citations; legal authorization for a specific corpus is NOT ESTABLISHED BY SOFTWARE TEST and requires institutional custodial confirmation. |
 | **Tesseract Engine Host Presence** | **BLOCKED** | Not installed / Not in PATH | Windows UAC elevation prevented silent winget installation. Diagnostics accurately report binary absence. |
 | **OCR Character Error Rate (CER) on Historical Scans** | **UNKNOWN** | Unknown | Current raw PDF (`ambedkar_speech_vol1.pdf`) is a synthetic digital vector PDF, NOT an authentic historical scan. |
 | **OCR Word Error Rate (WER) on Historical Scans** | **UNKNOWN** | Unknown | Awaiting ingestion of authentic microfilms / degraded print scans. |
@@ -151,7 +151,7 @@ Deployment readiness and scientific validation status are strictly decoupled:
 | **Docker / Northflank Layer** | **READY** | N/A (Infrastructure) | `Dockerfile`, non-root user (10001), health/readiness probes, dynamic `PORT`, persistent volume mapping tested. |
 | **Storage Architecture** | **READY** | N/A (Infrastructure) | `ARCHIVE_DATA_DIR`, `GROUND_TRUTH_DIR`, `RESULTS_DIR`, `MODEL_CACHE_DIR` configurable via env vars. |
 | **DEMO Mode Presentation** | **READY** | **SYNTHETIC PREVIEW** | Visibly labeled `⚠️ DEMO / SYNTHETIC DATA — NOT VALIDATED EMPIRICAL HISTORICAL RESULTS`. |
-| **Phase E0 (Corpus / Rights)** | **READY** | **VERIFIED** | Statutory defense cited under Indian Copyright Act 1957 §52(1)(q) and §22. |
+| **Phase E0 (Corpus / Rights)** | **READY** | **MEASURED (Metadata Validation)** | Rights/provenance metadata validation: MEASURED. Legal authorization for a specific corpus: NOT ESTABLISHED BY SOFTWARE TEST. |
 | **Phase E1 (Archival OCR)** | **READY** | **BLOCKED ON HOST BINARY** | Engine adapter complete; awaiting host Tesseract binary on Windows/Linux and degraded scans. |
 | **Phase E2 (Retrieval)** | **READY** | **STRICTLY LOCKED** | Benchmark locked until empirical E1 metrics on real scans are finalized. |
 | **Phase E3 (Attribution)** | **READY** | **STRICTLY LOCKED** | Benchmark locked until empirical E1 and E2 outputs are validated. |

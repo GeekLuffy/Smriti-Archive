@@ -221,9 +221,10 @@ async def system_diagnostics() -> Dict[str, Any]:
             "available": tess_available,
             "diagnostic_message": tess_msg,
             "configured_device": config.ocr_device,
+            "available_languages": tess_adapter.get_available_languages() if tess_available else [],
         },
         "research_gates": {
-            "E0_corpus_rights": "PASS",
+            "E0_corpus_rights": "PASS (Intake & Provenance Metadata Validation: MEASURED; Legal authorization for specific corpus: NOT ESTABLISHED BY SOFTWARE TEST)",
             "E1_ocr_benchmark": "BLOCKED_ON_HOST_OCR_BINARY" if not tess_available else "READY",
             "E2_retrieval_benchmark": "LOCKED (Gated on empirical E1 completion)",
             "E3_attribution_benchmark": "LOCKED (Gated on empirical E1/E2 validation)",
@@ -231,8 +232,10 @@ async def system_diagnostics() -> Dict[str, Any]:
             "E5_hardware": "READY (Gated)",
         },
         "research_integrity_notice": (
-            "All preview figures on vector PDFs are synthetic demos. Real historical OCR accuracy "
-            "cannot be claimed without physical scans and host OCR execution."
+            "Rights and provenance metadata validation is MEASURED. Substantive legal authorization "
+            "for a specific archival corpus is NOT ESTABLISHED BY SOFTWARE TEST and requires custodial "
+            "institutional clearance. All preview figures on vector PDFs are synthetic demos. Real historical "
+            "OCR accuracy cannot be claimed without physical scans and host OCR execution."
         ),
     }
 
@@ -607,7 +610,7 @@ async def serve_demo_ui():
                     <span>⚙️ Research Milestone Gates</span>
                 </div>
                 <table class="gate-table">
-                    <tr><td><strong>E0: Corpus & Rights</strong></td><td><span class="gate-pill gate-pass">PASS</span></td></tr>
+                    <tr><td><strong>E0: Corpus & Rights</strong></td><td><span class="gate-pill gate-pass">PASS (Metadata)</span></td></tr>
                     <tr><td><strong>E1: Archival OCR</strong></td><td><span class="gate-pill gate-blocked">BLOCKED (Host Bin)</span></td></tr>
                     <tr><td><strong>E2: Retrieval</strong></td><td><span class="gate-pill gate-locked">LOCKED</span></td></tr>
                     <tr><td><strong>E3: Attribution</strong></td><td><span class="gate-pill gate-locked">LOCKED</span></td></tr>
@@ -615,7 +618,7 @@ async def serve_demo_ui():
                     <tr><td><strong>E5: Hardware / Kiosk</strong></td><td><span class="gate-pill gate-pass">READY</span></td></tr>
                 </table>
                 <div style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-muted);">
-                    E2 and E3 benchmarks are locked from official ranking until authentic historical scans are ingested and OCR'd on host hardware.
+                    <strong>Research Integrity Rule:</strong> Rights/provenance metadata validation is MEASURED. Legal authorization for a specific corpus is NOT ESTABLISHED BY SOFTWARE TEST. E2 and E3 benchmarks are locked from official ranking until authentic historical scans are ingested and OCR'd on host hardware.
                 </div>
             </div>
 

@@ -212,7 +212,7 @@ Returns system status without leaking sensitive credentials:
     "configured_device": "cpu"
   },
   "research_gates": {
-    "E0_corpus_rights": "PASS",
+    "E0_corpus_rights": "PASS (Intake & Provenance Metadata Validation: MEASURED; Legal authorization for specific corpus: NOT ESTABLISHED BY SOFTWARE TEST)",
     "E1_ocr_benchmark": "READY",
     "E2_retrieval_benchmark": "LOCKED (Gated on empirical E1 completion)",
     "E3_attribution_benchmark": "LOCKED (Gated on empirical E1/E2 validation)"
@@ -231,7 +231,10 @@ The system enforces strict visual and programmatic separation between preview de
 - **Behavior:** Loads verified synthetic fixtures so all interactive capabilities (rasterization, OCR bounding boxes, BM25/Dense search, evidence-grounded QA, and visual bounding box highlighting) can be experienced live.
 - **Disclaimers:** Every search response, QA answer, and Web UI banner displays:
   `⚠️ DEMO / SYNTHETIC DATA — NOT VALIDATED EMPIRICAL HISTORICAL RESULTS`
-- **Research Safeguard:** Prevents evaluators from confusing synthetic mock performance with real degraded manuscript OCR accuracy.
+- **Research Safeguards & Integrity Distinctions:**
+  - **Rights/provenance metadata validation:** `MEASURED` (manifest schema conformity, local file existence, SHA-256 checksum integrity).
+  - **Legal authorization for a specific corpus:** `NOT ESTABLISHED BY SOFTWARE TEST` (statutory citations like Section 52(1)(q) or Section 22 record intake metadata; legal clearances require institutional custodial authorization).
+  - **Phase Gating:** Prevents evaluators from confusing synthetic mock performance with real degraded manuscript OCR accuracy. E2 and E3 remain strictly locked until empirical E1 metrics exist.
 
 ### Empirical Benchmark Mode (`EXECUTION_MODE=RESEARCH_VALIDATION`)
 - **Purpose:** Scientific evaluation on authentic historical scans.
