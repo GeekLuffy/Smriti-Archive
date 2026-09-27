@@ -1,0 +1,301 @@
+{
+  "document_id": "ambedkar_speech_vol1",
+  "page_id": "ambedkar_speech_vol1_p0001",
+  "reference_text": "DR. BABASAHEB AMBEDKAR\nWRITINGS AND SPEECHES\nVOLUME 1\nCompiled by Vasant Moon\nPublished by Education Department, Government of Maharashtra\nDr. Ambedkar Foundation, New Delhi\n",
+  "language": "eng",
+  "script": "Latn",
+  "annotator": "Digital Heritage Archival Team",
+  "annotation_date": "2026-09-27",
+  "verification_status": "verified",
+  "notes": "Authentic ground truth extracted from vector reference of Ambedkar Speech Vol 1 Page 1.",
+  "regions": [
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0001",
+      "type": "word",
+      "text": "DR.",
+      "bbox": [
+        208,
+        526,
+        158,
+        126
+      ],
+      "reading_order_index": 0
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0002",
+      "type": "word",
+      "text": "BABASAHEB",
+      "bbox": [
+        392,
+        526,
+        555,
+        126
+      ],
+      "reading_order_index": 1
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0003",
+      "type": "word",
+      "text": "AMBEDKAR",
+      "bbox": [
+        972,
+        526,
+        514,
+        126
+      ],
+      "reading_order_index": 2
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0004",
+      "type": "word",
+      "text": "WRITINGS",
+      "bbox": [
+        208,
+        711,
+        375,
+        103
+      ],
+      "reading_order_index": 3
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0005",
+      "type": "word",
+      "text": "AND",
+      "bbox": [
+        604,
+        711,
+        158,
+        103
+      ],
+      "reading_order_index": 4
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0006",
+      "type": "word",
+      "text": "SPEECHES",
+      "bbox": [
+        783,
+        711,
+        408,
+        103
+      ],
+      "reading_order_index": 5
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0007",
+      "type": "word",
+      "text": "VOLUME",
+      "bbox": [
+        208,
+        887,
+        282,
+        92
+      ],
+      "reading_order_index": 6
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0008",
+      "type": "word",
+      "text": "1",
+      "bbox": [
+        508,
+        887,
+        37,
+        92
+      ],
+      "reading_order_index": 7
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0009",
+      "type": "word",
+      "text": "Compiled",
+      "bbox": [
+        208,
+        1196,
+        211,
+        69
+      ],
+      "reading_order_index": 8
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0010",
+      "type": "word",
+      "text": "by",
+      "bbox": [
+        433,
+        1196,
+        53,
+        69
+      ],
+      "reading_order_index": 9
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0011",
+      "type": "word",
+      "text": "Vasant",
+      "bbox": [
+        500,
+        1196,
+        156,
+        69
+      ],
+      "reading_order_index": 10
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0012",
+      "type": "word",
+      "text": "Moon",
+      "bbox": [
+        670,
+        1196,
+        125,
+        69
+      ],
+      "reading_order_index": 11
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0013",
+      "type": "word",
+      "text": "Published",
+      "bbox": [
+        208,
+        1326,
+        201,
+        63
+      ],
+      "reading_order_index": 12
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0014",
+      "type": "word",
+      "text": "by",
+      "bbox": [
+        422,
+        1326,
+        48,
+        63
+      ],
+      "reading_order_index": 13
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0015",
+      "type": "word",
+      "text": "Education",
+      "bbox": [
+        483,
+        1326,
+        204,
+        63
+      ],
+      "reading_order_index": 14
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0016",
+      "type": "word",
+      "text": "Department,",
+      "bbox": [
+        700,
+        1326,
+        252,
+        63
+      ],
+      "reading_order_index": 15
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0017",
+      "type": "word",
+      "text": "Government",
+      "bbox": [
+        965,
+        1326,
+        252,
+        63
+      ],
+      "reading_order_index": 16
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0018",
+      "type": "word",
+      "text": "of",
+      "bbox": [
+        1230,
+        1326,
+        38,
+        63
+      ],
+      "reading_order_index": 17
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0019",
+      "type": "word",
+      "text": "Maharashtra",
+      "bbox": [
+        1281,
+        1326,
+        257,
+        63
+      ],
+      "reading_order_index": 18
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0020",
+      "type": "word",
+      "text": "Dr.",
+      "bbox": [
+        208,
+        1451,
+        61,
+        63
+      ],
+      "reading_order_index": 19
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0021",
+      "type": "word",
+      "text": "Ambedkar",
+      "bbox": [
+        282,
+        1451,
+        209,
+        63
+      ],
+      "reading_order_index": 20
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0022",
+      "type": "word",
+      "text": "Foundation,",
+      "bbox": [
+        504,
+        1451,
+        242,
+        63
+      ],
+      "reading_order_index": 21
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0023",
+      "type": "word",
+      "text": "New",
+      "bbox": [
+        759,
+        1451,
+        92,
+        63
+      ],
+      "reading_order_index": 22
+    },
+    {
+      "region_id": "ambedkar_speech_vol1_p0001_w0024",
+      "type": "word",
+      "text": "Delhi",
+      "bbox": [
+        863,
+        1451,
+        104,
+        63
+      ],
+      "reading_order_index": 23
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+# ==============================================================================
+# SIH 2026 Problem Statement SIH26096: Digital Heritage Archive
+# Phase E1 Baseline OCR Experiment Configuration
+# ==============================================================================
+# This configuration defines the end-to-end benchmark parameters for reproducible
+# archival document rendering, preprocessing variations, OCR execution, standardized
+# evaluation (CER/WER, bounding box IoU, reading order), and publication-grade reporting.
+
+experiment:
+  id: "e1_baseline_benchmark"
+  name: "Phase E1 Baseline Archival OCR & Preprocessing Benchmark"
+  version: "1.0.0"
+  phase: "E1"
+  problem_statement: "SIH26096"
+  description: >
+    Rigorous, reproducible benchmark evaluating baseline OCR accuracy and
+    preprocessing filter variations on historical archival manuscripts and speeches.
+
+# ------------------------------------------------------------------------------
+# Dataset & Corpus Paths
+# ------------------------------------------------------------------------------
+dataset:
+  raw_dir: "data/raw"
+  manifests_dir: "data/manifests"
+  processed_pages_dir: "data/processed/pages"
+  preprocessed_dir: "data/processed/preprocessed"
+  ground_truth_dir: "data/ground_truth"
+  documents:
+    - document_id: "ambedkar_speech_vol1"
+      manifest_path: "data/manifests/ambedkar_speech_vol1.json"
+      raw_pdf: "data/raw/ambedkar_speech_vol1.pdf"
+      pages: "all"
+      primary_language: "eng"
+      script: "Latn"
+
+# ------------------------------------------------------------------------------
+# PDF to High-Resolution Page Image Rendering
+# ------------------------------------------------------------------------------
+rendering:
+  dpi: 300                      # 300 DPI for Tier 1 archival preservation
+  format: "png"
+  color_mode: "RGB"
+  alpha: false                  # Solid background (no alpha variance)
+  force: false                  # Duplicate caching enabled
+  scale_factor: 4.166667        # 300 / 72.0 point-to-pixel ratio
+
+# ------------------------------------------------------------------------------
+# OCR Engine Configurations
+# ------------------------------------------------------------------------------
+ocr:
+  default_engine: "mock"        # Set to 'tesseract' when native binary is available
+  engines:
+    tesseract:
+      binary_path: null         # Auto-discovered via PATH or registry
+      default_language: "eng"
+      supported_languages:
+        - "eng"                 # English
+        - "mar"                 # Marathi (Devanagari)
+        - "hin"                 # Hindi (Devanagari)
+      timeout_seconds: 60.0
+      psm: 3                    # Fully automatic page segmentation without OSD
+      oem: 1                    # Neural nets LSTM engine only
+    mock:
+      version: "mock-1.0.0"
+      default_language: "eng"
+      deterministic: true
+
+# ------------------------------------------------------------------------------
+# Modular Preprocessing Filter Variations
+# ------------------------------------------------------------------------------
+preprocessing:
+  active_variations:
+    - "raw"
+    - "grayscale,clahe"
+    - "grayscale,clahe,otsu"
+    - "denoise,clahe"
+    - "deskew,grayscale,otsu"
+  variations:
+    raw:
+      filters: []
+      description: "Direct unprocessed RGB rendering baseline"
+    grayscale_clahe:
+      filters: ["grayscale", "clahe"]
+      description: "Luminance conversion followed by Contrast Limited Adaptive Histogram Equalization"
+    clahe_otsu:
+      filters: ["grayscale", "clahe", "otsu"]
+      description: "Grayscale conversion, local contrast normalization, and Otsu global thresholding"
+    denoise_clahe:
+      filters: ["denoise", "clahe"]
+      description: "Fast Non-Local Means denoising followed by adaptive contrast enhancement"
+    deskew_otsu:
+      filters: ["deskew", "grayscale", "otsu"]
+      description: "Contour-based deskew orientation correction, luminance conversion, and Otsu thresholding"
+
+# ------------------------------------------------------------------------------
+# Standardized Evaluation Metrics & Parameters
+# ------------------------------------------------------------------------------
+evaluation:
+  metrics:
+    - "cer"                     # Character Error Rate (Levenshtein editops)
+    - "wer"                     # Word Error Rate (word tokenized Levenshtein)
+    - "bbox_iou"                # Greedy bipartite bounding box matching
+    - "reading_order"           # Kendall's Tau rank correlation & inversion score
+  iou_threshold: 0.5            # Overlap threshold (tau) for true positive box matching
+  normalize_text: true          # Strip soft-hyphens and normalize contiguous whitespace
+  case_sensitive: true          # Exact orthographic case matching
+  reading_order_evaluator: "kendall_tau"
+
+# ------------------------------------------------------------------------------
+# Output Directories & Reporting Artifacts
+# ------------------------------------------------------------------------------
+output:
+  ocr_dir: "outputs/ocr"
+  metrics_dir: "outputs/metrics"
+  reports_dir: "outputs/reports"
+  formats:
+    - "all"
+    - "markdown"
+    - "json"
+    - "csv"
+    - "chart"
+  report_title: "SIH26096 Archival OCR Benchmark Report (Phase E1 Baseline)"

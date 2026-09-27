@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Testing & Linters
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+Desktop.ini
+
+# Project Data & Generated Outputs
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/ambedkar_speech_vol1.pdf
+data/processed/pages/*
+!data/processed/pages/.gitkeep
+outputs/ocr/*
+!outputs/ocr/.gitkeep
+outputs/metrics/*
+!outputs/metrics/.gitkeep
+outputs/reports/*
+!outputs/reports/.gitkeep
+
+# Internal agent working directories
+.agents/
+
