@@ -71,8 +71,14 @@ class ArchiveConfig(BaseModel):
     cors_origins: List[str] = Field(
         default_factory=lambda: [o.strip() for o in os.environ.get("CORS_ORIGINS", "*").split(",") if o.strip()]
     )
+    is_vercel: bool = Field(default_factory=lambda: bool(os.environ.get("VERCEL")))
     max_upload_size_bytes: int = Field(
-        default_factory=lambda: int(os.environ.get("MAX_UPLOAD_SIZE_BYTES", str(50 * 1024 * 1024)))
+        default_factory=lambda: int(
+            os.environ.get(
+                "MAX_UPLOAD_SIZE_BYTES",
+                str(4 * 1024 * 1024 if os.environ.get("VERCEL") else 50 * 1024 * 1024),
+            )
+        )
     )
 
     # Execution Mode (DEMO vs RESEARCH_VALIDATION)
@@ -97,7 +103,10 @@ class ArchiveConfig(BaseModel):
             self.outputs_dir,
             self.model_cache_dir,
         ]:
-            d.mkdir(parents=True, exist_ok=True)
+            try:
+                d.mkdir(parents=True, exist_ok=True)
+            except OSError:
+                pass
 
     def get_storage_status(self) -> Dict[str, Any]:
         """Audits writability and state of all persistent and generated storage directories."""
@@ -139,6 +148,8 @@ class ArchiveConfig(BaseModel):
             "port": self.port,
             "execution_mode": self.execution_mode,
             "ocr_device": self.ocr_device,
+            "is_vercel": self.is_vercel,
+            "platform_mode": "vercel_serverless" if self.is_vercel else "docker_or_host",
             "max_upload_size_bytes": self.max_upload_size_bytes,
             "has_database_url": self.database_url is not None,
             "storage_paths": {

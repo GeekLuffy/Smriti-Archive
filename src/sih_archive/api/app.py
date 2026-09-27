@@ -177,18 +177,26 @@ async def health_check() -> Dict[str, Any]:
 
 @app.get("/ready", tags=["Health & Observability"])
 async def readiness_check() -> JSONResponse:
-    """Readiness probe checking persistent storage directory writability and model loading."""
+    """Readiness probe checking storage availability and retrieval engine initialization."""
     config = get_config()
     storage_status = config.get_storage_status()
     all_writable = all(s["writable"] for s in storage_status.values())
+    all_exist = all(s["exists"] for s in storage_status.values())
     engines_ready = len(_engines) > 0 and _qa_pipeline is not None
 
-    if not all_writable or not engines_ready:
+    # In serverless environments (e.g. Vercel), static bundled demo data is read-only.
+    # The function is ready to serve search and QA if directories exist and engines are ready.
+    is_serverless = config.is_vercel or config.app_env in ("vercel", "serverless")
+    storage_ready = all_exist if is_serverless else all_writable
+
+    if not storage_ready or not engines_ready:
         return JSONResponse(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             content={
                 "status": "not_ready",
+                "storage_ready": storage_ready,
                 "storage_writable": all_writable,
+                "is_serverless": is_serverless,
                 "engines_ready": engines_ready,
                 "storage_status": storage_status,
             },
@@ -197,7 +205,9 @@ async def readiness_check() -> JSONResponse:
         status_code=status.HTTP_200_OK,
         content={
             "status": "ready",
-            "storage_writable": True,
+            "storage_ready": True,
+            "storage_writable": all_writable,
+            "is_serverless": is_serverless,
             "engines_ready": True,
             "indexed_documents_count": len(_indexed_documents),
         },
@@ -291,9 +301,12 @@ async def ingest_document(
     # Read and enforce file size limit
     content = await file.read()
     if len(content) > config.max_upload_size_bytes:
+        msg = f"File exceeds maximum upload limit of {config.max_upload_size_bytes} bytes."
+        if config.is_vercel:
+            msg += " Vercel serverless functions enforce a 4.5MB payload limit. Archival assets larger than 4MB must use direct-to-object-storage pre-signed URLs or the Northflank/on-prem intake pipeline."
         raise HTTPException(
             status_code=413,
-            detail=f"File exceeds maximum upload limit of {config.max_upload_size_bytes} bytes.",
+            detail=msg,
         )
 
     # Enforce rights evidence for public and verified

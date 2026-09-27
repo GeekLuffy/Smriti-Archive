@@ -121,7 +121,7 @@ The repository provides automated generation of standardized, machine-readable J
 
 ## 5. Summary of Automated Verification Suite
 
-- **Total Passing Automated Tests:** 162 (100% pass rate)
+- **Total Passing Automated Tests:** 171 (100% pass rate)
 - **Test Categories:**
   - Manifest & Rights Intake Protocol: 13 tests
   - PDF Rendering & Page Provenance: 15 tests
@@ -137,22 +137,25 @@ The repository provides automated generation of standardized, machine-readable J
   - Schema Roundtrips & Data Validation: 11 tests
   - Configuration & Storage Architecture: 4 tests
   - API Server, Security Gates & DEMO Mode: 14 tests
+  - Vercel Serverless Entrypoint & Platform Adapters: 6 tests
 - **Execution Command:** `python -m pytest tests/ -v`
-- **Execution Duration:** ~4.9 seconds
+- **Execution Duration:** ~5.2 seconds
 
 ---
 
-## 6. Production Deployment Readiness vs. Empirical Validation Status
+## 6. Multi-Tier Deployment Readiness vs. Empirical Validation Status
 
-Deployment readiness and scientific validation status are strictly decoupled:
+Deployment readiness and scientific validation status are strictly decoupled across tiers:
 
 | Dimension | Engineering State | Empirical Scientific State | Action / Status |
 | :--- | :--- | :--- | :--- |
-| **Docker / Northflank Layer** | **READY** | N/A (Infrastructure) | `Dockerfile`, non-root user (10001), health/readiness probes, dynamic `PORT`, persistent volume mapping tested. |
-| **Storage Architecture** | **READY** | N/A (Infrastructure) | `ARCHIVE_DATA_DIR`, `GROUND_TRUTH_DIR`, `RESULTS_DIR`, `MODEL_CACHE_DIR` configurable via env vars. |
+| **Tier 1: Vercel Serverless Layer** | **READY** | N/A (Presentation) | `vercel.json` and `api/index.py` configured for public demo, search, and QA routing. |
+| **Tier 2: Persistent Storage Layer** | **READY** | N/A (Infrastructure) | `ARCHIVE_DATA_DIR`, `GROUND_TRUTH_DIR`, `RESULTS_DIR`, `MODEL_CACHE_DIR` configurable via env vars. |
+| **Tier 3: Northflank / On-Prem Compute** | **READY** | N/A (Infrastructure) | `Dockerfile`, non-root user (10001), health/readiness probes, dynamic `PORT`, persistent volume mapping tested. |
 | **DEMO Mode Presentation** | **READY** | **SYNTHETIC PREVIEW** | Visibly labeled `⚠️ DEMO / SYNTHETIC DATA — NOT VALIDATED EMPIRICAL HISTORICAL RESULTS`. |
 | **Phase E0 (Corpus / Rights)** | **READY** | **MEASURED (Metadata Validation)** | Rights/provenance metadata validation: MEASURED. Legal authorization for a specific corpus: NOT ESTABLISHED BY SOFTWARE TEST. |
 | **Phase E1 (Archival OCR)** | **READY** | **BLOCKED ON HOST BINARY** | Engine adapter complete; awaiting host Tesseract binary on Windows/Linux and degraded scans. |
 | **Phase E2 (Retrieval)** | **READY** | **STRICTLY LOCKED** | Benchmark locked until empirical E1 metrics on real scans are finalized. |
 | **Phase E3 (Attribution)** | **READY** | **STRICTLY LOCKED** | Benchmark locked until empirical E1 and E2 outputs are validated. |
+
 
