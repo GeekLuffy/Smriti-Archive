@@ -121,7 +121,7 @@ The repository provides automated generation of standardized, machine-readable J
 
 ## 5. Summary of Automated Verification Suite
 
-- **Total Passing Automated Tests:** 144
+- **Total Passing Automated Tests:** 162 (100% pass rate)
 - **Test Categories:**
   - Manifest & Rights Intake Protocol: 13 tests
   - PDF Rendering & Page Provenance: 15 tests
@@ -135,5 +135,24 @@ The repository provides automated generation of standardized, machine-readable J
   - Attribution Pipeline & Grounding Evaluation: 10 tests
   - Multilingual & Hardware Specs: 3 tests
   - Schema Roundtrips & Data Validation: 11 tests
+  - Configuration & Storage Architecture: 4 tests
+  - API Server, Security Gates & DEMO Mode: 14 tests
 - **Execution Command:** `python -m pytest tests/ -v`
-- **Execution Duration:** ~4.7 seconds
+- **Execution Duration:** ~4.9 seconds
+
+---
+
+## 6. Production Deployment Readiness vs. Empirical Validation Status
+
+Deployment readiness and scientific validation status are strictly decoupled:
+
+| Dimension | Engineering State | Empirical Scientific State | Action / Status |
+| :--- | :--- | :--- | :--- |
+| **Docker / Northflank Layer** | **READY** | N/A (Infrastructure) | `Dockerfile`, non-root user (10001), health/readiness probes, dynamic `PORT`, persistent volume mapping tested. |
+| **Storage Architecture** | **READY** | N/A (Infrastructure) | `ARCHIVE_DATA_DIR`, `GROUND_TRUTH_DIR`, `RESULTS_DIR`, `MODEL_CACHE_DIR` configurable via env vars. |
+| **DEMO Mode Presentation** | **READY** | **SYNTHETIC PREVIEW** | Visibly labeled `⚠️ DEMO / SYNTHETIC DATA — NOT VALIDATED EMPIRICAL HISTORICAL RESULTS`. |
+| **Phase E0 (Corpus / Rights)** | **READY** | **VERIFIED** | Statutory defense cited under Indian Copyright Act 1957 §52(1)(q) and §22. |
+| **Phase E1 (Archival OCR)** | **READY** | **BLOCKED ON HOST BINARY** | Engine adapter complete; awaiting host Tesseract binary on Windows/Linux and degraded scans. |
+| **Phase E2 (Retrieval)** | **READY** | **STRICTLY LOCKED** | Benchmark locked until empirical E1 metrics on real scans are finalized. |
+| **Phase E3 (Attribution)** | **READY** | **STRICTLY LOCKED** | Benchmark locked until empirical E1 and E2 outputs are validated. |
+

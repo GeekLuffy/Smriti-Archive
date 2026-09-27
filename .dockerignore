@@ -1,0 +1,14 @@
+.git
+.github
+.agents
+.pytest_cache
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+*.env
+*.log
+tmp/
+.cache
+tests/
