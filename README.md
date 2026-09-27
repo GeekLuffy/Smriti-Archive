@@ -59,10 +59,15 @@ SIH26096/
 │   │   └── preprocessed/             # Intermediate filtered page images
 │   └── raw/                          # Original archival PDFs and manuscripts
 ├── docs/
+│   ├── STATE_AUDIT.md                # Comprehensive state audit & gap analysis
 │   ├── DATASET_PROTOCOL.md           # Rights, scan quality tiers & sampling
 │   ├── EXPERIMENT_PROTOCOL.md        # Controlled experiment variables & protocol
 │   ├── IMPLEMENTATION_PLAN.md        # Architecture, data flows & E2/E3 contracts
-│   └── RESULTS.md                    # Measured benchmark results & integrity notes
+│   ├── RESULTS.md                    # Measured benchmark results & integrity notes
+│   ├── E1_OCR_RESULTS.md             # Empirical OCR benchmark status & Tesseract setup
+│   ├── E2_RETRIEVAL_RESULTS.md       # IR benchmark architecture & gating status
+│   ├── E3_ATTRIBUTION_RESULTS.md     # Grounded attribution architecture & refusal gate
+│   └── RESEARCH_INTEGRITY.md         # Epistemic classification matrix
 ├── outputs/
 │   ├── metrics/                      # Evaluated CER/WER & IoU metrics JSON/CSV
 │   ├── ocr/                          # Standardized OCR token output JSON
@@ -73,14 +78,18 @@ SIH26096/
 │   ├── evaluate_ocr.py               # CLI: Standardized error evaluation engine
 │   └── generate_report.py            # CLI: Publication report & chart generator
 ├── src/sih_archive/
-│   ├── evaluation/                   # CER/WER, IoU matching, reading order
-│   ├── ingestion/                    # Intake audit and rights verification
-│   ├── ocr/                          # Abstract adapter, Tesseract, Mock engines
-│   ├── preprocessing/                # Grayscale, CLAHE, Otsu, Deskew, Denoise
-│   ├── rendering/                    # PyMuPDF deterministic PDF rasterization
-│   ├── schemas/                      # Pydantic v2 data models
+│   ├── attribution/                  # Phase E3: Grounded claim synthesis & refusal
+│   ├── evaluation/                   # Phase E1: CER/WER, IoU matching, reading order
+│   ├── hardware/                     # Phase E5: Workstation, archival node, kiosk
+│   ├── ingestion/                    # Phase E0: Intake audit and rights verification
+│   ├── multilingual/                 # Phase E4: Translation and TTS adapters
+│   ├── ocr/                          # Phase E1: Abstract adapter, Tesseract, Mock engines
+│   ├── preprocessing/                # Phase E1: Grayscale, CLAHE, Otsu, Deskew, Denoise
+│   ├── rendering/                    # Phase E1: PyMuPDF deterministic PDF rasterization
+│   ├── retrieval/                    # Phase E2: BM25, N-Gram, Dense BGE-M3, Hybrid RRF
+│   ├── schemas/                      # Core Pydantic v2 data models
 │   └── utils/                        # Shared file and path utilities
-├── tests/                            # Automated test suite (100% synthetic/offline)
+├── tests/                            # Automated test suite (135 tests, 100% offline)
 ├── pytest.ini                        # Pytest configuration
 ├── requirements.txt                  # Minimal dependency specifications
 └── README.md                         # Project overview and quickstart guide

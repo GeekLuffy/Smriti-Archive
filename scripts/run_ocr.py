@@ -230,8 +230,11 @@ def main(argv=None) -> int:
 
             if ocr_res.status == "success":
                 ocr_res.to_json_file(primary_out)
-                ocr_res.to_json_file(engine_out)
-                ocr_res.to_json_file(alias_out)
+                # Preserve raw baseline: only overwrite engine_out / alias_out when preprocessing is raw
+                if args.preprocess.lower() in ("raw", "none", "") or not engine_out.exists():
+                    ocr_res.to_json_file(engine_out)
+                if args.preprocess.lower() in ("raw", "none", "") or not alias_out.exists():
+                    ocr_res.to_json_file(alias_out)
                 token_count = len(ocr_res.regions)
                 duration = ocr_res.processing.duration_ms
                 print(f"  [OK]     {page_id} -> {token_count:3d} tokens ({duration:.1f}ms)")

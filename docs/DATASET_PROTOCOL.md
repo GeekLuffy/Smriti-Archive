@@ -74,34 +74,39 @@ The ingestion module `sih_archive.ingestion.protocol` evaluates all manifests th
 
 ---
 
-## 4. Archival Scan Quality Classification Tiers
+## 4. Archival Scan Quality Classification Tiers & Standards Demarcation
 
-Historical scans vary substantially in visual fidelity. To evaluate OCR performance fairly, documents and individual pages are categorized into three standardized scan quality tiers:
+> [!IMPORTANT]
+> **Normative Standards vs. Team-Defined Experimental Protocols**:
+> - **External Archival Standards**: Official guidelines such as the **Federal Agencies Digital Guidelines Initiative (FADGI)** Still Image Guidelines (Technical Guidelines for Digitizing Cultural Heritage Materials), **ISO 19264-1** (Photography — Electronic scanners and digital cameras for graphic arts and cultural heritage), and the **National Archives of India (NAI) Digitization Guidelines** prescribe preservation-grade master capture typically between 300 to 400 DPI optical (and up to 600 DPI for manuscripts/microfilm) in uncompressed 24-bit RGB or 8-bit grayscale TIFF.
+> - **Team-Defined Experimental Protocols**: The quality tiers (Tiers 1–3) and sampling strata (Strata A–E) detailed below are **heuristic experimental categories constructed specifically by this research team** for controlled benchmarking of OCR error rates under varying degradation conditions. They are **not** universal statutory definitions or globally mandated archival categories.
+> - **Resolution Policy**: In our pipeline, 300 DPI is adopted as the pragmatic default resolution for character recognition experiments, but DPI is fully configurable via the CLI (`--dpi`) to match specific institutional digitization protocols.
 
-```
-+-------------------------------------------------------------------------+
-|                  Scan Quality Classification Hierarchy                  |
-+-------------------------------------------------------------------------+
-| Tier 1: Preservation Grade  | 300+ DPI, uniform illumination, flatbed   |
-| Tier 2: Archival/Microfilm  | 200-300 DPI, moderate skew, slight bleed  |
-| Tier 3: Severely Degraded   | <200 DPI, heavy bleed, foxing, torn, warp |
-+-------------------------------------------------------------------------+
-```
+### 4.0 Corpus Document Classification Taxonomy
 
-### 4.1 Tier 1: Preservation Grade (Pristine Archival Scan)
-- **Resolution**: 300 DPI or higher.
-- **Physical Characteristics**: Scanned from original bound volumes using modern planetary or flatbed scanners; uniform illumination without shadows; clean paper margins; negligible skew ($< 1.0^\circ$).
+To ensure research integrity, the repository strictly classifies all intake files into one of four distinct categories:
+
+1. **Synthetic Test Fixture**: Programmatically generated digital vector files (e.g. `data/raw/ambedkar_speech_vol1.pdf` created via PyMuPDF) designed strictly for CI testing, schema validation, and pipeline verification. They do **not** represent authentic historical scans.
+2. **Public-Domain Source Text / Modern Digital Reprint**: Modern typesetting or clean digital editions of historical writings released openly for educational study. While legally public under copyright expiry, their clean typography does not exhibit the ink bleeding, broken type, and paper aging of period documents.
+3. **Authentic Scanned Archival Facsimile**: True photographic or optical scans of original historical printings, gazettes, periodicals, and manuscripts (e.g. 1916–1956 original impressions), exhibiting genuine age degradation, paper foxing, and layout complexity. **Empirical OCR benchmarking requires this class of documents.**
+4. **Restricted / Copyrighted Asset**: Any document subject to active third-party copyright, private collection restrictions, or unverified licensing terms. Such documents are quarantined and forbidden from redistribution.
+
+---
+
+### 4.1 Tier 1: High-Fidelity Modern / Flatbed Scan (Team Experimental Category)
+- **Nominal Resolution**: 300 DPI (configurable).
+- **Physical Characteristics**: Scanned from bound volumes or clean reprints using planetary or flatbed scanners; uniform illumination; minimal skew ($< 1.0^\circ$).
 - **Text Characteristics**: Crisp letterpress or modern typeset typography; high contrast between ink and background; absence of bleed-through or ghosting.
 - **Benchmark Role**: Serves as the upper-bound baseline to evaluate the core character recognition engine accuracy without compounding degradation factors.
 
-### 4.2 Tier 2: Archival / Microfilm / Photostat
-- **Resolution**: 200–300 DPI.
-- **Physical Characteristics**: Scanned from second-generation photostatic prints, microfiche, or aged government gazette pulp paper (1920s–1950s). Mild page curvature near the binding; minor skew ($1.0^\circ \text{ to } 3.0^\circ$).
+### 4.2 Tier 2: Historical Print / Microfilm / Photostat (Team Experimental Category)
+- **Nominal Resolution**: 200–300 DPI.
+- **Physical Characteristics**: Scanned from historical photostatic prints, microfiche, or aged government gazette pulp paper (1920s–1950s). Mild page curvature near the binding; minor skew ($1.0^\circ \text{ to } 3.0^\circ$).
 - **Text Characteristics**: Faint type bars, minor ink spread or stroke thinning, mild bleed-through from verso page, faint paper grain, occasional foxing spots.
 - **Benchmark Role**: Tests the effectiveness of adaptive thresholding (Otsu, adaptive Gaussian), deskewing algorithms, and contrast enhancement (CLAHE).
 
-### 4.3 Tier 3: Severely Degraded / Brittle Historical Manuscript
-- **Resolution**: Below 200 DPI or high-resolution capture of physically decomposed originals.
+### 4.3 Tier 3: Severely Degraded / Brittle Historical Manuscript (Team Experimental Category)
+- **Nominal Resolution**: Below 200 DPI or high-resolution capture of physically decomposed originals.
 - **Physical Characteristics**: Severe paper discoloration, brittle margins, torn edges, deep shadow gradients along gutter margins, heavy skew ($> 3.0^\circ$), water/damp staining, insect damage.
 - **Text Characteristics**: Heavy ink bleed-through where reverse-side text collides with recto text; broken ligature strokes in Devanagari script; faded or smeared type; mixed handwritten marginalia.
 - **Benchmark Role**: Tests advanced morphological filtering, binarization stability, and the ability of the pipeline to report low-confidence regions rather than catastrophic hallucination.
