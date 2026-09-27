@@ -1,0 +1,159 @@
+{
+  "phase": "E2_RETRIEVAL",
+  "benchmark_date": "2026-09-27",
+  "gate_status": "LOCKED_PREVIEW (Gated on Empirical Completion of Phase E1)",
+  "gating_rule": "Retrieval benchmarks remain locked from official evaluation until a real archival OCR corpus is verified.",
+  "implemented_strategies": [
+    "BM25",
+    "Character 3-Gram Fuzzy",
+    "Dense BGE-M3 (Mock)",
+    "Hybrid RRF (k=60)"
+  ],
+  "corpus_indexed_pages_count": 20,
+  "engine_benchmarks": [
+    {
+      "engine": "bm25",
+      "mean_latency_ms": 0.08,
+      "mean_recall_at_10": 0.3333,
+      "mean_ndcg_at_10": 0.3333,
+      "mean_mrr": 0.3333,
+      "indexed_pages": 20,
+      "total_tokens": 354,
+      "queries_evaluated": 4,
+      "sample_query_runs": [
+        {
+          "query": "Castes in India Mechanism Genesis",
+          "latency_ms": 0.03,
+          "top_hit_page_id": null,
+          "top_hit_score": 0.0
+        },
+        {
+          "query": "Vasant Moon Education Department",
+          "latency_ms": 0.16,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 4.0433
+        },
+        {
+          "query": "Fundamental Rights Directive Principles",
+          "latency_ms": 0.02,
+          "top_hit_page_id": null,
+          "top_hit_score": 0.0
+        },
+        {
+          "query": "Annihilation of Caste Mahatma Gandhi",
+          "latency_ms": 0.13,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 1.0108
+        }
+      ]
+    },
+    {
+      "engine": "char_3gram_fuzzy",
+      "mean_latency_ms": 0.71,
+      "mean_recall_at_10": 1.0,
+      "mean_ndcg_at_10": 1.0,
+      "mean_mrr": 0.8333,
+      "indexed_pages": 20,
+      "total_tokens": 354,
+      "queries_evaluated": 4,
+      "sample_query_runs": [
+        {
+          "query": "Castes in India Mechanism Genesis",
+          "latency_ms": 0.78,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 0.2494
+        },
+        {
+          "query": "Vasant Moon Education Department",
+          "latency_ms": 0.75,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 0.4533
+        },
+        {
+          "query": "Fundamental Rights Directive Principles",
+          "latency_ms": 0.63,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 0.2477
+        },
+        {
+          "query": "Annihilation of Caste Mahatma Gandhi",
+          "latency_ms": 0.69,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 0.2534
+        }
+      ]
+    },
+    {
+      "engine": "dense_bge-m3",
+      "mean_latency_ms": 0.06,
+      "mean_recall_at_10": 1.0,
+      "mean_ndcg_at_10": 0.7641,
+      "mean_mrr": 0.4417,
+      "indexed_pages": 20,
+      "total_tokens": 354,
+      "queries_evaluated": 4,
+      "sample_query_runs": [
+        {
+          "query": "Castes in India Mechanism Genesis",
+          "latency_ms": 0.1,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0002",
+          "top_hit_score": 0.1994
+        },
+        {
+          "query": "Vasant Moon Education Department",
+          "latency_ms": 0.05,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 0.1056
+        },
+        {
+          "query": "Fundamental Rights Directive Principles",
+          "latency_ms": 0.04,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0004",
+          "top_hit_score": 0.1523
+        },
+        {
+          "query": "Annihilation of Caste Mahatma Gandhi",
+          "latency_ms": 0.04,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0005",
+          "top_hit_score": 0.2151
+        }
+      ]
+    },
+    {
+      "engine": "hybrid_bm25_dense_bge-m3",
+      "mean_latency_ms": 0.18,
+      "mean_recall_at_10": 1.0,
+      "mean_ndcg_at_10": 0.877,
+      "mean_mrr": 0.8333,
+      "indexed_pages": 20,
+      "total_tokens": 354,
+      "queries_evaluated": 4,
+      "sample_query_runs": [
+        {
+          "query": "Castes in India Mechanism Genesis",
+          "latency_ms": 0.13,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 0.092842
+        },
+        {
+          "query": "Vasant Moon Education Department",
+          "latency_ms": 0.23,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 0.188407
+        },
+        {
+          "query": "Fundamental Rights Directive Principles",
+          "latency_ms": 0.11,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 0.09097
+        },
+        {
+          "query": "Annihilation of Caste Mahatma Gandhi",
+          "latency_ms": 0.24,
+          "top_hit_page_id": "ambedkar_speech_vol1_p0001",
+          "top_hit_score": 0.187639
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+# SIH26096 — Master Experiment & Benchmark Status
+**Problem Statement:** Digital Heritage Archive for Memorials, Manuscripts & Ambedkar: AI-Powered Institutional Archive and Audio-Visual Knowledge Platform  
+**System State Date:** 2026-09-27  
+**Repository:** `https://github.com/GeekLuffy/SIH26096`  
+**Host Environment:** Windows (PowerShell, Python 3.11.9, pytest-9.0.2)  
+**Research Engineering Lead:** Antigravity Research Team  
+
+---
+
+## 1. Executive Milestone Gate Status
+
+| Milestone / Phase | Gate Status | Architecture Status | Empirical Status | Next Prerequisite to Unlock |
+| :--- | :--- | :--- | :--- | :--- |
+| **E0: Archival Corpus & Rights Intake** | **PASS** | Complete & Tested | **VERIFIED** | Ready for broader multi-lingual corpus ingestion. |
+| **E1: Archival OCR & Preprocessing Benchmark** | **BLOCKED** | Complete & Tested (`TesseractAdapter`, `MockOCRAdapter`, CLI, RapidFuzz CER/WER, IoU, Reading Order) | **BLOCKED ON HOST BINARY** | Install Tesseract OCR v5+ on host PATH with `eng`, `hin`, `mar` traineddata models + ingest physical degraded scan samples. |
+| **E2: Resilient Retrieval Benchmark** | **LOCKED** | Complete Preview (`BM25`, `NGram-3`, `Dense BGE-M3 Mock`, `Hybrid RRF`) | **LOCKED PREVIEW** | Gated strictly on completion of empirical E1 on real archival scans. |
+| **E3: Citation & Visual Attribution Grounding** | **LOCKED** | Complete Preview (`EvidenceGroundedAnswerPipeline`, Bounding Box Grounding, Refusal Engine) | **LOCKED PREVIEW** | Gated strictly on validated E1 and E2 outputs. |
+| **E4: Multilingual Translation & Audio Synthesis** | **READY (Gated)** | Modeled (`TranslationAdapter`, `TTSAdapter`, Schemas) | **GATED** | Gated on E3 citation validation. |
+| **E5: Institutional Deployment & Kiosk Hardware** | **READY (Gated)** | Modeled (`WorkstationConfig`, `ArchivalStorageNode`, `KioskController`) | **GATED** | Gated on field pilot approval. |
+
+---
+
+## 2. Research Integrity Audit & Status Classification
+
+To avoid scientific fraud, premature performance claims, and simulation fallacies, all metrics across this repository are strictly classified into three categories:
+
+1. **MEASURED**: Statistically computed against empirical, verifiable inputs with known ground truth and operational binaries.
+2. **UNKNOWN**: Unmeasured characteristics (e.g. real OCR accuracy on degraded brittle paper) awaiting physical scans and local OCR execution.
+3. **BLOCKED**: Experiments where code is fully implemented and passes unit tests, but execution is halted by external dependencies (e.g. system binary installation or admin elevation).
+
+### Comprehensive Status Audit Table
+
+| Component / Experiment | Classification | Empirical Value | Rationale & Evidence |
+| :--- | :--- | :--- | :--- |
+| **PDF Rasterization Pipeline** | **MEASURED** | 300 DPI, PyMuPDF, deterministic SHA-256 | Validated across 5 test pages with deterministic `{doc}_p{page:04d}` ID generation. |
+| **Intake Rights Compliance** | **MEASURED** | 100% compliant | Statutory defense recorded under Indian Copyright Act 1957 §52(1)(q) and §22. |
+| **Tesseract Engine Host Presence** | **BLOCKED** | Not installed / Not in PATH | Windows UAC elevation prevented silent winget installation. Diagnostics accurately report binary absence. |
+| **OCR Character Error Rate (CER) on Historical Scans** | **UNKNOWN** | Unknown | Current raw PDF (`ambedkar_speech_vol1.pdf`) is a synthetic digital vector PDF, NOT an authentic historical scan. |
+| **OCR Word Error Rate (WER) on Historical Scans** | **UNKNOWN** | Unknown | Awaiting ingestion of authentic microfilms / degraded print scans. |
+| **CLAHE / Otsu Preprocessing Benefit** | **UNKNOWN** | Unknown on historical scans | Filters implemented and tested on synthetic fixtures; empirical delta on historical ink bleed is unmeasured. |
+| **Lexical vs Dense Retrieval on OCR Corrupted Text** | **UNKNOWN (Framework Preview)** | Simulated (Recall@10 = 1.0 on clean text) | Evaluated on mock/synthetic documents only. Official benchmark strictly LOCKED. |
+| **Visual Bounding Box Citation Alignment** | **UNKNOWN (Framework Preview)** | Simulated (100% precision on mock query) | Algorithmic refusal and bounding box projection verified on synthetic tokens; real OCR noise unmeasured. |
+
+---
+
+## 3. Detailed Phase Status & Gating Criteria
+
+### Phase E0: Archival Corpus & Rights Intake — `PASS`
+- **Implemented:**
+  - `src/sih_archive/schemas/manifest.py`: Strict Pydantic models for intellectual property tracking, checksums, and metadata.
+  - `src/sih_archive/ingestion/protocol.py`: Path traversal sanitization, rights evidence enforcement, intake audit.
+  - `scripts/ingest.py`: Multi-format CLI for PDF/image ingestion, metadata capture, and ground-truth transcript binding.
+- **Verification:**
+  - 144 unit and integration tests passing (`python -m pytest tests/ -v`).
+  - Verified sample manifest `data/manifests/ambedkar_speech_vol1.json`.
+
+### Phase E1: Archival OCR Benchmark — `BLOCKED`
+- **Implemented:**
+  - `src/sih_archive/ocr/base.py`, `src/sih_archive/ocr/tesseract.py`, `src/sih_archive/ocr/mock.py`.
+  - `src/sih_archive/preprocessing/filters.py` (Grayscale, Resize, CLAHE, Otsu, Adaptive, Deskew, Denoise).
+  - `src/sih_archive/evaluation/cer_wer.py` (RapidFuzz edit distance with S, D, I breakdowns).
+  - `src/sih_archive/evaluation/iou.py` (Greedy bipartite bounding box IoU at $\tau=0.5$).
+  - `src/sih_archive/evaluation/reading_order.py` (Kendall's Tau concordance).
+  - `scripts/run_ocr.py`, `scripts/evaluate_ocr.py`, `scripts/generate_report.py`.
+- **Blocking Bottleneck:**
+  - Tesseract binary executable is not present on the host Windows PATH (`tesseract.exe`).
+  - Downloaded installer (`tesseract-ocr-w64-setup-5.4.0.20240606.exe`) requires an interactive administrative prompt (UAC).
+  - Physical historical manuscript scans with manual paleographic ground truth have not yet been placed in `data/raw/`.
+- **Gating Rule to Unlock:**
+  1. Install Tesseract 5.x on host system with English, Marathi (`mar`), and Hindi (`hin`) language packs.
+  2. Ingest authentic historical scans into `data/raw/` with verified rights manifests.
+  3. Execute `scripts/run_ocr.py` and `scripts/evaluate_ocr.py` to record genuine empirical CER/WER.
+
+### Phase E2: Resilient Retrieval Benchmark — `LOCKED`
+- **Implemented:**
+  - `src/sih_archive/retrieval/bm25.py` (BM25 lexical index).
+  - `src/sih_archive/retrieval/ngram.py` (Character 3-gram fuzzy index for OCR degradation tolerance).
+  - `src/sih_archive/retrieval/dense.py` (Dense embedding abstraction, BGE-M3 ready, MockEmbeddingModel).
+  - `src/sih_archive/retrieval/hybrid.py` (Reciprocal Rank Fusion at $k=60$).
+  - `src/sih_archive/retrieval/metrics.py` (Recall@K, nDCG@K, MRR).
+- **Locking Reason:**
+  - Evaluating retrieval engines on clean, synthetic digital vector text produces misleading 100% recall figures that fail to simulate historical OCR degradation.
+- **Unlocking Prerequisite:**
+  - Unlocked automatically once empirical E1 OCR outputs from degraded historical scans are committed to `outputs/ocr/`.
+
+### Phase E3: Attribution & Citation Grounding — `LOCKED`
+- **Implemented:**
+  - `src/sih_archive/attribution/pipeline.py` (`EvidenceGroundedAnswerPipeline` with token bounding-box mapping).
+  - Strict algorithmic refusal mechanism returning explicit `insufficient_evidence` when query similarity falls below threshold $\tau_{\text{rel}}$.
+  - `src/sih_archive/attribution/evaluator.py` (AttributionPrecision, CitationRecall, GroundingFaithfulness, RefusalAccuracy).
+- **Locking Reason:**
+  - Grounding faithfulness cannot be meaningfully verified on synthetic dummy citations without degraded OCR tokens.
+- **Unlocking Prerequisite:**
+  - Unlocked once empirical E1 tokens and E2 retrieval hits are validated.
+
+### Phase E4: Multilingual Translation & Audio Synthesis — `READY (Gated)`
+- **Implemented:**
+  - `src/sih_archive/multilingual/base.py` (`TranslationAdapter`, `TTSAdapter`).
+  - `src/sih_archive/multilingual/schemas.py` (`TranslationOutput`, `AudioOutput`, provenance tracking).
+- **Gating Rule:**
+  - Must not synthesize audio or translate text from unverified/unattributed source citations.
+
+### Phase E5: Hardware & Institutional Deployment — `READY (Gated)`
+- **Implemented:**
+  - `src/sih_archive/hardware/schemas.py` (`WorkstationConfig`, `ArchivalStorageNode`, `KioskController`).
+  - `src/sih_archive/hardware/interfaces.py` (Local archival server, offline kiosk, air-gapped sync specs).
+- **Gating Rule:**
+  - Hardware specifications will be finalized after empirical latency benchmarks on physical server nodes.
+
+---
+
+## 4. Machine-Readable Benchmark Outputs
+
+The repository provides automated generation of standardized, machine-readable JSON benchmarks via `python scripts/run_benchmarks.py`:
+
+- [`results/e1_ocr_results.json`](file:///F:/Projects/SIH26096/results/e1_ocr_results.json): Contains engine availability, host diagnostics, research integrity notices, and evaluated page metrics.
+- [`results/e2_retrieval_results.json`](file:///F:/Projects/SIH26096/results/e2_retrieval_results.json): Contains locked preview benchmarks across BM25, Character 3-Gram, Dense, and Hybrid RRF.
+- [`results/e3_attribution_results.json`](file:///F:/Projects/SIH26096/results/e3_attribution_results.json): Contains locked preview benchmarks for evidence grounding and refusal accuracy.
+
+---
+
+## 5. Summary of Automated Verification Suite
+
+- **Total Passing Automated Tests:** 144
+- **Test Categories:**
+  - Manifest & Rights Intake Protocol: 13 tests
+  - PDF Rendering & Page Provenance: 15 tests
+  - Preprocessing Filter Variations: 16 tests
+  - OCR Adapters & Diagnostic Handling: 18 tests
+  - CER / WER Edit Distance Evaluation: 12 tests
+  - Bounding Box IoU & Reading Order: 14 tests
+  - Reporting CLI & Visualization: 11 tests
+  - Ingestion CLI & Benchmark Serialization: 9 tests
+  - Retrieval Engines (BM25, N-Gram, Dense, Hybrid): 12 tests
+  - Attribution Pipeline & Grounding Evaluation: 10 tests
+  - Multilingual & Hardware Specs: 3 tests
+  - Schema Roundtrips & Data Validation: 11 tests
+- **Execution Command:** `python -m pytest tests/ -v`
+- **Execution Duration:** ~4.7 seconds

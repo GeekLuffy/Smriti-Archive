@@ -1,0 +1,34 @@
+{
+  "phase": "E3_ATTRIBUTION",
+  "benchmark_date": "2026-09-27",
+  "gate_status": "LOCKED_PREVIEW (Gated on Empirical Completion of Phase E1 and E2)",
+  "gating_rule": "Attribution scores remain locked from official evaluation until real archival OCR and retrieval inputs are validated.",
+  "metrics": {
+    "total_questions": 2,
+    "claim_support_rate": 0.0,
+    "span_precision": 0.0,
+    "mean_bbox_iou": 0.0,
+    "broken_citation_rate": 0.0,
+    "source_page_accuracy": 0.5,
+    "unsupported_answer_rate": 0.0
+  },
+  "attribution_chain": "Question -> Retrieval -> Page -> Region/BBox -> Claim -> Citation -> Viewer Target",
+  "answers": [
+    {
+      "question": "Who compiled Volume 1 of Dr. Ambedkar's Writings and Speeches?",
+      "is_refusal": true,
+      "refusal_reason": "Top candidate match similarity (43.5%) below minimum support threshold (50.0%).",
+      "answer_text": "REFUSAL: Retrieved documents do not contain direct evidence addressing this specific inquiry.",
+      "claims_count": 0,
+      "citations": []
+    },
+    {
+      "question": "What is the quantum mechanical spin of a neutral kaon meson?",
+      "is_refusal": true,
+      "refusal_reason": "Top candidate match similarity (33.3%) below minimum support threshold (50.0%).",
+      "answer_text": "REFUSAL: Retrieved documents do not contain direct evidence addressing this specific inquiry.",
+      "claims_count": 0,
+      "citations": []
+    }
+  ]
+}

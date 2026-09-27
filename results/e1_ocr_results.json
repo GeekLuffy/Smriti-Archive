@@ -1,0 +1,30 @@
+{
+  "phase": "E1_OCR",
+  "benchmark_date": "2026-09-27",
+  "gate_status": "BLOCKED_ON_HOST_OCR_BINARY",
+  "tesseract_host_status": {
+    "available": false,
+    "diagnostic_message": "Tesseract OCR binary not found. Searched: env TESSERACT_CMD/TESSERACT_PATH, system PATH lookup, C:\\Program Files\\Tesseract-OCR\\tesseract.exe, C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe, C:\\Users\\user\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe. Remediation: Install Tesseract on Windows via 'winget install UB-Mannheim.TesseractOCR' or on Linux via 'sudo apt-get install tesseract-ocr', or pass --tesseract-cmd.",
+    "supported_languages_target": [
+      "eng",
+      "hin",
+      "mar"
+    ]
+  },
+  "research_integrity_notice": "SYNTHETIC AND MOCK FIXTURE RESULTS MUST NOT BE REPORTED AS EMPIRICAL EVIDENCE OF HISTORICAL ARCHIVAL PERFORMANCE. Clean vector PDFs fail to model physical degradation.",
+  "corpus_metadata": {
+    "document_id": "ambedkar_speech_vol1",
+    "physical_classification": "Synthetic Digital Vector PDF Excerpt (5 pages)",
+    "rights_status": "public",
+    "rights_statute": "Indian Copyright Act 1957 Section 22 & Section 52(1)(q)"
+  },
+  "metrics_definition": {
+    "CER": "Levenshtein character edit distance (S + D + I) / N_ref",
+    "WER": "Levenshtein word edit distance (S_w + D_w + I_w) / N_w_ref",
+    "reading_order_error": "1.0 - Normalized Kendall's Tau concordance",
+    "region_box_recall": "True positive bounding boxes / Total reference regions at IoU >= 0.5"
+  },
+  "evaluated_pages_count": 0,
+  "unannotated_pages_count": 0,
+  "pages": []
+}
