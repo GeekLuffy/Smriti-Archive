@@ -58,3 +58,5 @@ outputs/reports/*
 # Internal agent working directories
 .agents/
 
+
+.vercel

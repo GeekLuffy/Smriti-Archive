@@ -44,6 +44,30 @@ def _default_processed_dir() -> Path:
     return _default_data_dir() / "processed"
 
 
+def _default_results_dir() -> Path:
+    if "RESULTS_DIR" in os.environ:
+        return Path(os.environ["RESULTS_DIR"]).resolve()
+    if os.environ.get("VERCEL"):
+        return Path("/tmp/results")
+    return _resolve_repo_root() / "results"
+
+
+def _default_outputs_dir() -> Path:
+    if "OUTPUTS_DIR" in os.environ:
+        return Path(os.environ["OUTPUTS_DIR"]).resolve()
+    if os.environ.get("VERCEL"):
+        return Path("/tmp/outputs")
+    return _resolve_repo_root() / "outputs"
+
+
+def _default_model_cache_dir() -> Path:
+    if "MODEL_CACHE_DIR" in os.environ:
+        return Path(os.environ["MODEL_CACHE_DIR"]).resolve()
+    if os.environ.get("VERCEL"):
+        return Path("/tmp/cache/models")
+    return _resolve_repo_root() / "cache" / "models"
+
+
 class ArchiveConfig(BaseModel):
     """Runtime configuration model driven by environment variables."""
 
@@ -54,9 +78,9 @@ class ArchiveConfig(BaseModel):
     manifests_dir: Path = Field(default_factory=_default_manifests_dir)
     raw_dir: Path = Field(default_factory=_default_raw_dir)
     processed_dir: Path = Field(default_factory=_default_processed_dir)
-    results_dir: Path = Field(default_factory=lambda: Path(os.environ.get("RESULTS_DIR", _resolve_repo_root() / "results")).resolve())
-    outputs_dir: Path = Field(default_factory=lambda: Path(os.environ.get("OUTPUTS_DIR", _resolve_repo_root() / "outputs")).resolve())
-    model_cache_dir: Path = Field(default_factory=lambda: Path(os.environ.get("MODEL_CACHE_DIR", _resolve_repo_root() / "cache" / "models")).resolve())
+    results_dir: Path = Field(default_factory=_default_results_dir)
+    outputs_dir: Path = Field(default_factory=_default_outputs_dir)
+    model_cache_dir: Path = Field(default_factory=_default_model_cache_dir)
 
     # Server / Northflank Port Binding
     host: str = Field(default_factory=lambda: os.environ.get("HOST", "0.0.0.0"))

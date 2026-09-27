@@ -43,7 +43,7 @@ from sih_archive.retrieval.dense import DenseRetrievalEngine, MockEmbeddingModel
 from sih_archive.retrieval.hybrid import HybridRetrievalEngine
 from sih_archive.retrieval.ngram import CharacterNGramRetrievalEngine
 from sih_archive.schemas.manifest import DocumentManifest, RightsStatus
-from sih_archive.schemas.ocr import OCROutput, TokenRegion
+from sih_archive.schemas.ocr import OCROutput, ProcessingMetadata, TokenRegion
 
 # Structured Logging Setup
 logging.basicConfig(
@@ -84,6 +84,7 @@ def load_indexed_corpus(config: ArchiveConfig) -> List[OCROutput]:
             script="Latn",
             engine="mock_synthetic",
             image_path="data/processed/pages/ambedkar_speech_vol1_p0001.png",
+            processing=ProcessingMetadata(dpi=300, execution_duration_ms=10.0),
             text="DR. BABASAHEB AMBEDKAR WRITINGS AND SPEECHES VOL. 1. Compiled by Vasant Moon. Published by Education Department, Government of Maharashtra.",
             regions=[
                 TokenRegion(text="DR.", bbox=[50, 100, 40, 20], confidence=99.0),
@@ -468,12 +469,21 @@ async def get_benchmark_result(phase: str) -> Dict[str, Any]:
     """Returns machine-readable JSON result file for a given benchmark phase (e1, e2, or e3)."""
     config = get_config()
     file_map = {
-        "e1": config.results_dir / "e1_ocr_results.json",
-        "e2": config.results_dir / "e2_retrieval_results.json",
-        "e3": config.results_dir / "e3_attribution_results.json",
+        "e1": "e1_ocr_results.json",
+        "e2": "e2_retrieval_results.json",
+        "e3": "e3_attribution_results.json",
     }
-    target_file = file_map.get(phase.lower())
-    if not target_file or not target_file.is_file():
+    filename = file_map.get(phase.lower())
+    if not filename:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Benchmark results for phase '{phase}' not found.",
+        )
+    target_file = config.results_dir / filename
+    if not target_file.is_file():
+        target_file = config.repo_root / "results" / filename
+
+    if not target_file.is_file():
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Benchmark results for phase '{phase}' not found.",

@@ -189,3 +189,27 @@ python -c "from api.index import app; print('Vercel entrypoint ready:', app.titl
 # Run automated Vercel deployment test suite
 python -m pytest tests/test_vercel_deployment.py -v
 ```
+
+---
+
+## 9. VERIFIED LIVE DEPLOYMENT
+
+The live production deployment on Vercel has been fully executed and empirically verified:
+
+| Property | Verified Production Value |
+| :--- | :--- |
+| **Vercel Project URL** | [https://vercel.com/luffy-projects/sih26096](https://vercel.com/luffy-projects/sih26096) |
+| **Production Aliased URL** | [https://sih26096.vercel.app](https://sih26096.vercel.app) |
+| **Direct Deployment URL** | [https://sih26096-k2kl7u28t-luffy-projects.vercel.app](https://sih26096-k2kl7u28t-luffy-projects.vercel.app) |
+| **Deployment ID** | `dpl_XX6boK2FS2BA23drpL9xSKLT2pDj` |
+| **Deployment Status** | `READY` (HTTP 200) |
+| **Runtime & Region** | Python 3.12.14 Serverless (`uv 0.10.11`) on `iad1` (Washington, D.C., USA) |
+| **Execution Mode** | `DEMO` (`platform_mode: vercel_serverless`) |
+| **OCR Host Engine** | Truthfully reported as `available: false` (Tesseract binary absent in Vercel runtime) |
+| **Health Probe (`GET /health`)** | `{"status": "healthy", "service": "sih26096-archive", "execution_mode": "DEMO"}` (HTTP 200) |
+| **Readiness Probe (`GET /ready`)** | `{"status": "ready", "storage_ready": true, "is_serverless": true, "indexed_documents_count": 1}` (HTTP 200) |
+| **Search API (`GET /api/v1/search`)** | Query `Ambedkar` returned 1 hit (`ambedkar_speech_vol1_p0001`, score: 0.0328) |
+| **QA API (`POST /api/v1/qa`)** | Grounded answer with citation: `"Compiled by Vasant Moon." [Source: ambedkar_speech_vol1, Page: p0001]` |
+| **Benchmark Gating (`GET /api/v1/benchmarks/{phase}`)** | `e1`: `BLOCKED_ON_HOST_OCR_BINARY`; `e2` & `e3`: `LOCKED_PREVIEW` |
+| **Oversized Upload Safeguards** | 5MB edge payload rejected at Vercel Edge (HTTP 413); 4.2MB rejected by FastAPI limit with informative 4.5MB serverless error message |
+
