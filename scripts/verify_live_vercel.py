@@ -2,7 +2,7 @@ import json
 import sys
 import httpx
 
-BASE_URL = "https://sih26096.vercel.app"
+BASE_URL = "https://orbit-heritage-archive.vercel.app"
 
 def test_live_deployment():
     print(f"Testing live Vercel deployment at: {BASE_URL}")

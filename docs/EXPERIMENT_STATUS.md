@@ -168,10 +168,11 @@ Deployment readiness and scientific validation status are strictly decoupled acr
 
 The public institutional presentation layer has been deployed to Vercel and verified across all live endpoints:
 
-- **Production URL:** [https://sih26096.vercel.app](https://sih26096.vercel.app)
-- **Deployment URL:** [https://sih26096-6hy08ttw5-luffy-projects.vercel.app](https://sih26096-6hy08ttw5-luffy-projects.vercel.app)
-- **Project URL:** [https://vercel.com/luffy-projects/sih26096](https://vercel.com/luffy-projects/sih26096)
+- **Production URL:** [https://orbit-heritage-archive.vercel.app](https://orbit-heritage-archive.vercel.app)
+- **Deployment URL:** [https://orbit-heritage-archive-cbd0o2fgo-luffy-projects.vercel.app](https://orbit-heritage-archive-cbd0o2fgo-luffy-projects.vercel.app)
+- **Project URL:** [https://vercel.com/luffy-projects/orbit-heritage-archive](https://vercel.com/luffy-projects/orbit-heritage-archive)
 - **Deployment Status:** `READY` (HTTP 200)
+- **Domain Privacy:** Old public aliases (`sih26096.vercel.app`, `sih26096-luffy-projects.vercel.app`) permanently unlinked and return 404 to protect team IP and research work.
 - **Runtime:** Python 3.12.14 Serverless (`uv 0.10.11`) on `iad1` (Washington, D.C.)
 - **Execution Mode:** `DEMO` (`platform_mode: vercel_serverless`)
 - **Host OCR Status:** Truthfully reports `Tesseract available: false` (not bundled in Vercel serverless environment; reserved for Tier 3 Docker/Northflank compute).

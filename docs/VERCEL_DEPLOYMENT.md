@@ -198,11 +198,12 @@ The live production deployment on Vercel has been fully executed and empirically
 
 | Property | Verified Production Value |
 | :--- | :--- |
-| **Vercel Project URL** | [https://vercel.com/luffy-projects/sih26096](https://vercel.com/luffy-projects/sih26096) |
-| **Production Aliased URL** | [https://sih26096.vercel.app](https://sih26096.vercel.app) |
-| **Direct Deployment URL** | [https://sih26096-6hy08ttw5-luffy-projects.vercel.app](https://sih26096-6hy08ttw5-luffy-projects.vercel.app) |
-| **Deployment ID** | `dpl_6GsSRsTGGhrA5Aekj6CyJvHiVANz` |
+| **Vercel Project URL** | [https://vercel.com/luffy-projects/orbit-heritage-archive](https://vercel.com/luffy-projects/orbit-heritage-archive) |
+| **Production Aliased URL** | [https://orbit-heritage-archive.vercel.app](https://orbit-heritage-archive.vercel.app) |
+| **Direct Deployment URL** | [https://orbit-heritage-archive-cbd0o2fgo-luffy-projects.vercel.app](https://orbit-heritage-archive-cbd0o2fgo-luffy-projects.vercel.app) |
+| **Deployment ID** | `dpl_51i5GZT3Ls1Kzc8UygsS71rFcw16` |
 | **Deployment Status** | `READY` (HTTP 200) |
+| **Domain Privacy** | Old public aliases (`sih26096.vercel.app`, `sih26096-luffy-projects.vercel.app`) permanently unlinked and return 404 to protect team IP and research work |
 | **Runtime & Region** | Python 3.12.14 Serverless (`uv 0.10.11`) on `iad1` (Washington, D.C., USA) |
 | **Execution Mode** | `DEMO` (`platform_mode: vercel_serverless`) |
 | **OCR Host Engine** | Truthfully reported as `available: false` (Tesseract binary absent in Vercel runtime) |
