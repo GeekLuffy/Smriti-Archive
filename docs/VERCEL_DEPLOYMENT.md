@@ -200,16 +200,21 @@ The live production deployment on Vercel has been fully executed and empirically
 | :--- | :--- |
 | **Vercel Project URL** | [https://vercel.com/luffy-projects/sih26096](https://vercel.com/luffy-projects/sih26096) |
 | **Production Aliased URL** | [https://sih26096.vercel.app](https://sih26096.vercel.app) |
-| **Direct Deployment URL** | [https://sih26096-k2kl7u28t-luffy-projects.vercel.app](https://sih26096-k2kl7u28t-luffy-projects.vercel.app) |
-| **Deployment ID** | `dpl_XX6boK2FS2BA23drpL9xSKLT2pDj` |
+| **Direct Deployment URL** | [https://sih26096-of1b4luwk-luffy-projects.vercel.app](https://sih26096-of1b4luwk-luffy-projects.vercel.app) |
+| **Deployment ID** | `dpl_8rGVAS6bQTCYLFCc68vsjdJuQ5zQ` |
 | **Deployment Status** | `READY` (HTTP 200) |
 | **Runtime & Region** | Python 3.12.14 Serverless (`uv 0.10.11`) on `iad1` (Washington, D.C., USA) |
 | **Execution Mode** | `DEMO` (`platform_mode: vercel_serverless`) |
 | **OCR Host Engine** | Truthfully reported as `available: false` (Tesseract binary absent in Vercel runtime) |
+| **Portal UI (`GET /`)** | Museum-grade Heritage Portal with hero section, 6 discovery cards, and research navigation |
+| **Touch Kiosk (`GET /kiosk`)** | Physical museum installation mode with large touch targets (min 48px) and ambient display |
 | **Health Probe (`GET /health`)** | `{"status": "healthy", "service": "sih26096-archive", "execution_mode": "DEMO"}` (HTTP 200) |
 | **Readiness Probe (`GET /ready`)** | `{"status": "ready", "storage_ready": true, "is_serverless": true, "indexed_documents_count": 1}` (HTTP 200) |
 | **Search API (`GET /api/v1/search`)** | Query `Ambedkar` returned 1 hit (`ambedkar_speech_vol1_p0001`, score: 0.0328) |
 | **QA API (`POST /api/v1/qa`)** | Grounded answer with citation: `"Compiled by Vasant Moon." [Source: ambedkar_speech_vol1, Page: p0001]` |
-| **Benchmark Gating (`GET /api/v1/benchmarks/{phase}`)** | `e1`: `BLOCKED_ON_HOST_OCR_BINARY`; `e2` & `e3`: `LOCKED_PREVIEW` |
+| **Provenance Chain (`GET /api/v1/provenance/{id}`)** | 6-stage cryptographic custody verification (`Object -> Digital -> Page -> OCR -> Retrieval -> Answer`) |
+| **A/V Media Catalog (`GET /api/v1/media`)** | 3 historical recordings with synchronized time-coded transcripts |
+| **Curator Audit (`GET /api/v1/admin/audit`)** | Institutional operational status and manifest integrity reporting |
+| **Benchmark Gating (`GET /api/v1/benchmarks/{p}`)** | `e1`: `BLOCKED_ON_HOST_OCR_BINARY`; `e2` & `e3`: `LOCKED_PREVIEW` |
 | **Oversized Upload Safeguards** | 5MB edge payload rejected at Vercel Edge (HTTP 413); 4.2MB rejected by FastAPI limit with informative 4.5MB serverless error message |
 

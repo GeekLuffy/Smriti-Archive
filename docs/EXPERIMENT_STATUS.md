@@ -121,7 +121,7 @@ The repository provides automated generation of standardized, machine-readable J
 
 ## 5. Summary of Automated Verification Suite
 
-- **Total Passing Automated Tests:** 171 (100% pass rate)
+- **Total Passing Automated Tests:** 220 (100% pass rate)
 - **Test Categories:**
   - Manifest & Rights Intake Protocol: 13 tests
   - PDF Rendering & Page Provenance: 15 tests
@@ -138,6 +138,10 @@ The repository provides automated generation of standardized, machine-readable J
   - Configuration & Storage Architecture: 4 tests
   - API Server, Security Gates & DEMO Mode: 14 tests
   - Vercel Serverless Entrypoint & Platform Adapters: 6 tests
+  - Heritage Design System & Visual Hierarchy: 14 tests (`test_milestone2_heritage_ui.py`)
+  - Manuscript Viewer & Evidence Bounding Boxes: 11 tests (`test_milestone3_viewer_assistant.py`)
+  - Kiosk Mode, A/V Media Library & Institutional Admin: 14 tests (`test_milestone4_kiosk_admin_media.py`)
+  - UI API Extensions (/kiosk, /media, /admin/audit, /provenance, /timeline): 13 tests (`test_ui_api_extensions.py`)
 - **Execution Command:** `python -m pytest tests/ -v`
 - **Execution Duration:** ~5.2 seconds
 
@@ -162,17 +166,18 @@ Deployment readiness and scientific validation status are strictly decoupled acr
 
 ## 7. Verified Live Vercel Production Deployment
 
-The public presentation layer has been deployed to Vercel and verified across all live endpoints:
+The public institutional presentation layer has been deployed to Vercel and verified across all live endpoints:
 
 - **Production URL:** [https://sih26096.vercel.app](https://sih26096.vercel.app)
-- **Deployment URL:** [https://sih26096-k2kl7u28t-luffy-projects.vercel.app](https://sih26096-k2kl7u28t-luffy-projects.vercel.app)
+- **Deployment URL:** [https://sih26096-of1b4luwk-luffy-projects.vercel.app](https://sih26096-of1b4luwk-luffy-projects.vercel.app)
 - **Project URL:** [https://vercel.com/luffy-projects/sih26096](https://vercel.com/luffy-projects/sih26096)
 - **Deployment Status:** `READY` (HTTP 200)
 - **Runtime:** Python 3.12.14 Serverless (`uv 0.10.11`) on `iad1` (Washington, D.C.)
 - **Execution Mode:** `DEMO` (`platform_mode: vercel_serverless`)
 - **Host OCR Status:** Truthfully reports `Tesseract available: false` (not bundled in Vercel serverless environment; reserved for Tier 3 Docker/Northflank compute).
 - **Probes Verified:**
-  - `GET /` -> HTTP 200 (HTML Web UI with prominent DEMO and synthetic disclaimers)
+  - `GET /` -> HTTP 200 (Heritage Portal with hero, 6 discovery cards, and navigation)
+  - `GET /kiosk` -> HTTP 200 (Touchscreen Museum Mode, min 48px touch targets, ambient display)
   - `GET /health` -> HTTP 200 (`{"status": "healthy", "service": "sih26096-archive", "execution_mode": "DEMO"}`)
   - `GET /ready` -> HTTP 200 (`{"status": "ready", "storage_ready": true, "is_serverless": true, "indexed_documents_count": 1}`)
   - `GET /api/v1/diagnostics` -> HTTP 200 (`platform_mode: vercel_serverless`, rights distinction preserved)
@@ -181,6 +186,9 @@ The public presentation layer has been deployed to Vercel and verified across al
   - `GET /api/v1/benchmarks/e1` -> HTTP 200 (`gate_status: BLOCKED_ON_HOST_OCR_BINARY`)
   - `GET /api/v1/benchmarks/e2` -> HTTP 200 (`gate_status: LOCKED_PREVIEW`)
   - `GET /api/v1/benchmarks/e3` -> HTTP 200 (`gate_status: LOCKED_PREVIEW`)
+  - `GET /api/v1/media` -> HTTP 200 (A/V Media Library with 3 archival records & time-coded transcripts)
+  - `GET /api/v1/admin/audit` -> HTTP 200 (Institutional Admin audit reporting operational health)
+  - `GET /api/v1/provenance/ambedkar_speech_vol1_p0001` -> HTTP 200 (6-stage cryptographic custody chain)
   - `POST /api/v1/ingest` (5MB / 4.2MB) -> HTTP 413 (Vercel edge cutoff & controlled 4MB app limit with clear serverless guidance)
 
 
