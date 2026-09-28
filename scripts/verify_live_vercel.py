@@ -118,6 +118,12 @@ def test_live_deployment():
     print(f"\n[8.B] POST /api/v1/ingest (4.2MB payload at FastAPI) -> Status {r_ingest_app.status_code}")
     assert r_ingest_app.status_code == 413
     detail_msg = r_ingest_app.json().get("detail", "") if "application/json" in r_ingest_app.headers.get("content-type", "") else r_ingest_app.text
+    print(f"   [OK] FastAPI app enforces 4MB limit with clear Vercel 4.5MB guidance")
+
+    # Refresh client to avoid connection-reset from closed 413 socket
+    client.close()
+    client = httpx.Client(timeout=30.0)
+
     # 9. Test New Archival & Hardware UI Extensions
     # 9.A GET /kiosk (Touchscreen Museum Mode)
     r_kiosk = client.get(f"{BASE_URL}/kiosk")

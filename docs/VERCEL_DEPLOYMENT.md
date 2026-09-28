@@ -200,8 +200,8 @@ The live production deployment on Vercel has been fully executed and empirically
 | :--- | :--- |
 | **Vercel Project URL** | [https://vercel.com/luffy-projects/sih26096](https://vercel.com/luffy-projects/sih26096) |
 | **Production Aliased URL** | [https://sih26096.vercel.app](https://sih26096.vercel.app) |
-| **Direct Deployment URL** | [https://sih26096-of1b4luwk-luffy-projects.vercel.app](https://sih26096-of1b4luwk-luffy-projects.vercel.app) |
-| **Deployment ID** | `dpl_8rGVAS6bQTCYLFCc68vsjdJuQ5zQ` |
+| **Direct Deployment URL** | [https://sih26096-6hy08ttw5-luffy-projects.vercel.app](https://sih26096-6hy08ttw5-luffy-projects.vercel.app) |
+| **Deployment ID** | `dpl_6GsSRsTGGhrA5Aekj6CyJvHiVANz` |
 | **Deployment Status** | `READY` (HTTP 200) |
 | **Runtime & Region** | Python 3.12.14 Serverless (`uv 0.10.11`) on `iad1` (Washington, D.C., USA) |
 | **Execution Mode** | `DEMO` (`platform_mode: vercel_serverless`) |

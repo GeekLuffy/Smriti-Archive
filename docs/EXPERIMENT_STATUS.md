@@ -169,7 +169,7 @@ Deployment readiness and scientific validation status are strictly decoupled acr
 The public institutional presentation layer has been deployed to Vercel and verified across all live endpoints:
 
 - **Production URL:** [https://sih26096.vercel.app](https://sih26096.vercel.app)
-- **Deployment URL:** [https://sih26096-of1b4luwk-luffy-projects.vercel.app](https://sih26096-of1b4luwk-luffy-projects.vercel.app)
+- **Deployment URL:** [https://sih26096-6hy08ttw5-luffy-projects.vercel.app](https://sih26096-6hy08ttw5-luffy-projects.vercel.app)
 - **Project URL:** [https://vercel.com/luffy-projects/sih26096](https://vercel.com/luffy-projects/sih26096)
 - **Deployment Status:** `READY` (HTTP 200)
 - **Runtime:** Python 3.12.14 Serverless (`uv 0.10.11`) on `iad1` (Washington, D.C.)
