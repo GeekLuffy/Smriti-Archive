@@ -3348,6 +3348,554 @@ def get_styles() -> str:
     }
 
     /* ==========================================================================
+       T9 — ADMIN HEALTH STRIP & CSS BAR CHART
+       ========================================================================== */
+    .admin-health-strip {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+        padding: 1rem 1.25rem;
+        background: #ffffff;
+        border: 1px solid var(--border-parchment);
+        border-radius: 10px;
+        box-shadow: var(--shadow-subtle);
+    }
+
+    .admin-health-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 6px 14px;
+        border-radius: 9999px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        border: 1px solid transparent;
+        letter-spacing: 0.02em;
+    }
+
+    .admin-health-pill.ok {
+        background: #ecfdf5;
+        border-color: #10b981;
+        color: #065f46;
+    }
+
+    .admin-health-pill.warn {
+        background: #fffbeb;
+        border-color: #f59e0b;
+        color: #92400e;
+    }
+
+    .admin-health-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .admin-health-dot.pulse-green {
+        background: #10b981;
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+        animation: pulse-green 2s infinite;
+    }
+
+    .admin-health-dot.pulse-amber {
+        background: #f59e0b;
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6);
+        animation: pulse-amber 2s infinite;
+    }
+
+    @keyframes pulse-green {
+        0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+        70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    @keyframes pulse-amber {
+        0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
+        70% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+    }
+
+    .admin-activity-chart {
+        background: #ffffff;
+        border: 1px solid var(--border-parchment);
+        border-radius: 10px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--shadow-subtle);
+    }
+
+    .admin-chart-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .admin-chart-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+        height: 80px;
+    }
+
+    .admin-chart-bar-wrap {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        height: 100%;
+        justify-content: flex-end;
+    }
+
+    .admin-chart-bar {
+        width: 100%;
+        background: linear-gradient(to top, #b45309, #f59e0b);
+        border-radius: 3px 3px 0 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .admin-chart-bar:hover {
+        opacity: 0.8;
+    }
+
+    .admin-chart-label {
+        font-size: 0.68rem;
+        color: var(--text-muted);
+        font-family: var(--font-mono);
+        text-align: center;
+    }
+
+    /* ==========================================================================
+       T1 — PORTAL QUOTE BAND
+       ========================================================================== */
+    .portal-quote-band {
+        background: var(--primary-dark);
+        border-radius: 12px;
+        padding: 2.5rem 3rem;
+        margin-bottom: 3rem;
+        position: relative;
+        overflow: hidden;
+        border-left: 5px solid var(--accent-bronze);
+    }
+
+    .portal-quote-band::before {
+        content: '\u201c';
+        position: absolute;
+        top: -0.5rem;
+        left: 1.5rem;
+        font-size: 8rem;
+        font-family: var(--font-serif);
+        color: rgba(180, 83, 9, 0.15);
+        line-height: 1;
+        pointer-events: none;
+    }
+
+    .portal-quote-text {
+        font-family: var(--font-serif);
+        font-size: 1.45rem;
+        color: #fef3c7;
+        line-height: 1.6;
+        font-style: italic;
+        margin-bottom: 1rem;
+        max-width: 860px;
+        position: relative;
+    }
+
+    .portal-quote-attribution {
+        font-size: 0.88rem;
+        color: var(--accent-gold);
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    /* ==========================================================================
+       T2 — ARCHIVAL IMAGE STRIP
+       ========================================================================== */
+    .portal-image-strip {
+        display: flex;
+        gap: 1.25rem;
+        margin-bottom: 3rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+    }
+
+    .portal-image-strip::-webkit-scrollbar { display: none; }
+
+    .portal-strip-item {
+        flex: 1;
+        min-width: 200px;
+        max-width: 340px;
+        flex-shrink: 0;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 2px solid var(--border-parchment);
+        background: #0f172a;
+        position: relative;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .portal-strip-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(15, 23, 42, 0.18);
+        border-color: var(--accent-bronze);
+    }
+
+    .portal-strip-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: center 15%;
+        display: block;
+        transition: transform 0.4s ease;
+    }
+
+    .portal-strip-item:hover .portal-strip-img {
+        transform: scale(1.04);
+    }
+
+    .portal-strip-caption {
+        padding: 0.75rem 1rem;
+        background: #ffffff;
+        border-top: 1px solid var(--border-parchment);
+    }
+
+    .portal-strip-caption-title {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 2px;
+    }
+
+    .portal-strip-date-badge {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--accent-bronze);
+        background: #fef3c7;
+        padding: 1px 6px;
+        border-radius: 3px;
+        display: inline-block;
+    }
+
+    /* ==========================================================================
+       T4 — TIMELINE ERA IMAGE HEADER
+       ========================================================================== */
+    .timeline-header-img-strip {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1.75rem;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .timeline-era-img-cell {
+        position: relative;
+        height: 180px;
+        overflow: hidden;
+        background: #0f172a;
+    }
+
+    .timeline-era-img-cell img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+        display: block;
+        transition: transform 0.4s ease;
+    }
+
+    .timeline-era-img-cell:hover img {
+        transform: scale(1.05);
+    }
+
+    .timeline-era-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(15,23,42,0.82) 0%, rgba(15,23,42,0.2) 60%, transparent 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 0.9rem 1rem;
+    }
+
+    .timeline-era-year-label {
+        font-family: var(--font-serif);
+        font-size: 1.15rem;
+        color: #fef3c7;
+        font-weight: 700;
+        margin-bottom: 2px;
+    }
+
+    .timeline-era-caption {
+        font-size: 0.72rem;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* ==========================================================================
+       T5 — MEDIA PLAYER ARTWORK PANEL
+       ========================================================================== */
+    .media-artwork-panel {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .media-artwork-frame {
+        width: 96px;
+        height: 96px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 2px solid rgba(180, 83, 9, 0.5);
+        background: #0f172a;
+    }
+
+    .media-artwork-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+        display: block;
+        filter: sepia(0.2) contrast(1.05);
+    }
+
+    .media-screen-text-col {
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* ==========================================================================
+       T6 — KIOSK HERO PHOTOGRID (inlined in kiosk CSS, but add helper classes)
+       ========================================================================== */
+    .kiosk-photogrid {
+        display: grid;
+        grid-template-columns: 1fr 1.4fr 1fr;
+        height: 280px;
+        border-radius: 14px;
+        overflow: hidden;
+        position: relative;
+        margin-bottom: 0;
+    }
+
+    .kiosk-photo-cell {
+        position: relative;
+        overflow: hidden;
+        background: #020617;
+    }
+
+    .kiosk-photo-cell img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+        display: block;
+        filter: sepia(0.15) brightness(0.85) contrast(1.05);
+        transition: transform 0.5s ease;
+    }
+
+    .kiosk-photo-cell:hover img {
+        transform: scale(1.05);
+    }
+
+    .kiosk-photo-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(2,6,23,0.75) 0%, rgba(2,6,23,0.2) 60%, transparent 100%);
+    }
+
+    .kiosk-photogrid-text {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1.5rem;
+        background: rgba(2, 6, 23, 0.45);
+        z-index: 2;
+    }
+
+    /* ==========================================================================
+       T7 — KIOSK TILE IMAGE STRIP
+       ========================================================================== */
+    .kiosk-tile-img-wrap {
+        width: 100%;
+        height: 72px;
+        overflow: hidden;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        background: #0f172a;
+    }
+
+    .kiosk-tile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+        display: block;
+        filter: sepia(0.1) brightness(0.85);
+        transition: transform 0.35s ease;
+    }
+
+    .kiosk-btn:hover .kiosk-tile-img,
+    .kiosk-btn:active .kiosk-tile-img {
+        transform: scale(1.06);
+    }
+
+    /* ==========================================================================
+       T8 — EXPLORER RICH EMPTY STATE
+       ========================================================================== */
+    .catalog-empty-state {
+        grid-column: 1 / -1;
+        background: #ffffff;
+        border: 1px dashed var(--border-color);
+        border-radius: 12px;
+        padding: 3rem 2rem;
+        text-align: center;
+    }
+
+    .catalog-empty-avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 auto 1rem;
+        border: 2px solid var(--accent-bronze);
+        filter: sepia(0.4) contrast(0.9);
+    }
+
+    .catalog-empty-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+    }
+
+    .catalog-empty-headline {
+        font-family: var(--font-serif);
+        font-size: 1.15rem;
+        color: var(--primary-dark);
+        margin-bottom: 0.4rem;
+    }
+
+    .catalog-empty-sub {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        margin-bottom: 1.25rem;
+    }
+
+    .catalog-empty-highlights {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 1.25rem;
+    }
+
+    .catalog-empty-mini-card {
+        background: #fdfbf7;
+        border: 1px solid var(--border-parchment);
+        border-radius: 8px;
+        padding: 0.65rem 1rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--primary-dark);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .catalog-empty-mini-card:hover {
+        border-color: var(--accent-bronze);
+        background: #ffffff;
+    }
+
+    /* ==========================================================================
+       T10 — ARCHIVAL PAPER TEXTURE (pure CSS SVG pattern)
+       ========================================================================== */
+    .curated-collections-section,
+    .portal-quote-band,
+    .timeline-era-bar {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='none'/%3E%3Cpath d='M0 0.5h40M0.5 0v40' stroke='%23d97706' stroke-width='0.15' opacity='0.08'/%3E%3C/svg%3E");
+    }
+
+    .curated-collections-section {
+        /* override background color explicitly so texture only adds, doesn't replace */
+        background-color: transparent;
+    }
+
+    .portal-quote-band {
+        /* already has #0f172a bg, texture will composite over it */
+    }
+
+    /* ==========================================================================
+       T11 — HOVER ZOOM + LIFT ANIMATIONS (enhanced)
+       ========================================================================== */
+    .pathway-card:hover {
+        border-color: var(--accent-bronze);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+        transform: translateY(-3px);
+    }
+
+    .pathway-card:hover .pathway-icon {
+        background: #fef3c7;
+        border-color: var(--accent-gold);
+    }
+
+    .catalog-card {
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .catalog-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+        border-color: var(--accent-bronze);
+    }
+
+    .timeline-card {
+        transition: all 0.2s ease;
+    }
+
+    .timeline-card:hover {
+        box-shadow: var(--shadow-card);
+        transform: translateX(4px);
+        border-left-color: var(--accent-gold);
+    }
+
+    /* ==========================================================================
+       T3 — COUNTER ANIMATION (CSS support — JS does the count-up)
+       ========================================================================== */
+    .stat-value {
+        font-family: var(--font-serif);
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--accent-bronze);
+        margin-bottom: 2px;
+        transition: color 0.3s ease;
+    }
+
+    .stat-value.counting {
+        color: var(--accent-gold);
+    }
+
+
+    /* ==========================================================================
        COMPREHENSIVE RESPONSIVE SYSTEM — All breakpoints
        ========================================================================== */
 

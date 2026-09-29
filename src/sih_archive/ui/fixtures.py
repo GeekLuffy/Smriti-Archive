@@ -1471,6 +1471,7 @@ TIMELINE_EVENTS: List[Dict[str, Any]] = [
 MEDIA_RECORDS: List[Dict[str, Any]] = [
     {
         "id": "media_ambedkar_bbc_1953",
+        "artwork": "/api/v1/pages/ambedkar_round_table_1931/image",
         "alias": "bbc_interview_1953",
         "title": "BBC Radio Interview: Democracy, Equality and Social Reform (1953)",
         "type": "audio",
@@ -1529,6 +1530,7 @@ MEDIA_RECORDS: List[Dict[str, Any]] = [
     },
     {
         "id": "media_cad_speech_1949",
+        "artwork": "/api/v1/pages/ambedkar_presenting_constitution_1949/image",
         "alias": "constituent_assembly_speech_1949",
         "title": "Constituent Assembly Final Address: Contradictions and Warning (1949)",
         "type": "video",
@@ -1587,6 +1589,7 @@ MEDIA_RECORDS: List[Dict[str, Any]] = [
     },
     {
         "id": "media_mahad_memorial_audio_1927",
+        "artwork": "/api/v1/pages/ambedkar_signature/image",
         "alias": "mahad_memorial_address_1927",
         "title": "Chavdar Tale Water Satyagraha Declaration (1927 Commemoration)",
         "type": "audio",

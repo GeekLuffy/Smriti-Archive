@@ -83,6 +83,34 @@ def get_scripts(
         "What happened on Mars in 1920? (Refusal Gate Test)"
     ];
 
+
+    // T3: STAT COUNTER ANIMATION
+    function animateCounters() {{
+        const statEls = document.querySelectorAll(".stat-value[data-target]");
+        statEls.forEach(el => {{
+            const raw = el.getAttribute("data-target");
+            const suffix = raw.replace(/[\d,.]/g, "");
+            const target = parseFloat(raw.replace(/[^\d.]/g, "")) || 0;
+            const duration = 1200;
+            const start = performance.now();
+            el.classList.add("counting");
+            function step(now) {{
+                const elapsed = Math.min(now - start, duration);
+                const progress = elapsed / duration;
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(eased * target);
+                el.innerText = current.toLocaleString() + suffix;
+                if (elapsed < duration) {{
+                    requestAnimationFrame(step);
+                }} else {{
+                    el.innerText = target.toLocaleString() + suffix;
+                    el.classList.remove("counting");
+                }}
+            }}
+            requestAnimationFrame(step);
+        }});
+    }}
+
     // -------------------------------------------------------------------------
     // 1. TAB & VIEW NAVIGATION
     // -------------------------------------------------------------------------
@@ -253,11 +281,18 @@ def get_scripts(
 
         if (items.length === 0) {{
             grid.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 3rem; background: #ffffff; border: 1px dashed var(--border-color); border-radius: 8px;">
-                    <div style="font-size: 2rem; margin-bottom: 8px;">🔍</div>
-                    <div style="font-weight: 600; color: var(--primary-dark);">No archival records match the selected filters.</div>
-                    <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Try clearing filters or broadening search parameters.</div>
-                    <button onclick="resetFilters()" class="btn-reset" style="margin-top: 1rem;">Reset All Filters</button>
+                <div class="catalog-empty-state">
+                    <div class="catalog-empty-avatar">
+                        <img src="/api/v1/pages/ambedkar_portrait/image" alt="Archive">
+                    </div>
+                    <div class="catalog-empty-headline">No matching archival records</div>
+                    <div class="catalog-empty-sub">Try clearing filters or broadening your search parameters.</div>
+                    <button onclick="resetFilters()" class="btn-reset">Reset All Filters</button>
+                    <div class="catalog-empty-highlights">
+                        <div class="catalog-empty-mini-card" onclick="document.getElementById('filter-collection').value='Writings & Speeches'; filterCatalog()">📖 Writings &amp; Speeches</div>
+                        <div class="catalog-empty-mini-card" onclick="document.getElementById('filter-collection').value='Constitutional Debates'; filterCatalog()">🏛️ Constitutional Debates</div>
+                        <div class="catalog-empty-mini-card" onclick="document.getElementById('filter-collection').value='Photographs & Memorabilia'; filterCatalog()">📷 Photographs</div>
+                    </div>
                 </div>
             `;
             return;
@@ -1216,6 +1251,12 @@ def get_scripts(
         if (contextEl) {{
             contextEl.innerText = record.historical_context || record.description;
         }}
+
+        // T5: Update artwork image per record
+        const artworkImg = document.getElementById("media-artwork-img");
+        if (artworkImg && record.artwork) {{
+            artworkImg.src = record.artwork;
+        }}
         if (relatedEl) {{
             relatedEl.innerHTML = (record.related_records || []).map(r => `
                 <button class="btn-sm btn-sm-secondary" onclick="openDocumentInViewer('${{r}}', '${{r}}_p0001')">
@@ -1668,6 +1709,7 @@ def get_scripts(
         }}
         fetchDiagnostics();
         renderSessionHistory();
+        animateCounters();
         if (activeTabId === "media") {{
             loadMediaRecord("media_ambedkar_bbc_1953");
         }} else if (activeTabId === "admin") {{

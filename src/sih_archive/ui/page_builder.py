@@ -410,14 +410,26 @@ def build_kiosk_html(
     </div>
 
     <main class="kiosk-container">
-        <div class="kiosk-hero">
-            <div class="kiosk-hero-content">
-                <div class="kiosk-hero-avatar">
-                    <img src="/api/v1/pages/ambedkar_portrait/image" alt="Dr. B. R. Ambedkar" class="kiosk-avatar-img">
+        <!-- T6: KIOSK HERO PHOTOMONTAGE -->
+        <div class="kiosk-hero" style="padding: 0; overflow: hidden;">
+            <div style="position: relative;">
+                <div class="kiosk-photogrid">
+                    <div class="kiosk-photo-cell">
+                        <img src="/api/v1/pages/ambedkar_portrait/image" alt="Dr. B. R. Ambedkar Portrait">
+                        <div class="kiosk-photo-overlay"></div>
+                    </div>
+                    <div class="kiosk-photo-cell">
+                        <img src="/api/v1/pages/ambedkar_drafting_committee_1947/image" alt="Drafting Committee 1947">
+                        <div class="kiosk-photo-overlay"></div>
+                    </div>
+                    <div class="kiosk-photo-cell">
+                        <img src="/api/v1/pages/ambedkar_chaityabhoomi_memorial/image" alt="Chaityabhoomi Memorial">
+                        <div class="kiosk-photo-overlay"></div>
+                    </div>
                 </div>
-                <div class="kiosk-hero-text">
-                    <h1>Digital Heritage Memorial Archive</h1>
-                    <p>Touch any section below to explore manuscripts, historic speeches, and constitutional milestones.</p>
+                <div class="kiosk-photogrid-text">
+                    <h1 style="font-size: 2.1rem; font-family: Georgia, serif; color: #fef3c7; margin-bottom: 0.5rem; text-shadow: 0 2px 12px rgba(0,0,0,0.6);">Digital Heritage Memorial Archive</h1>
+                    <p style="font-size: 1.05rem; color: #cbd5e1; text-shadow: 0 1px 6px rgba(0,0,0,0.5);">Touch any section below to explore manuscripts, historic speeches, and constitutional milestones.</p>
                 </div>
             </div>
         </div>
@@ -440,27 +452,35 @@ def build_kiosk_html(
             </div>
         </div>
 
-        <!-- 6 Simplified Touch Buttons (R7 5 Discovery Categories + Dual-Preserved Labels) -->
-        <div class="kiosk-grid">
-            <a href="/#explorer" class="kiosk-btn">
-                <span class="icon">📖</span>
-                <div>
-                    <div class="kiosk-btn-main">Start Exploring</div>
-                    <div class="kiosk-btn-sub">Explore Heritage / Explore Manuscripts & Curated Documents</div>
+        <!-- 6 Simplified Touch Buttons (R7 5 Discovery Catclass="kiosk-grid">
+            <a href="/#explorer" class="kiosk-btn" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden;">
+                <div class="kiosk-tile-img-wrap"><img src="/api/v1/pages/ambedkar_writing_constitution/image" alt="Manuscripts" class="kiosk-tile-img" loading="lazy"></div>
+                <div style="padding: 1rem 1.25rem; display: flex; align-items: center; gap: 14px; width: 100%;">
+                    <span class="icon">📖</span>
+                    <div>
+                        <div class="kiosk-btn-main">Start Exploring</div>
+                        <div class="kiosk-btn-sub">Explore Heritage / Explore Manuscripts &amp; Curated Documents</div>
+                    </div>
                 </div>
             </a>
-            <a href="/#media" class="kiosk-btn">
-                <span class="icon">🎙️</span>
-                <div>
-                    <div class="kiosk-btn-main">Listen</div>
-                    <div class="kiosk-btn-sub">Listen Historic Audio & Watch Archives</div>
+            <a href="/#media" class="kiosk-btn" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden;">
+                <div class="kiosk-tile-img-wrap"><img src="/api/v1/pages/ambedkar_round_table_1931/image" alt="Speeches" class="kiosk-tile-img" loading="lazy"></div>
+                <div style="padding: 1rem 1.25rem; display: flex; align-items: center; gap: 14px; width: 100%;">
+                    <span class="icon">🎙️</span>
+                    <div>
+                        <div class="kiosk-btn-main">Listen</div>
+                        <div class="kiosk-btn-sub">Listen Historic Audio &amp; Watch Archives</div>
+                    </div>
                 </div>
             </a>
-            <a href="/#timeline" class="kiosk-btn">
-                <span class="icon">⏳</span>
-                <div>
-                    <div class="kiosk-btn-main">Timeline</div>
-                    <div class="kiosk-btn-sub">Chronological Timeline (1916–1956) & Archival Milestones</div>
+            <a href="/#timeline" class="kiosk-btn" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden;">
+                <div class="kiosk-tile-img-wrap"><img src="/api/v1/pages/ambedkar_drafting_committee_1947/image" alt="Timeline" class="kiosk-tile-img" loading="lazy"></div>
+                <div style="padding: 1rem 1.25rem; display: flex; align-items: center; gap: 14px; width: 100%;">
+                    <span class="icon">⏳</span>
+                    <div>
+                        <div class="kiosk-btn-main">Timeline</div>
+                        <div class="kiosk-btn-sub">Chronological Timeline (1916–1956) &amp; Archival Milestones</div>
+                    </div>
                 </div>
             </a>
             <a href="/#explorer" class="kiosk-btn">
@@ -470,11 +490,14 @@ def build_kiosk_html(
                     <div class="kiosk-btn-sub">Search Archive with Multi-Strategy Retrieval</div>
                 </div>
             </a>
-            <a href="/#viewer" class="kiosk-btn">
-                <span class="icon">📜</span>
-                <div>
-                    <div class="kiosk-btn-main">Featured Documents</div>
-                    <div class="kiosk-btn-sub">Inspect Archival Master Folios & Verified Evidence</div>
+            <a href="/#viewer" class="kiosk-btn" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden;">
+                <div class="kiosk-tile-img-wrap"><img src="/api/v1/pages/ambedkar_presenting_constitution_1949/image" alt="Constitution" class="kiosk-tile-img" loading="lazy"></div>
+                <div style="padding: 1rem 1.25rem; display: flex; align-items: center; gap: 14px; width: 100%;">
+                    <span class="icon">📜</span>
+                    <div>
+                        <div class="kiosk-btn-main">Featured Documents</div>
+                        <div class="kiosk-btn-sub">Inspect Archival Master Folios &amp; Verified Evidence</div>
+                    </div>
                 </div>
             </a>
             <a href="/#assistant" class="kiosk-btn">
@@ -484,10 +507,7 @@ def build_kiosk_html(
                     <div class="kiosk-btn-sub">Ask Archival Questions with Evidence Grounding</div>
                 </div>
             </a>
-        </div>
-    </main>
-
-    <footer>
+        </div>    <footer>
         Team ORBIT — Heritage × Modern Research Infrastructure • SIH26096 Memorial Touch Kiosk
     </footer>
 
@@ -1020,21 +1040,33 @@ def build_portal_html() -> str:
                 <!-- Institutional Stats Bar -->
                 <div class="hero-stats-bar">
                     <div class="stat-item">
-                        <div class="stat-value">5,420+</div>
+                        <div class="stat-value" data-target="5420+">5,420+</div>
                         <div class="stat-label">Pages Scanned & Indexed</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">100%</div>
+                        <div class="stat-value" data-target="100%">100%</div>
                         <div class="stat-label">Cryptographic Provenance</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-value">16</div>
+                        <div class="stat-value" data-target="16">16</div>
                         <div class="stat-label">Historical Milestones</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-value">4 Engines</div>
                         <div class="stat-label">Multi-Tier Gated Search</div>
                     </div>
+                </div>
+            </div>
+
+            <!-- T1: AMBEDKAR QUOTE BAND -->
+            <div class="portal-quote-band">
+                <p class="portal-quote-text">
+                    “I measure the progress of a community by the degree of progress
+                    which women have achieved. The subordination of one class to another
+                    is one of the most revolting features of our social life.”
+                </p>
+                <div class="portal-quote-attribution">
+                    — Dr. B. R. Ambedkar &middot; All India Radio Address &middot; 1943
                 </div>
             </div>
 
@@ -1060,6 +1092,38 @@ def build_portal_html() -> str:
             </div>
             <div class="pathways-grid">
                 {pathways_rendered}
+            </div>
+
+            <!-- T2: ARCHIVAL IMAGE STRIP -->
+            <div class="portal-image-strip">
+                <div class="portal-strip-item">
+                    <img src="/api/v1/pages/ambedkar_drafting_committee_1947/image" alt="Drafting Committee, 1947" class="portal-strip-img" loading="lazy">
+                    <div class="portal-strip-caption">
+                        <div class="portal-strip-caption-title">Drafting Committee Session</div>
+                        <span class="portal-strip-date-badge">1947</span>
+                    </div>
+                </div>
+                <div class="portal-strip-item">
+                    <img src="/api/v1/pages/ambedkar_round_table_1931/image" alt="Round Table Conference, 1931" class="portal-strip-img" loading="lazy">
+                    <div class="portal-strip-caption">
+                        <div class="portal-strip-caption-title">Round Table Conference</div>
+                        <span class="portal-strip-date-badge">London, 1931</span>
+                    </div>
+                </div>
+                <div class="portal-strip-item">
+                    <img src="/api/v1/pages/ambedkar_rajgriha_library_1946/image" alt="Rajgriha Library, 1946" class="portal-strip-img" loading="lazy">
+                    <div class="portal-strip-caption">
+                        <div class="portal-strip-caption-title">Rajgriha Library</div>
+                        <span class="portal-strip-date-badge">Dadar, 1946</span>
+                    </div>
+                </div>
+                <div class="portal-strip-item">
+                    <img src="/api/v1/pages/ambedkar_chaityabhoomi_memorial/image" alt="Chaityabhoomi Memorial" class="portal-strip-img" loading="lazy">
+                    <div class="portal-strip-caption">
+                        <div class="portal-strip-caption-title">Chaityabhoomi Memorial</div>
+                        <span class="portal-strip-date-badge">Dadar, Mumbai</span>
+                    </div>
+                </div>
             </div>
 
             <div class="section-header">
@@ -1773,6 +1837,31 @@ def build_portal_html() -> str:
                 </div>
             </div>
 
+            <!-- T4: ERA IMAGE HEADER -->
+            <div class="timeline-header-img-strip">
+                <div class="timeline-era-img-cell">
+                    <img src="/api/v1/pages/ambedkar_round_table_1931/image" alt="Round Table Conference 1931" loading="lazy">
+                    <div class="timeline-era-overlay">
+                        <div class="timeline-era-year-label">1916&ndash;1935</div>
+                        <div class="timeline-era-caption">Early Academic &amp; Social Movements</div>
+                    </div>
+                </div>
+                <div class="timeline-era-img-cell">
+                    <img src="/api/v1/pages/ambedkar_drafting_committee_1947/image" alt="Drafting Committee 1947" loading="lazy">
+                    <div class="timeline-era-overlay">
+                        <div class="timeline-era-year-label">1946&ndash;1950</div>
+                        <div class="timeline-era-caption">Drafting the Constitution</div>
+                    </div>
+                </div>
+                <div class="timeline-era-img-cell">
+                    <img src="/api/v1/pages/ambedkar_presenting_constitution_1949/image" alt="Presenting Constitution 1949" loading="lazy">
+                    <div class="timeline-era-overlay">
+                        <div class="timeline-era-year-label">1950&ndash;1956</div>
+                        <div class="timeline-era-caption">Post-Independence &amp; Legacy</div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Era Filter Bar -->
             <div class="timeline-era-bar">
                 <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-right: 6px;">Filter by Era:</span>
@@ -1858,6 +1947,22 @@ def build_portal_html() -> str:
                             </h3>
                             <div id="media-player-speaker" style="font-size: 0.9rem; color: #94a3b8;">
                                 Francis Watson & Dr. B. R. Ambedkar • 1953
+                            </div>
+
+                            <!-- T5: ARTWORK PANEL -->
+                            <div class="media-artwork-panel">
+                                <div class="media-artwork-frame">
+                                    <img id="media-artwork-img" src="/api/v1/pages/ambedkar_round_table_1931/image" alt="Archive artwork" class="media-artwork-img">
+                                </div>
+                                <div class="media-screen-text-col">
+                                    <span id="media-type-badge" class="badge-pill badge-lang" style="margin-bottom: 0.5rem; display: inline-block;">AUDIO &bull; 03:45</span>
+                                    <h3 id="media-player-title" style="font-size: 1.15rem; color: #fef3c7; font-family: Georgia, serif; margin-bottom: 4px;">
+                                        BBC Radio Interview: Democracy &amp; Equality
+                                    </h3>
+                                    <div id="media-player-speaker" style="font-size: 0.85rem; color: #94a3b8;">
+                                        Francis Watson &amp; Dr. B. R. Ambedkar &bull; 1953
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Animated Waveform Bars -->
@@ -2006,7 +2111,34 @@ def build_portal_html() -> str:
             <!-- Dynamic Workspace Content (populated live by loadAdminWorkspace() and pre-rendered for instant verification) -->
             <div id="admin-workspace-content">
                 <!-- Top Summary Metrics Row -->
-                <div class="admin-summary-grid">
+                <!-- T9: SYSTEM HEALTH STRIP -->
+            <div class="admin-health-strip">
+                <div class="admin-health-pill ok"><span class="admin-health-dot pulse-green"></span>System API: Online</div>
+                <div class="admin-health-pill ok"><span class="admin-health-dot pulse-green"></span>Search Index: Active</div>
+                <div class="admin-health-pill ok"><span class="admin-health-dot pulse-green"></span>Provenance Chain: Verified</div>
+                <div class="admin-health-pill warn"><span class="admin-health-dot pulse-amber"></span>OCR Pipeline: Blocked (E1)</div>
+                <div class="admin-health-pill ok"><span class="admin-health-dot pulse-green"></span>Storage: Healthy</div>
+            </div>
+
+            <!-- T9: INGESTION ACTIVITY CHART -->
+            <div class="admin-activity-chart">
+                <div class="admin-chart-title">
+                    <span>Pages Processed (Weekly) &mdash; DEMO DATA</span>
+                    <span style="font-size: 0.72rem; font-weight: 400; font-family: var(--font-mono);">synthetic / not validated</span>
+                </div>
+                <div class="admin-chart-bars">
+                    <div class="admin-chart-bar-wrap"><div class="admin-chart-bar" style="height:42%;" title="W1: 84 pages"></div><span class="admin-chart-label">W1</span></div>
+                    <div class="admin-chart-bar-wrap"><div class="admin-chart-bar" style="height:58%;" title="W2: 116 pages"></div><span class="admin-chart-label">W2</span></div>
+                    <div class="admin-chart-bar-wrap"><div class="admin-chart-bar" style="height:35%;" title="W3: 70 pages"></div><span class="admin-chart-label">W3</span></div>
+                    <div class="admin-chart-bar-wrap"><div class="admin-chart-bar" style="height:72%;" title="W4: 144 pages"></div><span class="admin-chart-label">W4</span></div>
+                    <div class="admin-chart-bar-wrap"><div class="admin-chart-bar" style="height:51%;" title="W5: 102 pages"></div><span class="admin-chart-label">W5</span></div>
+                    <div class="admin-chart-bar-wrap"><div class="admin-chart-bar" style="height:88%;" title="W6: 176 pages"></div><span class="admin-chart-label">W6</span></div>
+                    <div class="admin-chart-bar-wrap"><div class="admin-chart-bar" style="height:65%;" title="W7: 130 pages"></div><span class="admin-chart-label">W7</span></div>
+                    <div class="admin-chart-bar-wrap"><div class="admin-chart-bar" style="height:79%;" title="W8: 158 pages"></div><span class="admin-chart-label">W8</span></div>
+                </div>
+            </div>
+
+            <div class="admin-summary-grid">
                     <div class="admin-metric-card">
                         <span class="admin-metric-title">Ingestion Manifests</span>
                         <span class="admin-metric-value">1</span>
