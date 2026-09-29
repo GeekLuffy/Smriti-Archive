@@ -1,0 +1,108 @@
+{
+  "benchmark_name": "SIH26096 Archival Evidence Attribution Benchmark",
+  "version": "1.0",
+  "target_question_count": 50,
+  "annotator_metadata": {
+    "annotator_1": "Primary Archival Specialist",
+    "annotator_2": "Secondary Paleographic Reviewer"
+  },
+  "questions": [
+    {
+      "question_id": "QA01",
+      "question": "Who compiled Volume 1 of Dr. Ambedkar's Writings and Speeches?",
+      "expected_refusal": false,
+      "expected_document_id": "ambedkar_speech_vol1",
+      "expected_page_id": "ambedkar_speech_vol1_p0001",
+      "expected_span": "Compiled by Vasant Moon",
+      "target_bbox": [208, 1070, 700, 100],
+      "annotator_evaluations": {
+        "annotator_1": {
+          "claim_supported": true,
+          "span_accurate": true,
+          "bbox_accurate": true
+        },
+        "annotator_2": {
+          "claim_supported": true,
+          "span_accurate": true,
+          "bbox_accurate": true
+        }
+      }
+    },
+    {
+      "question_id": "QA02",
+      "question": "Which department published Volume 1 of Writings and Speeches?",
+      "expected_refusal": false,
+      "expected_document_id": "ambedkar_speech_vol1",
+      "expected_page_id": "ambedkar_speech_vol1_p0001",
+      "expected_span": "Education Department, Government of Maharashtra",
+      "target_bbox": [150, 1200, 800, 100],
+      "annotator_evaluations": {
+        "annotator_1": {
+          "claim_supported": true,
+          "span_accurate": true,
+          "bbox_accurate": true
+        },
+        "annotator_2": {
+          "claim_supported": true,
+          "span_accurate": true,
+          "bbox_accurate": true
+        }
+      }
+    },
+    {
+      "question_id": "QA03",
+      "question": "What is the quantum mechanical spin of a neutral kaon meson?",
+      "expected_refusal": true,
+      "expected_document_id": null,
+      "expected_page_id": null,
+      "expected_span": "",
+      "target_bbox": null,
+      "annotator_evaluations": {
+        "annotator_1": {
+          "refusal_appropriate": true
+        },
+        "annotator_2": {
+          "refusal_appropriate": true
+        }
+      }
+    },
+    {
+      "question_id": "QA04",
+      "question": "What was the closing stock price of Tesla on January 15 2024?",
+      "expected_refusal": true,
+      "expected_document_id": null,
+      "expected_page_id": null,
+      "expected_span": "",
+      "target_bbox": null,
+      "annotator_evaluations": {
+        "annotator_1": {
+          "refusal_appropriate": true
+        },
+        "annotator_2": {
+          "refusal_appropriate": true
+        }
+      }
+    },
+    {
+      "question_id": "QA05",
+      "question": "What is the statutory copyright exemption under Section 52(1)(q) of the Indian Copyright Act?",
+      "expected_refusal": false,
+      "expected_document_id": "ambedkar_speech_vol1",
+      "expected_page_id": "ambedkar_speech_vol1_p0001",
+      "expected_span": "Indian Copyright Act 1957 Section 22",
+      "target_bbox": [100, 500, 400, 50],
+      "annotator_evaluations": {
+        "annotator_1": {
+          "claim_supported": true,
+          "span_accurate": true,
+          "bbox_accurate": false
+        },
+        "annotator_2": {
+          "claim_supported": true,
+          "span_accurate": true,
+          "bbox_accurate": false
+        }
+      }
+    }
+  ]
+}

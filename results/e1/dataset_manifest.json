@@ -1,0 +1,36 @@
+{
+  "dataset_name": "SIH26096 Archival Benchmark Intake",
+  "sample_pages": [
+    {
+      "page_id": "ambedkar_speech_vol1_p0001",
+      "file_path": "data\\processed\\pages\\ambedkar_speech_vol1_p0001.png",
+      "has_ground_truth": true
+    },
+    {
+      "page_id": "ambedkar_speech_vol1_p0002",
+      "file_path": "data\\processed\\pages\\ambedkar_speech_vol1_p0002.png",
+      "has_ground_truth": false
+    },
+    {
+      "page_id": "ambedkar_speech_vol1_p0003",
+      "file_path": "data\\processed\\pages\\ambedkar_speech_vol1_p0003.png",
+      "has_ground_truth": false
+    },
+    {
+      "page_id": "ambedkar_speech_vol1_p0004",
+      "file_path": "data\\processed\\pages\\ambedkar_speech_vol1_p0004.png",
+      "has_ground_truth": false
+    },
+    {
+      "page_id": "ambedkar_speech_vol1_p0005",
+      "file_path": "data\\processed\\pages\\ambedkar_speech_vol1_p0005.png",
+      "has_ground_truth": false
+    }
+  ],
+  "total_pages": 5,
+  "target_sample_range": [
+    30,
+    50
+  ],
+  "authenticity_classification": "Synthetic Digital Vector PDF Excerpt"
+}

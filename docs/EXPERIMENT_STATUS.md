@@ -121,7 +121,7 @@ The repository provides automated generation of standardized, machine-readable J
 
 ## 5. Summary of Automated Verification Suite
 
-- **Total Passing Automated Tests:** 220 (100% pass rate)
+- **Total Passing Automated Tests:** 238 (100% pass rate)
 - **Test Categories:**
   - Manifest & Rights Intake Protocol: 13 tests
   - PDF Rendering & Page Provenance: 15 tests
@@ -142,8 +142,9 @@ The repository provides automated generation of standardized, machine-readable J
   - Manuscript Viewer & Evidence Bounding Boxes: 11 tests (`test_milestone3_viewer_assistant.py`)
   - Kiosk Mode, A/V Media Library & Institutional Admin: 14 tests (`test_milestone4_kiosk_admin_media.py`)
   - UI API Extensions (/kiosk, /media, /admin/audit, /provenance, /timeline): 13 tests (`test_ui_api_extensions.py`)
+  - Empirical Validation Pipeline & Gating: 18 tests (`test_empirical_validation_pipeline.py`)
 - **Execution Command:** `python -m pytest tests/ -v`
-- **Execution Duration:** ~5.2 seconds
+- **Execution Duration:** ~6.0 seconds
 
 ---
 

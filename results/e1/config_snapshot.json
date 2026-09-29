@@ -1,0 +1,23 @@
+{
+  "benchmark": "E1_ARCHIVAL_OCR",
+  "timestamp": "2026-09-29 10:41:24Z",
+  "input_path": "data\\processed\\pages",
+  "output_dir": "results\\e1",
+  "target_languages": [
+    "eng",
+    "hin",
+    "mar"
+  ],
+  "preprocessing_variants": [
+    "raw",
+    "grayscale",
+    "denoise",
+    "deskew",
+    "adaptive_gaussian"
+  ],
+  "ground_truth_dir": "data\\ground_truth",
+  "target_sample_size_range": "30-50 pages",
+  "discovered_pages_count": 5,
+  "tesseract_cmd_configured": null,
+  "allow_mock_fallback": false
+}

@@ -1,0 +1,5 @@
+engine,recall_at_10,ndcg_at_10,mrr,mean_latency_ms,indexed_pages
+bm25,0.3,0.3,0.2167,0.12,20
+char_3gram_fuzzy,0.45,0.4555,0.2792,1.44,20
+dense_bge-m3,0.75,0.6612,0.4897,0.05,20
+hybrid_bm25_dense_bge-m3,1.0,0.6029,0.465,0.29,20

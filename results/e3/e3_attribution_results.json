@@ -1,0 +1,75 @@
+{
+  "phase": "E3_ATTRIBUTION",
+  "benchmark_date": "2026-09-29",
+  "gate_status": "LOCKED_PREVIEW (Gated on Empirical Completion of Phase E1 and E2)",
+  "gating_rule": "Attribution scores remain locked from official evaluation until real archival OCR outputs (E1) and judged retrieval inputs (E2) are validated.",
+  "upstream_dependencies": {
+    "e1_status": "BLOCKED_ON_HOST_OCR_BINARY",
+    "e2_status": "LOCKED_PREVIEW (Gated on Empirical Completion of Phase E1)"
+  },
+  "target_corpus_range": [
+    30,
+    50
+  ],
+  "target_questions_count": 50,
+  "questions_evaluated_count": 5,
+  "annotator_agreement": {
+    "total_judged_items": 5,
+    "concordant_items": 5,
+    "percent_agreement": 1.0,
+    "cohens_kappa_approx": 1.0
+  },
+  "metrics": {
+    "total_questions": 5,
+    "claim_support_rate": 0.0,
+    "span_precision": 0.0,
+    "mean_bbox_iou": 0.0,
+    "broken_citation_rate": 0.0,
+    "source_page_accuracy": 0.4,
+    "unsupported_answer_rate": 0.0
+  },
+  "attribution_chain": "Question -> Retrieval -> Page -> Region/BBox -> Claim -> Citation -> Viewer Target",
+  "answers": [
+    {
+      "question": "Who compiled Volume 1 of Dr. Ambedkar's Writings and Speeches?",
+      "is_refusal": true,
+      "refusal_reason": "Top candidate match similarity (43.5%) below minimum support threshold (50.0%).",
+      "answer_text": "REFUSAL: Retrieved documents do not contain direct evidence addressing this specific inquiry.",
+      "claims_count": 0,
+      "citations": []
+    },
+    {
+      "question": "Which department published Volume 1 of Writings and Speeches?",
+      "is_refusal": true,
+      "refusal_reason": "Top candidate match similarity (33.7%) below minimum support threshold (50.0%).",
+      "answer_text": "REFUSAL: Retrieved documents do not contain direct evidence addressing this specific inquiry.",
+      "claims_count": 0,
+      "citations": []
+    },
+    {
+      "question": "What is the quantum mechanical spin of a neutral kaon meson?",
+      "is_refusal": true,
+      "refusal_reason": "Top candidate match similarity (33.3%) below minimum support threshold (50.0%).",
+      "answer_text": "REFUSAL: Retrieved documents do not contain direct evidence addressing this specific inquiry.",
+      "claims_count": 0,
+      "citations": []
+    },
+    {
+      "question": "What was the closing stock price of Tesla on January 15 2024?",
+      "is_refusal": true,
+      "refusal_reason": "Top candidate match similarity (33.0%) below minimum support threshold (50.0%).",
+      "answer_text": "REFUSAL: Retrieved documents do not contain direct evidence addressing this specific inquiry.",
+      "claims_count": 0,
+      "citations": []
+    },
+    {
+      "question": "What is the statutory copyright exemption under Section 52(1)(q) of the Indian Copyright Act?",
+      "is_refusal": true,
+      "refusal_reason": "Top candidate match similarity (33.9%) below minimum support threshold (50.0%).",
+      "answer_text": "REFUSAL: Retrieved documents do not contain direct evidence addressing this specific inquiry.",
+      "claims_count": 0,
+      "citations": []
+    }
+  ],
+  "scientific_integrity_notice": "Grounding faithfulness cannot be meaningfully validated on synthetic dummy text. The system strictly generates 'Insufficient archival evidence found for a supported answer' when primary evidence is absent or similarity is below threshold."
+}

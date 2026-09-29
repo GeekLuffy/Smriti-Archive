@@ -1,0 +1,12 @@
+{
+  "benchmark": "E3_EVIDENCE_ATTRIBUTION",
+  "timestamp": "2026-09-29 10:42:59Z",
+  "input_ocr_dir": "outputs\\ocr",
+  "e1_dependency_status": "BLOCKED_ON_HOST_OCR_BINARY",
+  "e2_dependency_status": "LOCKED_PREVIEW (Gated on Empirical Completion of Phase E1)",
+  "gate_status": "LOCKED_PREVIEW (Gated on Empirical Completion of Phase E1 and E2)",
+  "indexed_documents_count": 20,
+  "questions_count": 5,
+  "target_questions_count": 50,
+  "annotator_count": 2
+}

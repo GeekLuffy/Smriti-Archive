@@ -1,0 +1,11 @@
+run_id,document_id,page_id,engine,engine_version,language,preprocessing,execution_duration_ms,status,text_length,token_count,cer,wer,reading_order_concordance,bbox_f1,bbox_iou
+ambedkar_speech_vol1_p0001_raw_eng,ambedkar_speech_vol1,ambedkar_speech_vol1_p0001,MockOCRAdapter,v1.0 (mock),eng,raw,4.01,evaluated,137,15,0.8103448275862069,1.0,0.5476,0.0,0.0
+ambedkar_speech_vol1_p0001_grayscale_eng,ambedkar_speech_vol1,ambedkar_speech_vol1_p0001,MockOCRAdapter,v1.0 (mock),eng,grayscale,0.33,evaluated,137,15,0.8103448275862069,1.0,0.5476,0.0,0.0
+ambedkar_speech_vol1_p0002_raw_eng,ambedkar_speech_vol1,ambedkar_speech_vol1_p0002,MockOCRAdapter,v1.0 (mock),eng,raw,4.7,ground_truth_unavailable,137,15,,,,,
+ambedkar_speech_vol1_p0002_grayscale_eng,ambedkar_speech_vol1,ambedkar_speech_vol1_p0002,MockOCRAdapter,v1.0 (mock),eng,grayscale,0.25,ground_truth_unavailable,137,15,,,,,
+ambedkar_speech_vol1_p0003_raw_eng,ambedkar_speech_vol1,ambedkar_speech_vol1_p0003,MockOCRAdapter,v1.0 (mock),eng,raw,4.62,ground_truth_unavailable,137,15,,,,,
+ambedkar_speech_vol1_p0003_grayscale_eng,ambedkar_speech_vol1,ambedkar_speech_vol1_p0003,MockOCRAdapter,v1.0 (mock),eng,grayscale,0.22,ground_truth_unavailable,137,15,,,,,
+ambedkar_speech_vol1_p0004_raw_eng,ambedkar_speech_vol1,ambedkar_speech_vol1_p0004,MockOCRAdapter,v1.0 (mock),eng,raw,3.91,ground_truth_unavailable,137,15,,,,,
+ambedkar_speech_vol1_p0004_grayscale_eng,ambedkar_speech_vol1,ambedkar_speech_vol1_p0004,MockOCRAdapter,v1.0 (mock),eng,grayscale,0.22,ground_truth_unavailable,137,15,,,,,
+ambedkar_speech_vol1_p0005_raw_eng,ambedkar_speech_vol1,ambedkar_speech_vol1_p0005,MockOCRAdapter,v1.0 (mock),eng,raw,4.57,ground_truth_unavailable,137,15,,,,,
+ambedkar_speech_vol1_p0005_grayscale_eng,ambedkar_speech_vol1,ambedkar_speech_vol1_p0005,MockOCRAdapter,v1.0 (mock),eng,grayscale,0.22,ground_truth_unavailable,137,15,,,,,

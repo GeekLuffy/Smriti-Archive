@@ -1,0 +1,105 @@
+{
+  "benchmark_name": "SIH26096 Archival Retrieval Judged Query Benchmark",
+  "version": "1.0",
+  "target_query_count": 50,
+  "relevance_scale": {
+    "0": "Not relevant",
+    "1": "Marginally relevant",
+    "2": "Substantially relevant",
+    "3": "Directly answering / primary source evidence"
+  },
+  "queries": [
+    {
+      "query_id": "Q01",
+      "query": "Castes in India Mechanism Genesis and Development Columbia University",
+      "topic": "Early Academic Papers",
+      "target_documents": ["ambedkar_speech_vol1"],
+      "graded_relevance": {
+        "ambedkar_speech_vol1_p0001": 3,
+        "ambedkar_speech_vol1_p0002": 2
+      }
+    },
+    {
+      "query_id": "Q02",
+      "query": "Annihilation of Caste presidential address Jat-Pat-Todak Mandal Lahore",
+      "topic": "Social Reform",
+      "target_documents": ["ambedkar_speech_vol1"],
+      "graded_relevance": {
+        "ambedkar_speech_vol1_p0002": 3
+      }
+    },
+    {
+      "query_id": "Q03",
+      "query": "Mahad Satyagraha Chavdar Tale water rights 1927",
+      "topic": "Civil Rights Movements",
+      "target_documents": ["ambedkar_speech_vol1"],
+      "graded_relevance": {
+        "ambedkar_speech_vol1_p0003": 3
+      }
+    },
+    {
+      "query_id": "Q04",
+      "query": "Vasant Moon Education Department Government of Maharashtra editorial committee",
+      "topic": "Archival Provenance",
+      "target_documents": ["ambedkar_speech_vol1"],
+      "graded_relevance": {
+        "ambedkar_speech_vol1_p0001": 3
+      }
+    },
+    {
+      "query_id": "Q05",
+      "query": "Poona Pact joint electorates reserved seats Mahatma Gandhi Yerwada 1932",
+      "topic": "Political Agreements",
+      "target_documents": ["ambedkar_speech_vol1"],
+      "graded_relevance": {
+        "ambedkar_speech_vol1_p0004": 3
+      }
+    },
+    {
+      "query_id": "Q06",
+      "query": "Constituent Assembly Drafting Committee final speech 25 November 1949",
+      "topic": "Constitutional History",
+      "target_documents": ["ambedkar_speech_vol1"],
+      "graded_relevance": {
+        "ambedkar_speech_vol1_p0005": 3
+      }
+    },
+    {
+      "query_id": "Q07",
+      "query": "Round Table Conference London separate electorates representation 1930",
+      "topic": "Constitutional Negotiations",
+      "target_documents": ["ambedkar_speech_vol1"],
+      "graded_relevance": {
+        "ambedkar_speech_vol1_p0002": 2,
+        "ambedkar_speech_vol1_p0004": 2
+      }
+    },
+    {
+      "query_id": "Q08",
+      "query": "Mooknayak Bahishkrit Bharat newspapers editorial writings",
+      "topic": "Periodicals and Journalism",
+      "target_documents": ["ambedkar_speech_vol1"],
+      "graded_relevance": {
+        "ambedkar_speech_vol1_p0003": 2
+      }
+    },
+    {
+      "query_id": "Q09",
+      "query": "Fundamental Rights Directive Principles constitutional remedies Article 32",
+      "topic": "Constitutional Law",
+      "target_documents": ["ambedkar_speech_vol1"],
+      "graded_relevance": {
+        "ambedkar_speech_vol1_p0005": 3
+      }
+    },
+    {
+      "query_id": "Q10",
+      "query": "States and Minorities memorandum submitted to Constituent Assembly 1947",
+      "topic": "Constitutional Proposals",
+      "target_documents": ["ambedkar_speech_vol1"],
+      "graded_relevance": {
+        "ambedkar_speech_vol1_p0005": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "phase": "E1_ARCHIVAL_OCR",
+  "benchmark_date": "2026-09-29",
+  "gate_status": "BLOCKED_ON_HOST_OCR_BINARY",
+  "tesseract_host_status": {
+    "available": false,
+    "diagnostic_message": "Tesseract OCR binary not found. Searched: env TESSERACT_CMD/TESSERACT_PATH, system PATH lookup, C:\\Program Files\\Tesseract-OCR\\tesseract.exe, C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe, C:\\Users\\user\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe. Remediation: Install Tesseract on Windows via 'winget install UB-Mannheim.TesseractOCR' or on Linux via 'sudo apt-get install tesseract-ocr', or pass --tesseract-cmd.",
+    "installed_languages": [],
+    "missing_target_languages": [
+      "eng",
+      "hin",
+      "mar"
+    ]
+  },
+  "dataset_summary": {
+    "total_pages_discovered": 5,
+    "target_pages_range": [
+      30,
+      50
+    ],
+    "authenticity": "Synthetic Digital Vector PDF Excerpt",
+    "evaluated_runs_count": 0,
+    "unannotated_runs_count": 0
+  },
+  "preprocessing_variants_evaluated": [
+    "raw",
+    "grayscale",
+    "denoise",
+    "deskew",
+    "adaptive_gaussian"
+  ],
+  "target_languages": [
+    "eng",
+    "hin",
+    "mar"
+  ],
+  "aggregate_metrics": {
+    "mean_cer": null,
+    "mean_wer": null,
+    "evaluation_notice": "NO REAL HISTORICAL OCR ACCURACY CLAIMED. Results on synthetic vector PDFs must not be reported as empirical evidence of archival performance."
+  },
+  "runs": []
+}

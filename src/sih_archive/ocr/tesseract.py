@@ -163,6 +163,9 @@ class TesseractAdapter(OCRAdapter):
         except Exception:
             return ["eng"]
 
+    # Backward compatibility alias
+    get_installed_languages = get_available_languages
+
     @staticmethod
     def parse_tsv_output(tsv_text: str) -> Tuple[str, List[TokenRegion]]:
         """

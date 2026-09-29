@@ -1,0 +1,181 @@
+{
+  "phase": "E2_ARCHIVAL_RETRIEVAL",
+  "benchmark_date": "2026-09-29",
+  "gate_status": "LOCKED_PREVIEW (Gated on Empirical Completion of Phase E1)",
+  "gating_rule": "Retrieval benchmarks remain locked from official evaluation until empirical Phase E1 OCR outputs on authentic historical scans are verified.",
+  "e1_dependency_status": "BLOCKED_ON_HOST_OCR_BINARY",
+  "implemented_strategies": [
+    "bm25",
+    "char_3gram_fuzzy",
+    "dense_bge-m3",
+    "hybrid_bm25_dense_bge-m3"
+  ],
+  "corpus_summary": {
+    "indexed_pages_count": 20,
+    "target_corpus_range": [
+      100,
+      200
+    ],
+    "judged_queries_count": 10,
+    "target_queries_count": 50
+  },
+  "engine_benchmarks": [
+    {
+      "engine": "bm25",
+      "mean_latency_ms": 0.12,
+      "mean_recall_at_10": 0.3,
+      "mean_ndcg_at_10": 0.3,
+      "mean_mrr": 0.2167,
+      "indexed_pages": 20,
+      "total_tokens": 354,
+      "queries_evaluated": 10,
+      "sample_queries": [
+        {
+          "query_id": "Q01",
+          "query": "Castes in India Mechanism Genesis and Development Columbia University",
+          "latency_ms": 0.26,
+          "recall_at_10": 1.0,
+          "ndcg_at_10": 1.0,
+          "top_hit": "ambedkar_speech_vol1_p0001",
+          "top_score": 0.0362
+        },
+        {
+          "query_id": "Q02",
+          "query": "Annihilation of Caste presidential address Jat-Pat-Todak Mandal Lahore",
+          "latency_ms": 0.25,
+          "recall_at_10": 0.0,
+          "ndcg_at_10": 0.0,
+          "top_hit": "ambedkar_speech_vol1_p0001",
+          "top_score": 1.0108
+        },
+        {
+          "query_id": "Q03",
+          "query": "Mahad Satyagraha Chavdar Tale water rights 1927",
+          "latency_ms": 0.03,
+          "recall_at_10": 0.0,
+          "ndcg_at_10": 0.0,
+          "top_hit": null,
+          "top_score": 0.0
+        }
+      ]
+    },
+    {
+      "engine": "char_3gram_fuzzy",
+      "mean_latency_ms": 1.44,
+      "mean_recall_at_10": 0.45,
+      "mean_ndcg_at_10": 0.4555,
+      "mean_mrr": 0.2792,
+      "indexed_pages": 20,
+      "total_tokens": 354,
+      "queries_evaluated": 10,
+      "sample_queries": [
+        {
+          "query_id": "Q01",
+          "query": "Castes in India Mechanism Genesis and Development Columbia University",
+          "latency_ms": 1.6,
+          "recall_at_10": 1.0,
+          "ndcg_at_10": 1.0,
+          "top_hit": "ambedkar_speech_vol1_p0001",
+          "top_score": 0.2526
+        },
+        {
+          "query_id": "Q02",
+          "query": "Annihilation of Caste presidential address Jat-Pat-Todak Mandal Lahore",
+          "latency_ms": 1.16,
+          "recall_at_10": 1.0,
+          "ndcg_at_10": 1.0,
+          "top_hit": "ambedkar_speech_vol1_p0001",
+          "top_score": 0.2348
+        },
+        {
+          "query_id": "Q03",
+          "query": "Mahad Satyagraha Chavdar Tale water rights 1927",
+          "latency_ms": 1.44,
+          "recall_at_10": 1.0,
+          "ndcg_at_10": 1.0,
+          "top_hit": "ambedkar_speech_vol1_p0001",
+          "top_score": 0.2374
+        }
+      ]
+    },
+    {
+      "engine": "dense_bge-m3",
+      "mean_latency_ms": 0.05,
+      "mean_recall_at_10": 0.75,
+      "mean_ndcg_at_10": 0.6612,
+      "mean_mrr": 0.4897,
+      "indexed_pages": 20,
+      "total_tokens": 354,
+      "queries_evaluated": 10,
+      "sample_queries": [
+        {
+          "query_id": "Q01",
+          "query": "Castes in India Mechanism Genesis and Development Columbia University",
+          "latency_ms": 0.1,
+          "recall_at_10": 0.5,
+          "ndcg_at_10": 0.2624,
+          "top_hit": "ambedkar_speech_vol1_p0003",
+          "top_score": 0.2364
+        },
+        {
+          "query_id": "Q02",
+          "query": "Annihilation of Caste presidential address Jat-Pat-Todak Mandal Lahore",
+          "latency_ms": 0.06,
+          "recall_at_10": 1.0,
+          "ndcg_at_10": 1.0,
+          "top_hit": "ambedkar_speech_vol1_p0002",
+          "top_score": 0.3345
+        },
+        {
+          "query_id": "Q03",
+          "query": "Mahad Satyagraha Chavdar Tale water rights 1927",
+          "latency_ms": 0.05,
+          "recall_at_10": 0.0,
+          "ndcg_at_10": 0.0,
+          "top_hit": "ambedkar_speech_vol1_p0001",
+          "top_score": 0.1276
+        }
+      ]
+    },
+    {
+      "engine": "hybrid_bm25_dense_bge-m3",
+      "mean_latency_ms": 0.29,
+      "mean_recall_at_10": 1.0,
+      "mean_ndcg_at_10": 0.6029,
+      "mean_mrr": 0.465,
+      "indexed_pages": 20,
+      "total_tokens": 354,
+      "queries_evaluated": 10,
+      "sample_queries": [
+        {
+          "query_id": "Q01",
+          "query": "Castes in India Mechanism Genesis and Development Columbia University",
+          "latency_ms": 0.6,
+          "recall_at_10": 1.0,
+          "ndcg_at_10": 1.0,
+          "top_hit": "ambedkar_speech_vol1_p0001",
+          "top_score": 0.186233
+        },
+        {
+          "query_id": "Q02",
+          "query": "Annihilation of Caste presidential address Jat-Pat-Todak Mandal Lahore",
+          "latency_ms": 0.34,
+          "recall_at_10": 1.0,
+          "ndcg_at_10": 0.6309,
+          "top_hit": "ambedkar_speech_vol1_p0001",
+          "top_score": 0.197587
+        },
+        {
+          "query_id": "Q03",
+          "query": "Mahad Satyagraha Chavdar Tale water rights 1927",
+          "latency_ms": 0.13,
+          "recall_at_10": 1.0,
+          "ndcg_at_10": 0.3869,
+          "top_hit": "ambedkar_speech_vol1_p0001",
+          "top_score": 0.100357
+        }
+      ]
+    }
+  ],
+  "scientific_integrity_notice": "NO UNIVERSAL WINNER: Retrieval effectiveness varies across archival corruption tiers. Lexical BM25 performs well on clean vocabulary, Character 3-Gram excels under OCR substitution noise, Dense captures cross-lingual semantic intent, and Hybrid RRF provides balanced robustness. This benchmark represents a synthetic preview; final empirical evaluation is gated on E1."
+}
