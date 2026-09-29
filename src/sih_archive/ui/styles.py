@@ -1191,7 +1191,8 @@ def get_styles() -> str:
     }
 
     .footer-container {
-        max-width: var(--container-max-width, 1360px);
+        max-width: var(--max-width, 1360px);
+        width: 100%;
         margin: 0 auto;
         display: flex;
         flex-direction: column;
@@ -1199,16 +1200,17 @@ def get_styles() -> str:
     }
 
     .footer-provenance-chain-box {
-        background: rgba(30, 41, 59, 0.7);
-        border: 1px solid rgba(148, 163, 184, 0.2);
+        background: #1e293b;
+        border: 1px solid rgba(217, 119, 6, 0.35);
         border-radius: 8px;
-        padding: 1.25rem 1.5rem;
+        padding: 1.25rem 1.75rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     .footer-provenance-chain-title {
-        font-size: 0.78rem;
+        font-size: 0.8rem;
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.06em;
         font-weight: 700;
         color: var(--accent-gold);
         margin-bottom: 0.6rem;
@@ -1216,25 +1218,30 @@ def get_styles() -> str:
 
     .footer-provenance-steps {
         font-family: var(--font-mono);
-        font-size: 0.8rem;
-        color: #cbd5e1;
+        font-size: 0.82rem;
+        color: #f1f5f9;
         line-height: 1.6;
         word-break: break-word;
     }
 
     .footer-cols-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2.25rem;
+    }
+
+    .footer-col {
+        display: flex;
+        flex-direction: column;
     }
 
     .footer-col h4 {
         font-family: var(--font-serif);
         font-size: 1.05rem;
         color: #f8fafc;
-        margin-bottom: 0.75rem;
-        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-        padding-bottom: 0.4rem;
+        margin-bottom: 0.85rem;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+        padding-bottom: 0.5rem;
     }
 
     .footer-col p, .footer-col ul {
@@ -3346,6 +3353,10 @@ def get_styles() -> str:
             grid-template-columns: 1.2fr 1fr;
             gap: 1.75rem;
         }
+        .footer-cols-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
         .viewer-layout {
             grid-template-columns: 220px 1fr;
         }
@@ -3419,6 +3430,19 @@ def get_styles() -> str:
         }
         .viewer-layout {
             grid-template-columns: 1fr;
+        }
+        .footer-cols-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        .footer-bottom-bar {
+            flex-direction: column;
+            text-align: center;
+            gap: 1rem;
+        }
+        .footer-bottom-bar div {
+            text-align: center !important;
+            max-width: 100% !important;
         }
     }
     """
