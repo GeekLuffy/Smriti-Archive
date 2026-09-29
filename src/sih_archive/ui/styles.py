@@ -3347,7 +3347,11 @@ def get_styles() -> str:
         color: var(--navy-slate);
     }
 
-    /* Responsive adjustments */
+    /* ==========================================================================
+       COMPREHENSIVE RESPONSIVE SYSTEM — All breakpoints
+       ========================================================================== */
+
+    /* --- 1024px: Tablet landscape --- */
     @media (max-width: 1024px) {
         .portal-hero-grid {
             grid-template-columns: 1.2fr 1fr;
@@ -3366,8 +3370,12 @@ def get_styles() -> str:
         .assistant-layout {
             grid-template-columns: 1fr;
         }
+        .admin-section-grid {
+            grid-template-columns: 1fr;
+        }
     }
 
+    /* --- 900px: Tablet portrait --- */
     @media (max-width: 900px) {
         .portal-hero-grid {
             grid-template-columns: 1fr;
@@ -3398,21 +3406,88 @@ def get_styles() -> str:
         }
     }
 
+    /* --- 768px: Mobile large --- */
     @media (max-width: 768px) {
-        .portal-hero h1,
-        .portal-hero h2 {
-            font-size: 1.85rem;
+        html, body {
+            overflow-x: hidden;
         }
-        .portal-hero {
-            padding: 2rem 1.25rem;
+
+        /* Global viewport padding */
+        .app-viewport {
+            padding: 1.25rem 1rem;
         }
-        .hero-stats-bar {
-            grid-template-columns: 1fr;
-        }
+
+        /* Header */
         .header-top {
+            padding: 0.85rem 1rem;
+            gap: 0.75rem;
+        }
+        .header-title-block h1 {
+            font-size: 1.05rem;
+        }
+        .header-subtitle {
+            font-size: 0.72rem;
+        }
+        .btn-kiosk-toggle {
+            font-size: 0.75rem;
+            padding: 0.45rem 0.7rem;
+        }
+
+        /* Nav tabs — horizontal scroll, smaller text */
+        .nav-container {
+            padding: 0 0.75rem;
+            gap: 2px;
+        }
+        .nav-tab {
+            padding: 0.75rem 0.8rem;
+            font-size: 0.78rem;
+            gap: 5px;
+            min-height: 48px;
+        }
+
+        /* Demo banner */
+        .demo-banner {
+            font-size: 0.78rem;
+            padding: 0.5rem 1rem;
             flex-direction: column;
             align-items: flex-start;
+            gap: 6px;
         }
+
+        /* Hero */
+        .portal-hero {
+            padding: 2rem 1rem;
+        }
+        .portal-hero h1,
+        .portal-hero h2 {
+            font-size: 1.75rem;
+        }
+        .portal-hero-subtitle {
+            font-size: 0.95rem;
+        }
+        .hero-stats-bar {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+        .hero-portrait-card {
+            max-width: 320px;
+        }
+
+        /* Explorer toolbar */
+        .explorer-toolbar {
+            padding: 1rem;
+        }
+        .filter-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .filter-actions {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+        }
+
+        /* Catalog / grids */
         .catalog-grid {
             grid-template-columns: 1fr;
         }
@@ -3428,21 +3503,217 @@ def get_styles() -> str:
         .portal-av-grid {
             grid-template-columns: 1fr;
         }
+
+        /* Search result cards */
+        .result-card-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .result-card-footer {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        /* Manuscript viewer */
         .viewer-layout {
             grid-template-columns: 1fr;
         }
-        .footer-cols-grid {
+        .viewer-thumb-strip {
+            display: flex;
+            flex-direction: row;
+            overflow-x: auto;
+            max-height: none;
+            gap: 8px;
+            padding: 8px 0;
+        }
+
+        /* Research assistant */
+        .assistant-layout {
             grid-template-columns: 1fr;
-            gap: 2rem;
+        }
+        .assistant-history-col,
+        .assistant-evidence-col {
+            display: none;
+        }
+
+        /* Timeline */
+        .timeline-events-container {
+            max-width: 100%;
+        }
+        .timeline-era-bar {
+            gap: 6px;
+            padding: 10px 12px;
+        }
+        .era-pill {
+            font-size: 0.76rem;
+            padding: 5px 10px;
+        }
+        .timeline-card {
+            padding: 1rem;
+        }
+        .timeline-card-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        /* Admin dashboard */
+        .admin-summary-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .admin-section-grid {
+            grid-template-columns: 1fr;
+        }
+        .admin-table {
+            font-size: 0.8rem;
+        }
+        .admin-table th,
+        .admin-table td {
+            padding: 0.5rem 0.6rem;
+        }
+
+        /* Media player */
+        .media-player-container {
+            padding: 1rem;
+        }
+
+        /* Footer */
+        .footer-cols-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
         }
         .footer-bottom-bar {
             flex-direction: column;
             text-align: center;
-            gap: 1rem;
+            gap: 0.75rem;
         }
         .footer-bottom-bar div {
             text-align: center !important;
             max-width: 100% !important;
+        }
+
+        /* Touch targets: all interactive elements */
+        button, .btn, .nav-tab, .era-pill, select, input[type="text"] {
+            min-height: 44px;
+        }
+        .filter-select, .filter-input {
+            min-height: 44px;
+            font-size: 1rem; /* prevent iOS zoom on focus */
+        }
+    }
+
+    /* --- 480px: Mobile medium --- */
+    @media (max-width: 480px) {
+        /* Body font slightly smaller */
+        body {
+            font-size: 14px;
+        }
+
+        /* Header emblem hide on very small */
+        .header-emblem {
+            width: 36px;
+            height: 36px;
+            font-size: 1.1rem;
+        }
+        .header-title-block h1 {
+            font-size: 0.95rem;
+        }
+        .btn-kiosk-toggle span:not(.icon) {
+            display: none; /* hide label text, keep icon */
+        }
+
+        /* Hero */
+        .portal-hero h1,
+        .portal-hero h2 {
+            font-size: 1.5rem;
+        }
+        .hero-stats-bar {
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+        .hero-stat-value {
+            font-size: 1.35rem;
+        }
+        .hero-portrait-card {
+            max-width: 260px;
+        }
+
+        /* CTAs stack vertically */
+        .hero-cta-group {
+            flex-direction: column;
+            align-items: stretch;
+            width: 100%;
+        }
+        .hero-cta-group .btn-primary,
+        .hero-cta-group .btn-secondary {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+        .live-demo-cta-row {
+            flex-direction: column;
+            align-items: stretch;
+            width: 100%;
+            gap: 10px;
+        }
+        .btn-live-archive,
+        .btn-watch-demo {
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+
+        /* Explorer toolbar single col */
+        .filter-grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* Cards */
+        .curated-card-body {
+            padding: 0.9rem;
+        }
+        .catalog-card-body {
+            padding: 0.9rem;
+        }
+
+        /* Footer single column */
+        .footer-cols-grid {
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+
+        /* Admin 1 col */
+        .admin-summary-grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* Section headings */
+        .section-heading {
+            font-size: 1.4rem;
+        }
+        .section-subheading {
+            font-size: 0.88rem;
+        }
+    }
+
+    /* --- 375px: Small phone (iPhone SE, Galaxy A) --- */
+    @media (max-width: 375px) {
+        .portal-hero h1,
+        .portal-hero h2 {
+            font-size: 1.35rem;
+        }
+        .header-top {
+            padding: 0.65rem 0.75rem;
+        }
+        .app-viewport {
+            padding: 1rem 0.75rem;
+        }
+        .nav-tab {
+            padding: 0.65rem 0.6rem;
+            font-size: 0.72rem;
+        }
+        .hero-stats-bar {
+            grid-template-columns: 1fr;
         }
     }
     """
