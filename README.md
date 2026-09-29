@@ -228,8 +228,8 @@ Before running Smriti Archive locally, ensure you have:
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/GeekLuffy/SIH26096.git
-cd SIH26096
+git clone https://github.com/GeekLuffy/Smriti-Archive.git
+cd Smriti-Archive
 ```
 
 ### 2. Create Virtual Environment
