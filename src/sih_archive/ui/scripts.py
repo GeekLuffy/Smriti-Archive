@@ -154,6 +154,9 @@ def get_scripts(
         const collectionEl = document.getElementById("filter-collection");
         const collection = collectionEl ? collectionEl.value : "";
 
+        const institutionEl = document.getElementById("filter-institution");
+        const institution = institutionEl ? institutionEl.value : "";
+
         const languageEl = document.getElementById("filter-language");
         const language = languageEl ? languageEl.value : "";
 
@@ -180,6 +183,27 @@ def get_scripts(
 
             // Collection filter
             if (collection && item.collection !== collection) return false;
+            // Institution filter (R3 with flexible distinctive token/prefix matching, excluding generic stopwords)
+            if (institution) {{
+                const itemInst = (item.institution || "").toLowerCase();
+                const filterInst = institution.toLowerCase();
+                let instMatch = itemInst.includes(filterInst);
+                if (!instMatch) {{
+                    const primaryPart = filterInst.split('/')[0].trim();
+                    if (primaryPart && itemInst.includes(primaryPart)) {{
+                        instMatch = true;
+                    }} else {{
+                        const genericStopwords = new Set([
+                            "library", "museum", "archives", "national", "india", "secretariat",
+                            "committee", "government", "ministry", "department", "rare", "book",
+                            "manuscript", "school", "university", "memorial", "state", "central"
+                        ]);
+                        const words = filterInst.split(/[^a-z0-9]+/).filter(w => w.length > 3 && !genericStopwords.has(w));
+                        instMatch = words.length > 0 && words.some(w => itemInst.includes(w));
+                    }}
+                }}
+                if (!instMatch) return false;
+            }}
             // Language filter
             if (language && item.language !== language) return false;
             // Material type filter
@@ -210,6 +234,7 @@ def get_scripts(
         }};
         setVal("filter-search", "");
         setVal("filter-collection", "");
+        setVal("filter-institution", "");
         setVal("filter-language", "");
         setVal("filter-material", "");
         setVal("filter-rights", "");
@@ -323,6 +348,11 @@ def get_scripts(
                     <div class="search-results-list">
                         ${{data.hits.map((hit, idx) => {{
                             const docId = hit.document_id || hit.page_id.split("_p")[0];
+                            const catalogItem = ARCHIVE_CATALOG.find(c => c.document_id === docId || c.id === docId) || {{}};
+                            const instName = hit.institution || catalogItem.institution || "National Digital Heritage Archive";
+                            const docTitle = catalogItem.title || hit.title || docId;
+                            const pageNum = hit.page_id && hit.page_id.includes("_p") ? parseInt(hit.page_id.split("_p")[1], 10) : 1;
+                            const thumbUrl = catalogItem.thumbnail || `/api/v1/pages/${{hit.page_id}}/image`;
                             const langBadge = (hit.language || "eng").toUpperCase();
                             const rightsBadge = (hit.rights_status || "public").toUpperCase();
                             const regionsCount = hit.matched_regions ? hit.matched_regions.length : 0;
@@ -334,16 +364,31 @@ def get_scripts(
                                         <div class="result-doc-info">
                                             <span>#${{idx + 1}}</span>
                                             <span>📄 <strong>${{hit.page_id}}</strong> (${{docId}})</span>
+                                            <span style="color: var(--text-muted); font-size: 0.82rem;">• Page ${{pageNum}}</span>
                                         </div>
-                                        <div style="display: flex; gap: 6px; align-items: center;">
+                                        <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+                                            <span class="badge-pill badge-verified" style="font-size: 0.72rem;">🏛️ ${{instName.split(",")[0]}}</span>
                                             <span class="badge-pill badge-lang">${{langBadge}}</span>
                                             <span class="badge-pill badge-public">${{rightsBadge}}</span>
                                             <span class="result-score-badge">Score: ${{hit.score}}</span>
                                         </div>
                                     </div>
 
-                                    <div class="result-snippet">
-                                        "${{highlighted}}"
+                                    <div style="display: flex; gap: 14px; align-items: flex-start; margin: 0.75rem 0;">
+                                        <div style="width: 68px; height: 90px; flex-shrink: 0; background: #f1f5f9; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                                            <img src="${{thumbUrl}}" alt="Thumbnail" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:1.5rem;\\'>📜</span>';">
+                                        </div>
+                                        <div style="flex-grow: 1;">
+                                            <div style="font-size: 0.85rem; color: var(--primary-dark); font-weight: 600; margin-bottom: 2px;">
+                                                ${{docTitle}}
+                                            </div>
+                                            <div style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px;">
+                                                <strong>Source Archive:</strong> ${{instName}}
+                                            </div>
+                                            <div class="result-snippet">
+                                                "${{highlighted}}"
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <div class="result-card-footer">
@@ -406,6 +451,26 @@ def get_scripts(
         }}
         if (indicator) {{
             indicator.innerText = `${{Math.round(viewerZoom * 100)}}%`;
+        }}
+    }}
+
+    function viewerPrevPage() {{
+        if (!Array.isArray(VIEWER_PAGES) || VIEWER_PAGES.length === 0) return;
+        const currentIndex = VIEWER_PAGES.findIndex(p => p.page_id === currentViewerPageId);
+        const newIndex = (currentIndex <= 0) ? VIEWER_PAGES.length - 1 : currentIndex - 1;
+        const targetPage = VIEWER_PAGES[newIndex];
+        if (targetPage && targetPage.page_id) {{
+            loadViewerPage(targetPage.page_id);
+        }}
+    }}
+
+    function viewerNextPage() {{
+        if (!Array.isArray(VIEWER_PAGES) || VIEWER_PAGES.length === 0) return;
+        const currentIndex = VIEWER_PAGES.findIndex(p => p.page_id === currentViewerPageId);
+        const newIndex = (currentIndex < 0 || currentIndex >= VIEWER_PAGES.length - 1) ? 0 : currentIndex + 1;
+        const targetPage = VIEWER_PAGES[newIndex];
+        if (targetPage && targetPage.page_id) {{
+            loadViewerPage(targetPage.page_id);
         }}
     }}
 
