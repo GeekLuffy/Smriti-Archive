@@ -267,10 +267,16 @@ def get_scripts(
             const langLabel = item.language === "eng" ? "English" : (item.language === "mar" ? "Marathi" : "Hindi");
             const rightsLabel = item.rights === "public" ? "Public Domain" : item.rights.toUpperCase();
             const rightsClass = item.rights === "public" ? "badge-public" : "badge-verified";
+            const thumbHtml = item.thumbnail ? `
+                <div class="catalog-card-thumb-wrap">
+                    <img src="${{item.thumbnail}}" alt="${{item.title}}" loading="lazy" class="catalog-card-thumb-img" onerror="this.parentElement.style.display='none'">
+                </div>
+            ` : '';
 
             return `
                 <div class="catalog-card">
                     <div>
+                        ${{thumbHtml}}
                         <div class="catalog-card-header">
                             <div>
                                 <h3 class="catalog-card-title">${{item.title}}</h3>

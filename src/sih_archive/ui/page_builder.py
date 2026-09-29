@@ -144,11 +144,42 @@ def build_kiosk_html(
             gap: 1.5rem;
         }}
         .kiosk-hero {{
-            text-align: center;
             padding: 1.75rem 2rem;
             background: var(--kiosk-card);
             border: 1px solid var(--kiosk-border);
             border-radius: 16px;
+        }}
+        .kiosk-hero-content {{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }}
+        .kiosk-hero-avatar {{
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #f59e0b;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+            flex-shrink: 0;
+            background: #0f172a;
+        }}
+        .kiosk-avatar-img {{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%;
+            display: block;
+        }}
+        .kiosk-hero-text {{
+            text-align: left;
+        }}
+        @media (max-width: 768px) {{
+            .kiosk-hero-text {{
+                text-align: center;
+            }}
         }}
         .kiosk-hero h1 {{
             font-size: 2.1rem;
@@ -380,8 +411,15 @@ def build_kiosk_html(
 
     <main class="kiosk-container">
         <div class="kiosk-hero">
-            <h1>Digital Heritage Memorial Archive</h1>
-            <p>Touch any section below to explore manuscripts, historic speeches, and constitutional milestones.</p>
+            <div class="kiosk-hero-content">
+                <div class="kiosk-hero-avatar">
+                    <img src="/api/v1/pages/ambedkar_portrait/image" alt="Dr. B. R. Ambedkar" class="kiosk-avatar-img">
+                </div>
+                <div class="kiosk-hero-text">
+                    <h1>Digital Heritage Memorial Archive</h1>
+                    <p>Touch any section below to explore manuscripts, historic speeches, and constitutional milestones.</p>
+                </div>
+            </div>
         </div>
 
         <!-- Touch Search & Curated Topics (R8) -->
@@ -926,40 +964,57 @@ def build_portal_html() -> str:
         <section id="view-portal" class="view-panel active">
             <!-- SECTION 1: HERO SECTION & LIVE DEMO CTAS -->
             <div class="portal-hero">
-                <div class="portal-hero-badge">
-                    <span>🇮🇳 National Heritage Archive</span>
-                </div>
-                <h1 class="serif-heading">Explore the Life, Ideas & Legacy of Dr. B. R. Ambedkar</h1>
-                <div class="portal-hero-eyebrow">Explore, Preserve & Understand India's Digital Heritage</div>
-                <p class="portal-hero-subtitle">
-                    A provenance-linked institutional archive connecting manuscripts, documents, photographs, audio-visual heritage and evidence-grounded research.
-                </p>
-                <div class="hero-cta-group">
-                    <button class="btn-primary" onclick="switchTab('explorer')">
-                        <span>🔍 Explore Archive</span>
-                    </button>
-                    <button class="btn-secondary" onclick="switchTab('explorer'); const s = document.getElementById('search-input'); if(s) s.focus();">
-                        <span>📑 Search Archive</span>
-                    </button>
-                    <button class="btn-secondary" onclick="switchTab('assistant')">
-                        <span>🧭 Research Assistant</span>
-                    </button>
-                </div>
-                <!-- Dual-Preservation Legacy Action Links -->
-                <div class="hero-legacy-actions">
-                    <span>Institutional pathways: </span>
-                    <a href="#explorer" onclick="switchTab('explorer')">Explore the Archive</a>
-                    <a href="#assistant" onclick="switchTab('assistant')">Ask the Research Assistant</a>
-                </div>
+                <div class="portal-hero-grid">
+                    <div class="portal-hero-text-col">
+                        <div class="portal-hero-badge">
+                            <span>🇮🇳 National Heritage Archive</span>
+                        </div>
+                        <h1 class="serif-heading">Explore the Life, Ideas & Legacy of Dr. B. R. Ambedkar</h1>
+                        <div class="portal-hero-eyebrow">Explore, Preserve & Understand India's Digital Heritage</div>
+                        <p class="portal-hero-subtitle">
+                            A provenance-linked institutional archive connecting manuscripts, documents, photographs, audio-visual heritage and evidence-grounded research.
+                        </p>
+                        <div class="hero-cta-group">
+                            <button class="btn-primary" onclick="switchTab('explorer')">
+                                <span>🔍 Explore Archive</span>
+                            </button>
+                            <button class="btn-secondary" onclick="switchTab('explorer'); const s = document.getElementById('search-input'); if(s) s.focus();">
+                                <span>📑 Search Archive</span>
+                            </button>
+                            <button class="btn-secondary" onclick="switchTab('assistant')">
+                                <span>🧭 Research Assistant</span>
+                            </button>
+                        </div>
+                        <!-- Dual-Preservation Legacy Action Links -->
+                        <div class="hero-legacy-actions">
+                            <span>Institutional pathways: </span>
+                            <a href="#explorer" onclick="switchTab('explorer')">Explore the Archive</a>
+                            <a href="#assistant" onclick="switchTab('assistant')">Ask the Research Assistant</a>
+                        </div>
 
-                <!-- Live Demo CTAs (R2) -->
-                <div class="live-demo-cta-row">
-                    <button class="btn-live-archive" onclick="switchTab('explorer')">
-                        <span>EXPLORE THE LIVE ARCHIVE</span>
-                    </button>
-                    <a href="https://github.com/GeekLuffy/SIH26096#readme" target="_blank" rel="noopener noreferrer" class="btn-watch-demo">
-                        <span>▶ WATCH PLATFORM DEMO</span>
-                    </a>
+                        <!-- Live Demo CTAs (R2) -->
+                        <div class="live-demo-cta-row">
+                            <button class="btn-live-archive" onclick="switchTab('explorer')">
+                                <span>EXPLORE THE LIVE ARCHIVE</span>
+                            </button>
+                            <a href="https://github.com/GeekLuffy/SIH26096#readme" target="_blank" rel="noopener noreferrer" class="btn-watch-demo">
+                                <span>▶ WATCH PLATFORM DEMO</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portal-hero-media-col">
+                        <div class="hero-portrait-card">
+                            <div class="hero-portrait-frame">
+                                <img src="/api/v1/pages/ambedkar_portrait/image" alt="Official Archival Portrait of Dr. B. R. Ambedkar" class="hero-portrait-img" loading="eager">
+                                <span class="hero-portrait-tag">HISTORICAL RECORD • PUBLIC DOMAIN</span>
+                            </div>
+                            <div class="hero-portrait-caption">
+                                <div class="hero-portrait-name">Dr. B. R. Ambedkar</div>
+                                <div class="hero-portrait-role">1891–1956 • Architect of the Constitution • Bharat Ratna</div>
+                                <div class="hero-portrait-source">Photo Division, Min. of Information & Broadcasting / National Archives of India</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Institutional Stats Bar -->
@@ -1105,11 +1160,16 @@ def build_portal_html() -> str:
                 </div>
                 <div class="portal-av-grid">
                     <div class="portal-av-artwork-panel">
-                        <div>
-                            <span class="badge-pill badge-verified" style="margin-bottom: 0.75rem; display: inline-block;">BBC SOUND ARCHIVES</span>
-                            <h3>BBC Radio Interview with Dr. B. R. Ambedkar</h3>
-                            <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 4px;">
-                                Recorded in London (May 1953) • 03:45 Duration
+                        <div style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 1rem;">
+                            <div class="portal-av-thumb-wrap">
+                                <img src="/api/v1/pages/ambedkar_round_table_1931/image" alt="BBC Interview Plate" class="portal-av-thumb-img">
+                            </div>
+                            <div>
+                                <span class="badge-pill badge-verified" style="margin-bottom: 0.5rem; display: inline-block;">BBC SOUND ARCHIVES</span>
+                                <h3 style="font-size: 1.15rem; color: #f8fafc; line-height: 1.3;">BBC Radio Interview with Dr. B. R. Ambedkar</h3>
+                                <div style="font-size: 0.82rem; color: #cbd5e1; margin-top: 4px;">
+                                    Recorded in London (May 1953) • 03:45 Duration
+                                </div>
                             </div>
                         </div>
                         <div>

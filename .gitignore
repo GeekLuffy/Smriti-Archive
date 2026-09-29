@@ -48,6 +48,7 @@ data/raw/*
 !data/raw/ambedkar_speech_vol1.pdf
 data/processed/pages/*
 !data/processed/pages/.gitkeep
+!data/processed/pages/*.png
 outputs/ocr/*
 !outputs/ocr/.gitkeep
 outputs/metrics/*

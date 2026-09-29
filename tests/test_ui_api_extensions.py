@@ -57,6 +57,25 @@ def test_page_image_endpoint_with_png_extension(client):
     assert "image/png" in res.headers["content-type"]
 
 
+def test_historical_ambedkar_images_serving(client):
+    """Verify that authentic archival images of Dr. B. R. Ambedkar are served successfully."""
+    images = [
+        "ambedkar_portrait",
+        "ambedkar_drafting_committee_1947",
+        "ambedkar_presenting_constitution_1949",
+        "ambedkar_writing_constitution",
+        "ambedkar_rajgriha_library_1946",
+        "ambedkar_round_table_1931",
+        "ambedkar_signature",
+        "ambedkar_chaityabhoomi_memorial",
+    ]
+    for img_id in images:
+        res = client.get(f"/api/v1/pages/{img_id}/image")
+        assert res.status_code == 200, f"Failed to serve {img_id}"
+        assert "image/png" in res.headers["content-type"]
+        assert len(res.content) > 1000
+
+
 def test_page_image_endpoint_missing_page(client):
     """Verify GET /api/v1/pages/{page_id}/image returns 404 and specific JSON error for missing scan."""
     res = client.get("/api/v1/pages/nonexistent_document_p9999/image")

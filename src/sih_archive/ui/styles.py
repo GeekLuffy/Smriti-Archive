@@ -363,11 +363,22 @@ def get_styles() -> str:
         background: #ffffff;
         border: 1px solid var(--border-parchment);
         border-radius: 12px;
-        padding: 3.5rem 2.5rem;
+        padding: 3rem 2.5rem;
         margin-bottom: 2.5rem;
         box-shadow: var(--shadow-card);
-        text-align: center;
         position: relative;
+    }
+
+    .portal-hero-grid {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr;
+        gap: 2.5rem;
+        align-items: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .portal-hero-text-col {
+        text-align: left;
     }
 
     .portal-hero-badge {
@@ -383,44 +394,43 @@ def get_styles() -> str:
         font-weight: 700;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        margin-bottom: 1.25rem;
+        margin-bottom: 1rem;
     }
 
     .portal-hero h1,
     .portal-hero h2 {
-        font-size: 2.5rem;
+        font-size: 2.35rem;
         color: var(--primary-dark);
         margin-bottom: 0.6rem;
-        max-width: 960px;
-        margin-left: auto;
-        margin-right: auto;
         line-height: 1.25;
+        text-align: left;
     }
 
     .portal-hero-eyebrow {
         font-family: var(--font-serif);
-        font-size: 1.15rem;
+        font-size: 1.12rem;
         color: var(--accent-bronze);
         font-weight: 600;
         letter-spacing: 0.02em;
         margin-bottom: 0.75rem;
+        text-align: left;
     }
 
     .portal-hero-subtitle {
-        font-size: 1.12rem;
+        font-size: 1.05rem;
         color: var(--text-graphite);
-        max-width: 840px;
-        margin: 0 auto 2rem auto;
+        margin: 0 0 1.75rem 0;
         line-height: 1.6;
+        text-align: left;
     }
 
     .hero-cta-group {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        gap: 16px;
+        gap: 14px;
         flex-wrap: wrap;
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.5rem;
     }
 
     .btn-primary {
@@ -467,46 +477,15 @@ def get_styles() -> str:
         color: var(--accent-bronze);
     }
 
-    /* Institutional Stats Bar */
-    .hero-stats-bar {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        border-top: 1px solid var(--border-parchment);
-        padding-top: 2rem;
-        max-width: 1000px;
-        margin: 0 auto;
-    }
-
-    .stat-item {
-        text-align: center;
-    }
-
-    .stat-value {
-        font-family: var(--font-serif);
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: var(--accent-bronze);
-        margin-bottom: 2px;
-    }
-
-    .stat-label {
-        font-size: 0.82rem;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        font-weight: 600;
-    }
-
     /* Hero Secondary & Live Demo CTAs */
     .hero-legacy-actions {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 12px;
         flex-wrap: wrap;
-        margin-top: -1.25rem;
-        margin-bottom: 1.5rem;
+        margin-top: 0;
+        margin-bottom: 1.25rem;
         font-size: 0.88rem;
         color: var(--text-muted);
     }
@@ -524,11 +503,11 @@ def get_styles() -> str:
 
     .live-demo-cta-row {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         gap: 16px;
         flex-wrap: wrap;
-        padding-top: 1.5rem;
+        padding-top: 1.25rem;
         margin-top: 0.5rem;
         border-top: 1px solid var(--border-parchment);
     }
@@ -579,6 +558,128 @@ def get_styles() -> str:
         transform: translateY(-1px);
     }
 
+    .portal-hero-media-col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Authentic Institutional Archival Portrait Frame */
+    .hero-portrait-card {
+        background: #0f172a;
+        border: 2px solid var(--border-bronze);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2), 0 2px 6px rgba(180, 83, 9, 0.12);
+        max-width: 380px;
+        width: 100%;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .hero-portrait-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(15, 23, 42, 0.26), 0 4px 10px rgba(180, 83, 9, 0.2);
+    }
+
+    .hero-portrait-frame {
+        position: relative;
+        width: 100%;
+        height: 380px;
+        background: #020617;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-portrait-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 12%;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .hero-portrait-card:hover .hero-portrait-img {
+        transform: scale(1.02);
+    }
+
+    .hero-portrait-tag {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        background: rgba(15, 23, 42, 0.92);
+        color: #fef3c7;
+        border: 1px solid rgba(217, 119, 6, 0.4);
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .hero-portrait-caption {
+        padding: 1rem 1.25rem;
+        background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+        border-top: 1px solid rgba(217, 119, 6, 0.3);
+        text-align: left;
+    }
+
+    .hero-portrait-name {
+        font-family: var(--font-serif);
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #fef3c7;
+        letter-spacing: 0.02em;
+        margin-bottom: 2px;
+    }
+
+    .hero-portrait-role {
+        font-size: 0.8rem;
+        color: #cbd5e1;
+        margin-bottom: 4px;
+        font-weight: 500;
+    }
+
+    .hero-portrait-source {
+        font-size: 0.7rem;
+        color: #94a3b8;
+        font-style: italic;
+    }
+
+    /* Institutional Stats Bar */
+    .hero-stats-bar {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+        border-top: 1px solid var(--border-parchment);
+        padding-top: 2rem;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-value {
+        font-family: var(--font-serif);
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--accent-bronze);
+        margin-bottom: 2px;
+    }
+
+    .stat-label {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: 600;
+    }
+
     /* --------------------------------------------------------------------------
        4B. CURATED ARCHIVAL COLLECTIONS (6 CARDS)
        -------------------------------------------------------------------------- */
@@ -613,16 +714,18 @@ def get_styles() -> str:
 
     .curated-card-media {
         position: relative;
-        height: 180px;
-        background: var(--bg-parchment-deep);
+        height: 210px;
+        background: #0f172a;
         overflow: hidden;
-        border-bottom: 1px solid var(--border-parchment);
+        border-bottom: 2px solid var(--border-parchment);
     }
 
     .curated-card-media img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: center 15%;
+        display: block;
         transition: transform 0.3s ease;
     }
 
@@ -956,6 +1059,25 @@ def get_styles() -> str:
         justify-content: space-between;
         min-height: 280px;
         border: 1px solid var(--primary);
+    }
+
+    .portal-av-thumb-wrap {
+        width: 84px;
+        height: 105px;
+        flex-shrink: 0;
+        border-radius: 6px;
+        overflow: hidden;
+        border: 2px solid var(--accent-gold);
+        background: #020617;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .portal-av-thumb-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+        display: block;
     }
 
     .portal-av-artwork-panel h3 {
@@ -1486,6 +1608,23 @@ def get_styles() -> str:
     .catalog-card:hover {
         border-color: var(--accent-bronze);
         box-shadow: var(--shadow-card);
+    }
+
+    .catalog-card-thumb-wrap {
+        height: 160px;
+        background: #0f172a;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 0.9rem;
+        border: 1px solid var(--border-parchment);
+    }
+
+    .catalog-card-thumb-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+        display: block;
     }
 
     .catalog-card-header {
@@ -3203,6 +3342,10 @@ def get_styles() -> str:
 
     /* Responsive adjustments */
     @media (max-width: 1024px) {
+        .portal-hero-grid {
+            grid-template-columns: 1.2fr 1fr;
+            gap: 1.75rem;
+        }
         .viewer-layout {
             grid-template-columns: 220px 1fr;
         }
@@ -3214,6 +3357,36 @@ def get_styles() -> str:
         }
     }
 
+    @media (max-width: 900px) {
+        .portal-hero-grid {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .portal-hero-text-col {
+            text-align: center;
+            align-items: center;
+        }
+        .portal-hero h1,
+        .portal-hero h2,
+        .portal-hero-eyebrow,
+        .portal-hero-subtitle {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-cta-group,
+        .hero-legacy-actions,
+        .live-demo-cta-row {
+            justify-content: center;
+        }
+        .hero-portrait-card {
+            margin: 0 auto;
+        }
+        .hero-stats-bar {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
     @media (max-width: 768px) {
         .portal-hero h1,
         .portal-hero h2 {
@@ -3221,6 +3394,9 @@ def get_styles() -> str:
         }
         .portal-hero {
             padding: 2rem 1.25rem;
+        }
+        .hero-stats-bar {
+            grid-template-columns: 1fr;
         }
         .header-top {
             flex-direction: column;
