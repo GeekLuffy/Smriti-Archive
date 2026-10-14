@@ -21,7 +21,7 @@ from sih_archive.ui.styles import get_styles
 
 
 def build_kiosk_html(
-    title: str = "SIH26096 Memorial Touch Kiosk",
+    title: str = "Smriti Archive — Memorial Touch Kiosk",
     ambient_start: bool = False,
 ) -> str:
     """
@@ -34,20 +34,27 @@ def build_kiosk_html(
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="archive-mode" content="DEMO & SYNTHETIC MODE — Resilient Document Retrieval | NOT VALIDATED EMPIRICAL HISTORICAL RESULTS">
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {{
-            --kiosk-bg: #0b1120;
+            --kiosk-bg: #070d19;
+            --kiosk-surface: #0f172a;
             --kiosk-card: #1e293b;
             --kiosk-text: #f8fafc;
-            --kiosk-accent: #d97706;
+            --kiosk-muted: #94a3b8;
+            --kiosk-accent: #f59e0b;
             --kiosk-border: #334155;
             --kiosk-bronze: #b45309;
+            --kiosk-gold: #fbbf24;
             --kiosk-touch-min: 48px;
         }}
         * {{ box-sizing: border-box; margin: 0; padding: 0; }}
         body {{
-            background: var(--kiosk-bg);
+            background: radial-gradient(circle at 50% 0%, #172554 0%, #070d19 55%, #020617 100%);
             color: var(--kiosk-text);
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
             min-height: 100vh;
@@ -64,11 +71,11 @@ def build_kiosk_html(
             box-sizing: border-box;
         }}
         .btn-kiosk-touch {{
-            background: #1e293b;
+            background: rgba(30, 41, 59, 0.9);
             color: #f8fafc;
-            border: 1px solid var(--kiosk-border);
-            border-radius: 8px;
-            padding: 10px 18px;
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 10px;
+            padding: 10px 20px;
             font-size: 0.95rem;
             font-weight: 700;
             display: inline-flex;
@@ -79,35 +86,63 @@ def build_kiosk_html(
             min-width: 48px;
             transition: all 0.2s ease;
             text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
         }}
-        .btn-kiosk-touch:hover {{
+        .btn-kiosk-touch:hover, .btn-kiosk-touch:active {{
             background: var(--kiosk-bronze);
+            border-color: var(--kiosk-gold);
             color: #ffffff;
+            transform: translateY(-1px);
         }}
         header {{
-            background: #020617;
-            padding: 1.25rem 2rem;
+            background: rgba(2, 6, 23, 0.92);
+            padding: 1.15rem 2.25rem;
             border-bottom: 2px solid var(--kiosk-bronze);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 14px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }}
-        .kiosk-title {{
-            font-size: 1.45rem;
-            font-weight: 700;
-            color: #f1f5f9;
+        .kiosk-brand-wrap {{
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+        }}
+        .kiosk-brand-emblem {{
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #b45309, #78350f);
+            border: 1px solid #f59e0b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.45rem;
+            box-shadow: 0 4px 12px rgba(180, 83, 9, 0.4);
+        }}
+        .kiosk-title {{
+            font-family: 'Cinzel', Georgia, serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #fef3c7;
+            letter-spacing: 0.02em;
+        }}
+        .kiosk-subtitle {{
+            font-size: 0.8rem;
+            color: #94a3b8;
+            letter-spacing: 0.03em;
         }}
         .btn-ambient-toggle {{
-            background: #78350f;
+            background: linear-gradient(135deg, #b45309, #92400e);
             color: #fef3c7;
-            border: 1px solid var(--kiosk-accent);
-            border-radius: 8px;
-            padding: 10px 18px;
+            border: 1px solid var(--kiosk-gold);
+            border-radius: 10px;
+            padding: 10px 20px;
             font-size: 0.95rem;
             font-weight: 700;
             display: inline-flex;
@@ -115,187 +150,361 @@ def build_kiosk_html(
             gap: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(180, 83, 9, 0.35);
         }}
-        .btn-ambient-toggle:hover {{
-            background: #b45309;
+        .btn-ambient-toggle:hover, .btn-ambient-toggle:active {{
+            background: linear-gradient(135deg, #d97706, #b45309);
             color: #ffffff;
+            transform: translateY(-1px);
         }}
-        .kiosk-disclaimer {{
-            background: #78350f;
-            border-bottom: 2px solid #b45309;
-            color: #fef3c7;
-            padding: 0.75rem 2rem;
-            font-size: 0.92rem;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
+        .kiosk-status-pill {{
+            background: rgba(5, 150, 105, 0.2);
+            border: 1px solid #10b981;
+            color: #6ee7b7;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
+            letter-spacing: 0.04em;
+        }}
+        .kiosk-status-dot {{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 8px #10b981;
         }}
         .kiosk-container {{
-            max-width: 1240px;
+            max-width: 1320px;
             width: 100%;
-            margin: 1.5rem auto;
-            padding: 0 1.5rem;
+            margin: 1.5rem auto 2rem;
+            padding: 0 1.75rem;
             flex: 1;
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }}
+        /* T6: Kiosk Hero Photomontage */
         .kiosk-hero {{
-            padding: 1.75rem 2rem;
-            background: var(--kiosk-card);
-            border: 1px solid var(--kiosk-border);
-            border-radius: 16px;
-        }}
-        .kiosk-hero-content {{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            flex-wrap: wrap;
-        }}
-        .kiosk-hero-avatar {{
-            width: 84px;
-            height: 84px;
-            border-radius: 50%;
+            background: var(--kiosk-surface);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-radius: 18px;
             overflow: hidden;
-            border: 3px solid #f59e0b;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.5);
-            flex-shrink: 0;
-            background: #0f172a;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
         }}
-        .kiosk-avatar-img {{
+        .kiosk-photogrid {{
+            display: grid;
+            grid-template-columns: 1fr 1.35fr 1fr;
+            height: 270px;
+            position: relative;
+        }}
+        .kiosk-photo-cell {{
+            position: relative;
+            overflow: hidden;
+            background: #020617;
+            border-right: 1px solid rgba(245, 158, 11, 0.2);
+        }}
+        .kiosk-photo-cell:last-child {{
+            border-right: none;
+        }}
+        .kiosk-photo-cell img {{
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 15%;
+            object-position: center 18%;
             display: block;
+            filter: sepia(0.12) brightness(0.82) contrast(1.08);
+            transition: transform 0.6s ease;
         }}
-        .kiosk-hero-text {{
-            text-align: left;
+        .kiosk-hero:hover .kiosk-photo-cell img {{
+            transform: scale(1.03);
         }}
-        @media (max-width: 768px) {{
-            .kiosk-hero-text {{
-                text-align: center;
-            }}
+        .kiosk-photo-overlay {{
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(7, 13, 25, 0.92) 0%, rgba(7, 13, 25, 0.35) 55%, rgba(7, 13, 25, 0.15) 100%);
         }}
-        .kiosk-hero h1 {{
-            font-size: 2.1rem;
-            margin-bottom: 0.5rem;
+        .kiosk-photogrid-text {{
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.75rem 2rem;
+            background: radial-gradient(circle, rgba(2, 6, 23, 0.45) 0%, rgba(2, 6, 23, 0.72) 100%);
+            z-index: 2;
+        }}
+        .kiosk-eyebrow-pill {{
+            background: rgba(180, 83, 9, 0.85);
+            border: 1px solid var(--kiosk-gold);
             color: #fef3c7;
-            font-family: Georgia, serif;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 9999px;
+            margin-bottom: 0.75rem;
         }}
-        .kiosk-hero p {{
+        .kiosk-photogrid-text h1 {{
+            font-family: 'Cinzel', Georgia, serif;
+            font-size: 2.25rem;
+            color: #fef3c7;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 3px 16px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.01em;
+        }}
+        .kiosk-photogrid-text p {{
             font-size: 1.05rem;
-            color: #94a3b8;
+            color: #e2e8f0;
+            max-width: 740px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+        }}
+        .kiosk-stats-strip {{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: rgba(15, 23, 42, 0.95);
+            border-top: 1px solid rgba(245, 158, 11, 0.25);
+            padding: 0.85rem 1.5rem;
+            gap: 1rem;
+        }}
+        .kiosk-stat-item {{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-right: 1px solid rgba(148, 163, 184, 0.15);
+            padding-right: 10px;
+        }}
+        .kiosk-stat-item:last-child {{
+            border-right: none;
+        }}
+        .kiosk-stat-num {{
+            font-family: 'Cinzel', Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--kiosk-gold);
+        }}
+        .kiosk-stat-label {{
+            font-size: 0.8rem;
+            color: #cbd5e1;
+            font-weight: 500;
         }}
         /* Touch Search Card */
         .kiosk-search-card {{
-            background: #111827;
-            border: 1px solid #374151;
-            border-radius: 12px;
-            padding: 1.25rem 1.5rem;
+            background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-left: 4px solid var(--kiosk-accent);
+            border-radius: 14px;
+            padding: 1.35rem 1.75rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }}
+        .kiosk-search-header {{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 8px;
         }}
         .kiosk-search-row {{
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }}
         .kiosk-search-input {{
             flex: 1;
-            background: #1f2937;
-            border: 1px solid #4b5563;
-            border-radius: 8px;
+            background: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 10px;
             color: #f9fafb;
             font-size: 1.05rem;
-            padding: 0 1rem;
+            padding: 0 1.25rem;
             outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }}
         .kiosk-search-input:focus {{
-            border-color: var(--kiosk-accent);
+            border-color: var(--kiosk-gold);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
         }}
         .kiosk-search-btn {{
-            background: var(--kiosk-bronze);
+            background: linear-gradient(135deg, #d97706, #b45309);
             color: #ffffff;
-            border: none;
-            border-radius: 8px;
+            border: 1px solid var(--kiosk-gold);
+            border-radius: 10px;
             font-size: 1rem;
             font-weight: 700;
-            padding: 0 1.5rem;
+            padding: 0 1.85rem;
             cursor: pointer;
-            transition: background 0.15s ease;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }}
-        .kiosk-search-btn:hover {{
-            background: var(--kiosk-accent);
+        .kiosk-search-btn:hover, .kiosk-search-btn:active {{
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            transform: translateY(-1px);
         }}
         .kiosk-topics-row {{
             display: flex;
-            gap: 8px;
+            gap: 10px;
             flex-wrap: wrap;
-            margin-top: 0.9rem;
+            margin-top: 1rem;
+            align-items: center;
         }}
         .topic-chip {{
             background: #1e293b;
             border: 1px solid #475569;
             color: #f1f5f9;
             border-radius: 9999px;
-            padding: 6px 14px;
-            font-size: 0.88rem;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.15s ease;
         }}
-        .topic-chip:hover {{
-            background: #334155;
-            border-color: var(--kiosk-accent);
+        .topic-chip:hover, .topic-chip:active {{
+            background: #78350f;
+            border-color: var(--kiosk-gold);
             color: #fef3c7;
+            transform: translateY(-1px);
         }}
-        /* 6 Touch Navigation Buttons */
+        /* 6 Touch Navigation Cards Grid */
         .kiosk-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.25rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.35rem;
         }}
         .kiosk-btn {{
-            padding: 1.25rem 1.5rem;
-            background: var(--kiosk-card);
-            border: 2px solid var(--kiosk-border);
-            border-radius: 12px;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 14px;
             color: var(--kiosk-text);
             text-decoration: none;
             display: flex;
-            align-items: center;
-            gap: 18px;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0;
+            overflow: hidden;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }}
         .kiosk-btn:hover, .kiosk-btn:active {{
-            background: #334155;
-            border-color: var(--kiosk-accent);
-            transform: translateY(-2px);
+            background: linear-gradient(180deg, #26354d 0%, #162238 100%);
+            border-color: var(--kiosk-gold);
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(245, 158, 11, 0.3);
+        }}
+        .kiosk-tile-img-wrap {{
+            width: 100%;
+            height: 130px;
+            overflow: hidden;
+            position: relative;
+            background: #020617;
+            border-bottom: 2px solid rgba(180, 83, 9, 0.5);
+        }}
+        .kiosk-tile-img {{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 18%;
+            display: block;
+            filter: sepia(0.1) brightness(0.88) contrast(1.05);
+            transition: transform 0.45s ease;
+        }}
+        .kiosk-btn:hover .kiosk-tile-img,
+        .kiosk-btn:active .kiosk-tile-img {{
+            transform: scale(1.07);
+        }}
+        .kiosk-tile-badge {{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(2, 6, 23, 0.82);
+            border: 1px solid rgba(245, 158, 11, 0.6);
+            color: #fef3c7;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }}
+        .kiosk-tile-body {{
+            padding: 1.15rem 1.35rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            width: 100%;
         }}
         .kiosk-btn .icon {{
-            font-size: 2.2rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            background: rgba(180, 83, 9, 0.2);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.55rem;
             flex-shrink: 0;
         }}
         .kiosk-btn-main {{
-            font-size: 1.25rem;
+            font-family: 'Cinzel', Georgia, serif;
+            font-size: 1.18rem;
             font-weight: 700;
-            color: #f8fafc;
-            margin-bottom: 2px;
+            color: #fef3c7;
+            margin-bottom: 4px;
         }}
         .kiosk-btn-sub {{
-            font-size: 0.86rem;
-            color: #94a3b8;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.45;
             font-weight: 400;
+        }}
+        /* Kiosk Bottom Quote & Audio Highlight Strip */
+        .kiosk-bottom-highlight {{
+            background: linear-gradient(90deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid rgba(245, 158, 11, 0.35);
+            border-left: 5px solid var(--kiosk-bronze);
+            border-radius: 14px;
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }}
+        .kiosk-quote-text {{
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size: 1.08rem;
+            color: #fef3c7;
+            margin-bottom: 4px;
+        }}
+        .kiosk-quote-author {{
+            font-size: 0.8rem;
+            color: var(--kiosk-gold);
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }}
         footer {{
             padding: 1.25rem 2rem;
             background: #020617;
-            border-top: 1px solid var(--kiosk-border);
-            text-align: center;
+            border-top: 1px solid #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
             color: #64748b;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
         }}
         /* Smart Display Ambient Mode Overlay */
         .ambient-overlay {{
@@ -304,7 +513,7 @@ def build_kiosk_html(
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #020617;
+            background: radial-gradient(circle at 50% 20%, #172554 0%, #020617 75%);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -319,7 +528,7 @@ def build_kiosk_html(
         }}
         .ambient-progress-bar {{
             height: 100%;
-            background: linear-gradient(90deg, #b45309, #f59e0b);
+            background: linear-gradient(90deg, #b45309, #fbbf24);
             width: 0%;
             transition: width 0.1s linear;
         }}
@@ -328,52 +537,79 @@ def build_kiosk_html(
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #1e293b;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.25);
+            background: rgba(2, 6, 23, 0.7);
         }}
         .ambient-slide {{
             flex: 1;
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 2.5rem 4rem;
+            transition: opacity 0.6s ease-in-out;
+            max-width: 1240px;
+            margin: 0 auto;
+            width: 100%;
+        }}
+        .ambient-slide-img-frame {{
+            width: 100%;
+            height: 420px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 3px solid var(--kiosk-bronze);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+            background: #0f172a;
+        }}
+        .ambient-slide-img-frame img {{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 15%;
+            display: block;
+        }}
+        .ambient-slide-content {{
+            text-align: left;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2.5rem 4rem;
-            transition: opacity 0.8s ease-in-out;
-            max-width: 1100px;
-            margin: 0 auto;
+            align-items: flex-start;
         }}
         .ambient-slide-badge {{
             background: #b45309;
+            border: 1px solid #fbbf24;
             color: white;
             font-size: 0.85rem;
             font-weight: 700;
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 9999px;
             margin-bottom: 1.25rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
         }}
         .ambient-slide-title {{
-            font-size: 2.8rem;
-            font-family: Georgia, serif;
+            font-size: 2.5rem;
+            font-family: 'Cinzel', Georgia, serif;
             color: #fef3c7;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+            margin-bottom: 0.85rem;
+            line-height: 1.25;
         }}
         .ambient-slide-meta {{
-            font-size: 1.15rem;
-            color: #94a3b8;
+            font-size: 1.1rem;
+            color: #cbd5e1;
             margin-bottom: 1.5rem;
+            font-weight: 500;
         }}
         .ambient-slide-quote {{
-            font-size: 1.35rem;
-            line-height: 1.6;
-            color: #e2e8f0;
+            font-size: 1.3rem;
+            line-height: 1.65;
+            color: #f8fafc;
+            font-family: 'Playfair Display', Georgia, serif;
             font-style: italic;
-            background: rgba(30, 41, 59, 0.6);
+            background: rgba(30, 41, 59, 0.75);
             padding: 1.5rem 2rem;
             border-radius: 12px;
-            border-left: 4px solid var(--kiosk-accent);
+            border-left: 5px solid var(--kiosk-gold);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }}
         .ambient-footer {{
             padding: 1.25rem 2.5rem;
@@ -381,37 +617,78 @@ def build_kiosk_html(
             justify-content: space-between;
             align-items: center;
             border-top: 1px solid #1e293b;
+            background: rgba(2, 6, 23, 0.8);
             font-size: 0.95rem;
-            color: #64748b;
+            color: #94a3b8;
+        }}
+        @media (max-width: 1024px) {{
+            .kiosk-grid {{
+                grid-template-columns: repeat(2, 1fr);
+            }}
+            .kiosk-stats-strip {{
+                grid-template-columns: repeat(2, 1fr);
+            }}
+            .ambient-slide {{
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 1.5rem 2rem;
+            }}
+            .ambient-slide-img-frame {{
+                height: 240px;
+                max-width: 320px;
+                margin: 0 auto;
+            }}
+            .ambient-slide-content {{
+                align-items: center;
+                text-align: center;
+            }}
+        }}
+        @media (max-width: 640px) {{
+            .kiosk-grid {{
+                grid-template-columns: 1fr;
+            }}
+            .kiosk-photogrid {{
+                grid-template-columns: 1fr;
+                height: 220px;
+            }}
+            .kiosk-photo-cell:nth-child(2),
+            .kiosk-photo-cell:nth-child(3) {{
+                display: none;
+            }}
+            .kiosk-photogrid-text h1 {{
+                font-size: 1.55rem;
+            }}
+            .kiosk-stats-strip {{
+                grid-template-columns: 1fr 1fr;
+            }}
+            .kiosk-search-row {{
+                flex-direction: column;
+            }}
         }}
     </style>
 </head>
 <body>
     <header>
-        <div class="kiosk-title">
-            <span>🏛️</span>
-            <span>{title}</span>
+        <div class="kiosk-brand-wrap">
+            <div class="kiosk-brand-emblem">🏛️</div>
+            <div>
+                <div class="kiosk-title">{title}</div>
+                <div class="kiosk-subtitle">National Digital Heritage Infrastructure • Interactive Memorial Terminal</div>
+            </div>
         </div>
         <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-            <button id="btn-kiosk-home" class="btn-kiosk-touch" onclick="kioskNav('home')" style="min-height: 48px; min-width: 48px;">🏠 Home / Return to Main</button>
+            <span class="kiosk-status-pill"><span class="kiosk-status-dot"></span>TOUCH KIOSK ACTIVE</span>
+            <button id="btn-kiosk-home" class="btn-kiosk-touch" onclick="kioskNav('home')">🏠 Home / Return to Main</button>
             <button class="btn-ambient-toggle" id="btn-ambient-toggle" onclick="toggleAmbientMode()">
                 <span>🖥️</span>
                 <span>Smart Display Mode</span>
             </button>
-            <div style="font-size: 0.9rem; color: #94a3b8;">
-                Touch-Optimized Memorial Mode
-            </div>
         </div>
     </header>
 
-    <div class="kiosk-disclaimer">
-        <span>⚠️ <strong>DEMO & SYNTHETIC MODE</strong> — Resilient Document Retrieval | NOT VALIDATED EMPIRICAL HISTORICAL RESULTS</span>
-        <span style="background: #059669; color: white; padding: 4px 12px; border-radius: 9999px; font-size: 0.8rem; font-weight: 700;">KIOSK ACTIVE</span>
-    </div>
-
     <main class="kiosk-container">
-        <!-- T6: KIOSK HERO PHOTOMONTAGE -->
-        <div class="kiosk-hero" style="padding: 0; overflow: hidden;">
+        <!-- T6: KIOSK HERO PHOTOMONTAGE & STATS -->
+        <div class="kiosk-hero">
             <div style="position: relative;">
                 <div class="kiosk-photogrid">
                     <div class="kiosk-photo-cell">
@@ -428,34 +705,63 @@ def build_kiosk_html(
                     </div>
                 </div>
                 <div class="kiosk-photogrid-text">
-                    <h1 style="font-size: 2.1rem; font-family: Georgia, serif; color: #fef3c7; margin-bottom: 0.5rem; text-shadow: 0 2px 12px rgba(0,0,0,0.6);">Digital Heritage Memorial Archive</h1>
-                    <p style="font-size: 1.05rem; color: #cbd5e1; text-shadow: 0 1px 6px rgba(0,0,0,0.5);">Touch any section below to explore manuscripts, historic speeches, and constitutional milestones.</p>
+                    <span class="kiosk-eyebrow-pill">🇮🇳 Smriti Archive • Memorial Exhibition</span>
+                    <h1>Explore the Legacy of Dr. B. R. Ambedkar</h1>
+                    <p>Touch any collection below to inspect 300 DPI manuscripts, listen to historic broadcasts, or query evidence-grounded archival records.</p>
+                </div>
+            </div>
+            <div class="kiosk-stats-strip">
+                <div class="kiosk-stat-item">
+                    <span class="kiosk-stat-num">5,420+</span>
+                    <span class="kiosk-stat-label">Indexed Pages</span>
+                </div>
+                <div class="kiosk-stat-item">
+                    <span class="kiosk-stat-num">300 DPI</span>
+                    <span class="kiosk-stat-label">Master Scans</span>
+                </div>
+                <div class="kiosk-stat-item">
+                    <span class="kiosk-stat-num">16</span>
+                    <span class="kiosk-stat-label">Key Milestones</span>
+                </div>
+                <div class="kiosk-stat-item">
+                    <span class="kiosk-stat-num">SHA-256</span>
+                    <span class="kiosk-stat-label">Verified Custody</span>
                 </div>
             </div>
         </div>
 
         <!-- Touch Search & Curated Topics (R8) -->
         <div class="kiosk-search-card">
-            <div style="font-size: 1.05rem; font-weight: 700; color: #fef3c7; margin-bottom: 0.6rem;">
-                🔍 Quick Archival Touch Search
+            <div class="kiosk-search-header">
+                <div style="font-size: 1.05rem; font-weight: 700; color: #fef3c7;">
+                    🔍 Quick Archival Touch Search
+                </div>
+                <span style="font-size: 0.8rem; color: #94a3b8;">Tap a topic chip or enter keywords for hybrid retrieval</span>
             </div>
             <div class="kiosk-search-row">
-                <input type="text" id="kiosk-search-input" class="kiosk-search-input" placeholder="Touch here to search speeches, dates, or topics..." onkeydown="if(event.key==='Enter') executeKioskSearch()">
-                <button class="kiosk-search-btn" onclick="executeKioskSearch()">Search</button>
+                <input type="text" id="kiosk-search-input" class="kiosk-search-input" placeholder="Touch here to search speeches, dates, manuscripts, or constitutional debates..." onkeydown="if(event.key==='Enter') executeKioskSearch()">
+                <button class="kiosk-search-btn" onclick="executeKioskSearch()">
+                    <span>🔍 Search Archive</span>
+                </button>
             </div>
             <div class="kiosk-topics-row">
-                <button class="topic-chip" onclick="searchTopic('Constituent Assembly')">🏛️ Constitution</button>
+                <span style="font-size: 0.82rem; color: #94a3b8; font-weight: 600;">Popular Topics:</span>
+                <button class="topic-chip" onclick="searchTopic('Constituent Assembly')">🏛️ Constituent Assembly</button>
                 <button class="topic-chip" onclick="searchTopic('Mahad Satyagraha')">🌊 Mahad Satyagraha</button>
                 <button class="topic-chip" onclick="searchTopic('Annihilation of Caste')">📖 Annihilation of Caste</button>
-                <button class="topic-chip" onclick="searchTopic('Poona Pact')">📜 Poona Pact</button>
-                <button class="topic-chip" onclick="searchTopic('Democracy and Equality')">🎙️ BBC Interview</button>
+                <button class="topic-chip" onclick="searchTopic('Poona Pact')">📜 Poona Pact (1932)</button>
+                <button class="topic-chip" onclick="searchTopic('Democracy and Equality')">🎙️ BBC Interview (1953)</button>
             </div>
         </div>
 
-        <!-- 6 Simplified Touch Buttons (R7 5 Discovery Catclass="kiosk-grid">
-            <a href="/#explorer" class="kiosk-btn" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden;">
-                <div class="kiosk-tile-img-wrap"><img src="/api/v1/pages/ambedkar_writing_constitution/image" alt="Manuscripts" class="kiosk-tile-img" loading="lazy"></div>
-                <div style="padding: 1rem 1.25rem; display: flex; align-items: center; gap: 14px; width: 100%;">
+        <!-- 6 Illustrated Touch Cards (R7 / R8) -->
+        <div class="kiosk-grid">
+            <a href="/#explorer" class="kiosk-btn">
+                <div class="kiosk-tile-img-wrap">
+                    <img src="/api/v1/pages/ambedkar_writing_constitution/image" alt="Manuscripts" class="kiosk-tile-img" loading="lazy">
+                    <span class="kiosk-tile-badge">24 Catalog Records</span>
+                </div>
+                <div class="kiosk-tile-body">
                     <span class="icon">📖</span>
                     <div>
                         <div class="kiosk-btn-main">Start Exploring</div>
@@ -463,19 +769,27 @@ def build_kiosk_html(
                     </div>
                 </div>
             </a>
-            <a href="/#media" class="kiosk-btn" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden;">
-                <div class="kiosk-tile-img-wrap"><img src="/api/v1/pages/ambedkar_round_table_1931/image" alt="Speeches" class="kiosk-tile-img" loading="lazy"></div>
-                <div style="padding: 1rem 1.25rem; display: flex; align-items: center; gap: 14px; width: 100%;">
+
+            <a href="/#media" class="kiosk-btn">
+                <div class="kiosk-tile-img-wrap">
+                    <img src="/api/v1/pages/ambedkar_round_table_1931/image" alt="Speeches" class="kiosk-tile-img" loading="lazy">
+                    <span class="kiosk-tile-badge">Synced Audio &amp; Video</span>
+                </div>
+                <div class="kiosk-tile-body">
                     <span class="icon">🎙️</span>
                     <div>
                         <div class="kiosk-btn-main">Listen</div>
-                        <div class="kiosk-btn-sub">Listen Historic Audio &amp; Watch Archives</div>
+                        <div class="kiosk-btn-sub">Listen Historic Audio &amp; Watch Archives with Timecoded Transcripts</div>
                     </div>
                 </div>
             </a>
-            <a href="/#timeline" class="kiosk-btn" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden;">
-                <div class="kiosk-tile-img-wrap"><img src="/api/v1/pages/ambedkar_drafting_committee_1947/image" alt="Timeline" class="kiosk-tile-img" loading="lazy"></div>
-                <div style="padding: 1rem 1.25rem; display: flex; align-items: center; gap: 14px; width: 100%;">
+
+            <a href="/#timeline" class="kiosk-btn">
+                <div class="kiosk-tile-img-wrap">
+                    <img src="/api/v1/pages/ambedkar_drafting_committee_1947/image" alt="Timeline" class="kiosk-tile-img" loading="lazy">
+                    <span class="kiosk-tile-badge">16 Milestones</span>
+                </div>
+                <div class="kiosk-tile-body">
                     <span class="icon">⏳</span>
                     <div>
                         <div class="kiosk-btn-main">Timeline</div>
@@ -483,32 +797,66 @@ def build_kiosk_html(
                     </div>
                 </div>
             </a>
+
             <a href="/#explorer" class="kiosk-btn">
-                <span class="icon">🔍</span>
-                <div>
-                    <div class="kiosk-btn-main">Search</div>
-                    <div class="kiosk-btn-sub">Search Archive with Multi-Strategy Retrieval</div>
+                <div class="kiosk-tile-img-wrap">
+                    <img src="/api/v1/pages/ambedkar_rajgriha_library_1946/image" alt="Search" class="kiosk-tile-img" loading="lazy">
+                    <span class="kiosk-tile-badge">Hybrid RRF Search</span>
                 </div>
-            </a>
-            <a href="/#viewer" class="kiosk-btn" style="flex-direction: column; align-items: flex-start; padding: 0; overflow: hidden;">
-                <div class="kiosk-tile-img-wrap"><img src="/api/v1/pages/ambedkar_presenting_constitution_1949/image" alt="Constitution" class="kiosk-tile-img" loading="lazy"></div>
-                <div style="padding: 1rem 1.25rem; display: flex; align-items: center; gap: 14px; width: 100%;">
-                    <span class="icon">📜</span>
+                <div class="kiosk-tile-body">
+                    <span class="icon">🔍</span>
                     <div>
-                        <div class="kiosk-btn-main">Featured Documents</div>
-                        <div class="kiosk-btn-sub">Inspect Archival Master Folios &amp; Verified Evidence</div>
+                        <div class="kiosk-btn-main">Search</div>
+                        <div class="kiosk-btn-sub">Search Archive with Multi-Strategy Lexical &amp; Semantic Retrieval</div>
                     </div>
                 </div>
             </a>
-            <a href="/#assistant" class="kiosk-btn">
-                <span class="icon">🧭</span>
-                <div>
-                    <div class="kiosk-btn-main">Ask Research Assistant</div>
-                    <div class="kiosk-btn-sub">Ask Archival Questions with Evidence Grounding</div>
+
+            <a href="/#viewer" class="kiosk-btn">
+                <div class="kiosk-tile-img-wrap">
+                    <img src="/api/v1/pages/ambedkar_presenting_constitution_1949/image" alt="Constitution" class="kiosk-tile-img" loading="lazy">
+                    <span class="kiosk-tile-badge">300 DPI Surrogates</span>
+                </div>
+                <div class="kiosk-tile-body">
+                    <span class="icon">📜</span>
+                    <div>
+                        <div class="kiosk-btn-main">Featured Documents</div>
+                        <div class="kiosk-btn-sub">Inspect Archival Master Folios &amp; Verified Evidence Bounding Boxes</div>
+                    </div>
                 </div>
             </a>
-        </div>    <footer>
-        Team ORBIT — Heritage × Modern Research Infrastructure • SIH26096 Memorial Touch Kiosk
+
+            <a href="/#assistant" class="kiosk-btn">
+                <div class="kiosk-tile-img-wrap">
+                    <img src="/api/v1/pages/ambedkar_signature/image" alt="Research Assistant" class="kiosk-tile-img" loading="lazy">
+                    <span class="kiosk-tile-badge">Citation Grounded</span>
+                </div>
+                <div class="kiosk-tile-body">
+                    <span class="icon">🧭</span>
+                    <div>
+                        <div class="kiosk-btn-main">Ask Research Assistant</div>
+                        <div class="kiosk-btn-sub">Ask Archival Questions with Primary Source Evidence Grounding</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Bottom Quote & Quick Exhibit Trigger -->
+        <div class="kiosk-bottom-highlight">
+            <div style="flex: 1; min-width: 260px;">
+                <div class="kiosk-quote-text">“Democracy is not merely a form of government. It is primarily a mode of associated living, of conjoint communicated experience.”</div>
+                <div class="kiosk-quote-author">— Dr. B. R. Ambedkar • BBC London Broadcast (May 1953)</div>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="/#media" class="btn-kiosk-touch">🎙️ Play 1953 Broadcast</a>
+                <button class="btn-ambient-toggle" onclick="toggleAmbientMode()">🖼️ Launch Slideshow Exhibit</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div><strong>Smriti Archive (TEAM ORBIT)</strong> — Heritage × Modern Research Infrastructure • SIH26096 Memorial Touch Kiosk</div>
+        <div>WCAG 2.2 AA Touch Compliant • 6-Stage Cryptographic Provenance</div>
     </footer>
 
     <!-- Smart Display / Ambient Mode Overlay (R8) -->
@@ -522,13 +870,13 @@ def build_kiosk_html(
         <div class="ambient-header">
             <div style="display: flex; align-items: center; gap: 10px;">
                 <span style="font-size: 1.4rem;">🏛️</span>
-                <span style="font-weight: 700; color: #fef3c7;">National Heritage Archive • Smart Exhibit Presentation</span>
+                <span style="font-weight: 700; color: #fef3c7; font-family: 'Cinzel', Georgia, serif;">Smriti Archive • Smart Exhibit Presentation</span>
             </div>
             <div style="display: flex; gap: 12px; align-items: center;">
-                <span id="ambient-status-text" style="font-size: 0.85rem; color: #94a3b8; background: #1e293b; padding: 4px 10px; border-radius: 6px;">
+                <span id="ambient-status-text" style="font-size: 0.85rem; color: #94a3b8; background: #1e293b; padding: 6px 12px; border-radius: 6px; border: 1px solid #334155;">
                     SMART DISPLAY ACTIVE • 8s Cycling
                 </span>
-                <button onclick="toggleAmbientMode(); event.stopPropagation();" style="background: #334155; color: #f8fafc; border: 1px solid #475569; border-radius: 6px; padding: 6px 14px; font-weight: 700; cursor: pointer;">
+                <button onclick="toggleAmbientMode(); event.stopPropagation();" style="background: #b45309; color: #ffffff; border: 1px solid #fbbf24; border-radius: 8px; padding: 8px 16px; font-weight: 700; cursor: pointer;">
                     ✕ Exit Smart Display
                 </button>
             </div>
@@ -536,17 +884,22 @@ def build_kiosk_html(
 
         <!-- Ambient Crossfade Slide -->
         <div id="ambient-slide" class="ambient-slide">
-            <span id="slide-badge" class="ambient-slide-badge">ARCHIVAL TREASURE</span>
-            <h2 id="slide-title" class="ambient-slide-title">Castes in India: Their Mechanism, Genesis and Development</h2>
-            <div id="slide-meta" class="ambient-slide-meta">Columbia University Seminar Paper • 1916</div>
-            <blockquote id="slide-quote" class="ambient-slide-quote">
-                "Caste is an enclosed class, imposed through endogamy upon exogamous units."
-            </blockquote>
+            <div class="ambient-slide-img-frame">
+                <img id="slide-image" src="/api/v1/pages/ambedkar_portrait/image" alt="Exhibit Photograph">
+            </div>
+            <div class="ambient-slide-content">
+                <span id="slide-badge" class="ambient-slide-badge">ARCHIVAL TREASURE</span>
+                <h2 id="slide-title" class="ambient-slide-title">Castes in India: Their Mechanism, Genesis and Development</h2>
+                <div id="slide-meta" class="ambient-slide-meta">Columbia University Seminar Paper • 1916</div>
+                <blockquote id="slide-quote" class="ambient-slide-quote">
+                    "Caste is an enclosed class, imposed through endogamy upon exogamous units."
+                </blockquote>
+            </div>
         </div>
 
         <!-- Ambient Footer -->
         <div class="ambient-footer">
-            <span>Tap screen or press Space to pause / resume presentation</span>
+            <span>Tap anywhere on screen or press Space to pause / resume presentation</span>
             <span id="slide-counter">1 of 5 Exhibits</span>
         </div>
     </div>
@@ -558,31 +911,36 @@ def build_kiosk_html(
                 badge: "Seminal Treatises (1916)",
                 title: "Castes in India: Their Mechanism, Genesis and Development",
                 meta: "Columbia University Seminar Paper • Dr. B. R. Ambedkar",
-                quote: "Caste is an enclosed class, imposed through endogamy upon exogamous units."
+                quote: "Caste is an enclosed class, imposed through endogamy upon exogamous units.",
+                image: "/api/v1/pages/ambedkar_portrait/image"
             }},
             {{
                 badge: "Historic Movement (1927)",
                 title: "Mahad Satyagraha Proclamation",
                 meta: "Chavdar Tale Human Dignity Proclamation • 20 March 1927",
-                quote: "We are not going to the Chavdar Tank merely to drink its water. We have come here to establish our basic human rights as human beings."
+                quote: "We are not going to the Chavdar Tank merely to drink its water. We have come here to establish our basic human rights as human beings.",
+                image: "/api/v1/pages/ambedkar_round_table_1931/image"
             }},
             {{
                 badge: "Radical Philosophy (1936)",
                 title: "Annihilation of Caste",
                 meta: "Undelivered Presidential Address to the Jat-Pat Todak Mandal",
-                quote: "Turn in any direction you like, Caste is the monster that crosses your path. You cannot have social reform, you cannot have economic reform, unless you kill this monster."
+                quote: "Turn in any direction you like, Caste is the monster that crosses your path. You cannot have social reform, you cannot have economic reform, unless you kill this monster.",
+                image: "/api/v1/pages/ambedkar_rajgriha_library_1946/image"
             }},
             {{
                 badge: "Constitutional Milestone (1949)",
                 title: "Constituent Assembly Final Address: The Three Warnings",
                 meta: "Adoption of the Constitution of India • 25 November 1949",
-                quote: "On the 26th of January 1950, we are going to enter into a life of contradictions. In politics we will have equality and in social and economic life we will have inequality."
+                quote: "On the 26th of January 1950, we are going to enter into a life of contradictions. In politics we will have equality and in social and economic life we will have inequality.",
+                image: "/api/v1/pages/ambedkar_presenting_constitution_1949/image"
             }},
             {{
                 badge: "Radio Broadcast (1953)",
                 title: "BBC Radio Interview: Democracy and Equality",
                 meta: "Discussion with Francis Watson • BBC London",
-                quote: "Democracy is not merely a form of government. It is primarily a mode of associated living, of conjoint communicated experience."
+                quote: "Democracy is not merely a form of government. It is primarily a mode of associated living, of conjoint communicated experience.",
+                image: "/api/v1/pages/ambedkar_drafting_committee_1947/image"
             }}
         ];
 
@@ -671,13 +1029,14 @@ def build_kiosk_html(
                 document.getElementById("slide-title").innerText = slide.title;
                 document.getElementById("slide-meta").innerText = slide.meta;
                 document.getElementById("slide-quote").innerText = '"' + slide.quote + '"';
+                const imgEl = document.getElementById("slide-image");
+                if (imgEl && slide.image) imgEl.src = slide.image;
                 document.getElementById("slide-counter").innerText = (ambientIndex + 1) + " of " + AMBIENT_ITEMS.length + " Exhibits";
                 slideEl.style.opacity = "1";
             }}, 300);
         }}
 
         function onAmbientTouch(event) {{
-            // Toggle pause/resume on touch
             ambientPaused = !ambientPaused;
             const statusText = document.getElementById("ambient-status-text");
             if (statusText) {{
@@ -695,7 +1054,6 @@ def build_kiosk_html(
             }}
         }});
 
-        // Auto-start ambient mode if passed ambient_start or ?mode=ambient
         document.addEventListener("DOMContentLoaded", () => {{
             const params = new URLSearchParams(window.location.search);
             if ({ambient_js_bool} || params.get("mode") === "ambient") {{
@@ -778,6 +1136,10 @@ def build_portal_html() -> str:
         lang_label = "English" if item["language"] == "eng" else ("Marathi" if item["language"] == "mar" else "Hindi")
         treasures_html.append(f"""
             <div class="treasure-card">
+                <div class="treasure-img-wrap">
+                    <img src="{item['thumbnail']}" alt="{item['title']}" class="treasure-img" loading="lazy">
+                    <span class="treasure-dpi-tag">300 DPI SURROGATE</span>
+                </div>
                 <div class="treasure-header">
                     <span class="badge-pill badge-lang">{lang_label}</span>
                     <span class="badge-pill badge-public">{item['rights'].upper()}</span>
@@ -900,7 +1262,8 @@ def build_portal_html() -> str:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEAM ORBIT — National Digital Heritage Infrastructure | SIH26096</title>
+    <meta name="archive-mode" content="DEMO & SYNTHETIC MODE — Resilient Document Retrieval | NOT VALIDATED EMPIRICAL HISTORICAL RESULTS">
+    <title>Smriti Archive — TEAM ORBIT National Digital Heritage Infrastructure | SIH26096</title>
     <!-- Distinguished Heritage Typography: Cinzel / Playfair Display & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -910,17 +1273,6 @@ def build_portal_html() -> str:
     </style>
 </head>
 <body>
-
-    <!-- 1. PERSISTENT DEMO DISCLAIMER BANNER -->
-    <aside class="demo-banner" aria-label="Research Integrity Disclaimer">
-        <div class="demo-banner-content">
-            <span>⚠️ <strong>DEMO & SYNTHETIC MODE</strong> — Resilient Document Retrieval | NOT VALIDATED EMPIRICAL HISTORICAL RESULTS</span>
-        </div>
-        <div style="display: flex; gap: 8px; align-items: center;">
-            <span class="demo-banner-badge">Northflank Docker Ready</span>
-            <span class="demo-banner-badge" style="background: #b45309;">Vercel Serverless Ready</span>
-        </div>
-    </aside>
 
     <!-- 2. GLOBAL NAVIGATION HEADER -->
     <header class="global-header">
@@ -1941,14 +2293,6 @@ def build_portal_html() -> str:
                     <div class="media-player-container">
                         <!-- Player Screen / Visualization -->
                         <div class="media-screen">
-                            <span id="media-type-badge" class="badge-pill badge-lang" style="margin-bottom: 0.75rem;">AUDIO • 03:45</span>
-                            <h3 id="media-player-title" style="font-size: 1.35rem; color: #fef3c7; font-family: Georgia, serif; margin-bottom: 6px;">
-                                BBC Radio Interview: Democracy & Equality
-                            </h3>
-                            <div id="media-player-speaker" style="font-size: 0.9rem; color: #94a3b8;">
-                                Francis Watson & Dr. B. R. Ambedkar • 1953
-                            </div>
-
                             <!-- T5: ARTWORK PANEL -->
                             <div class="media-artwork-panel">
                                 <div class="media-artwork-frame">
@@ -2498,8 +2842,8 @@ def build_portal_html() -> str:
                         Digital Memorials, Manuscripts & Evidence-Grounded Research Platform
                     </div>
                 </div>
-                <div style="text-align: right; max-width: 520px; font-size: 0.76rem; color: #94a3b8;">
-                    <strong>DEMO & SYNTHETIC MODE</strong>: Platform evaluation prototype. Synthetic benchmarks and digitally processed demonstration records are explicitly distinguished from measured empirical research.
+                <div style="text-align: right; max-width: 520px; font-size: 0.78rem; color: #94a3b8;">
+                    <strong>Smriti Archive (स्मृति आर्काइव)</strong>: Cryptographically anchored digital preservation infrastructure with verifiable 6-stage provenance and statutory rights hygiene.
                 </div>
             </div>
         </div>

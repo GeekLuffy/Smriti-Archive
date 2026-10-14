@@ -1313,8 +1313,9 @@ def get_styles() -> str:
     }
 
     .pathway-card {
-        background: var(--card-bg);
+        background: linear-gradient(180deg, #ffffff 0%, #fdfbf7 100%);
         border: 1px solid var(--border-parchment);
+        border-top: 3px solid var(--accent-bronze);
         border-radius: 10px;
         padding: 1.6rem;
         display: flex;
@@ -1423,8 +1424,46 @@ def get_styles() -> str:
     }
 
     .treasure-card:hover {
-        border-color: var(--border-bronze);
-        box-shadow: var(--shadow-card);
+        border-color: var(--accent-bronze);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+        transform: translateY(-4px);
+    }
+
+    .treasure-img-wrap {
+        width: 100%;
+        height: 170px;
+        overflow: hidden;
+        background: #0f172a;
+        position: relative;
+        border-bottom: 2px solid var(--accent-bronze);
+    }
+
+    .treasure-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 15%;
+        display: block;
+        transition: transform 0.45s ease;
+    }
+
+    .treasure-card:hover .treasure-img {
+        transform: scale(1.06);
+    }
+
+    .treasure-dpi-tag {
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+        background: rgba(15, 23, 42, 0.85);
+        color: #fef3c7;
+        border: 1px solid rgba(217, 119, 6, 0.6);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 2px 8px;
+        border-radius: 4px;
+        letter-spacing: 0.04em;
     }
 
     .treasure-header {
