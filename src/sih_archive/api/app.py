@@ -177,7 +177,7 @@ app.add_middleware(
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon() -> Response:
     """Serves an SVG monument icon as the official archive favicon to prevent 404s."""
-    svg_icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🏛️</text></svg>'
+    svg_icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M4 18h16M4 10h16M12 2l9 7H3l9-7zM7 10v8M12 10v8M17 10v8"/></svg>'
     return Response(content=svg_icon, media_type="image/svg+xml", headers={"Cache-Control": "public, max-age=86400"})
 
 

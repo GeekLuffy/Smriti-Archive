@@ -305,9 +305,9 @@ def get_scripts(
                     <div class="catalog-empty-sub">Try clearing filters or broadening your search parameters.</div>
                     <button onclick="resetFilters()" class="btn-reset">Reset All Filters</button>
                     <div class="catalog-empty-highlights">
-                        <div class="catalog-empty-mini-card" onclick="document.getElementById('filter-collection').value='Writings & Speeches'; filterCatalog()">📖 Writings &amp; Speeches</div>
-                        <div class="catalog-empty-mini-card" onclick="document.getElementById('filter-collection').value='Constitutional Debates'; filterCatalog()">🏛️ Constitutional Debates</div>
-                        <div class="catalog-empty-mini-card" onclick="document.getElementById('filter-collection').value='Photographs & Memorabilia'; filterCatalog()">📷 Photographs</div>
+                        <div class="catalog-empty-mini-card" onclick="document.getElementById('filter-collection').value='Writings & Speeches'; filterCatalog()">Writings &amp; Speeches</div>
+                        <div class="catalog-empty-mini-card" onclick="document.getElementById('filter-collection').value='Constitutional Debates'; filterCatalog()">Constitutional Debates</div>
+                        <div class="catalog-empty-mini-card" onclick="document.getElementById('filter-collection').value='Photographs & Memorabilia'; filterCatalog()">Photographs</div>
                     </div>
                 </div>
             `;
@@ -420,11 +420,11 @@ def get_scripts(
                                     <div class="result-card-header">
                                         <div class="result-doc-info">
                                             <span>#${{idx + 1}}</span>
-                                            <span>📄 <strong>${{hit.page_id}}</strong> (${{docId}})</span>
+                                            <span><strong>${{hit.page_id}}</strong> (${{docId}})</span>
                                             <span style="color: var(--text-muted); font-size: 0.82rem;">• Page ${{pageNum}}</span>
                                         </div>
                                         <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
-                                            <span class="badge-pill badge-verified" style="font-size: 0.72rem;">🏛️ ${{instName.split(",")[0]}}</span>
+                                            <span class="badge-pill badge-verified" style="font-size: 0.72rem;">${{instName.split(",")[0]}}</span>
                                             <span class="badge-pill badge-lang">${{langBadge}}</span>
                                             <span class="badge-pill badge-public">${{rightsBadge}}</span>
                                             <span class="result-score-badge">Score: ${{hit.score}}</span>
@@ -433,7 +433,7 @@ def get_scripts(
 
                                     <div style="display: flex; gap: 14px; align-items: flex-start; margin: 0.75rem 0;">
                                         <div style="width: 68px; height: 90px; flex-shrink: 0; background: #f1f5f9; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
-                                            <img src="${{thumbUrl}}" alt="Thumbnail" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:1.5rem;\\'>📜</span>';">
+                                            <img src="${{thumbUrl}}" alt="Thumbnail" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\\'font-size:0.75rem; color:#94a3b8;\\'>DOC</span>';">
                                         </div>
                                         <div style="flex-grow: 1;">
                                             <div style="font-size: 0.85rem; color: var(--primary-dark); font-weight: 600; margin-bottom: 2px;">
@@ -450,7 +450,7 @@ def get_scripts(
 
                                     <div class="result-card-footer">
                                         <div style="font-size: 0.8rem; color: var(--text-muted);">
-                                            ${{regionsCount > 0 ? `🎯 ${{regionsCount}} matched coordinate region(s)` : '📍 Text token alignment active'}}
+                                            ${{regionsCount > 0 ? `${{regionsCount}} matched coordinate region(s)` : 'Text token alignment active'}}
                                         </div>
                                         <button class="btn-evidence-jump" onclick="jumpToEvidence('${{hit.page_id}}', '${{docId}}', '${{escapeQuery(query)}}')">
                                             SEARCH → RESULT → SOURCE PAGE → HIGHLIGHTED EVIDENCE ↗
@@ -851,7 +851,7 @@ def get_scripts(
 
         container.innerHTML = sessionHistory.map(q => `
             <div class="history-item" onclick="selectSuggestedQuery('${{escapeQuery(q)}}')">
-                <span>💬 ${{q}}</span>
+                <span>${{q}}</span>
             </div>
         `).join("");
     }}
@@ -882,7 +882,7 @@ def get_scripts(
         if (answerStream) {{
             answerStream.innerHTML = `
                 <div style="background: #ffffff; border: 1px solid var(--border-parchment); border-radius: 8px; padding: 1.5rem; text-align: center; color: var(--text-muted);">
-                    <div style="font-size: 1.5rem; margin-bottom: 6px;">🧭</div>
+                    <div style="font-size: 1.25rem; margin-bottom: 6px; color: var(--accent-bronze);"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
                     <div>Synthesizing evidence-grounded answer across retrieved primary sources...</div>
                     <div style="font-size: 0.8rem; margin-top: 4px;">Evaluating attribution threshold and coordinate alignments...</div>
                 </div>
@@ -1341,7 +1341,7 @@ def get_scripts(
         if (relatedEl) {{
             relatedEl.innerHTML = (record.related_records || []).map(r => `
                 <button class="btn-sm btn-sm-secondary" onclick="openDocumentInViewer('${{r}}', '${{r}}_p0001')">
-                    📄 Inspect Catalog Record (${{r}}) →
+                    Inspect Catalog Record (${{r}}) →
                 </button>
             `).join("");
         }}
@@ -1496,7 +1496,7 @@ def get_scripts(
         mediaVolume = parseInt(val, 10);
         const volBtn = document.getElementById("media-volume-btn");
         if (volBtn) {{
-            volBtn.innerText = mediaVolume === 0 ? "🔇" : (mediaVolume < 50 ? "🔉" : "🔊");
+            volBtn.innerHTML = mediaVolume === 0 ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>' : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
         }}
         if (audioGainNode && audioCtx) {{
             audioGainNode.gain.setValueAtTime((mediaVolume / 100) * 0.04, audioCtx.currentTime);

@@ -896,9 +896,9 @@ def get_styles() -> str:
     .featured-doc-meta-item strong {
         color: var(--primary-dark);
         display: block;
-        font-size: 0.76rem;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
+        font-size: 0.78rem;
+        letter-spacing: 0.01em;
+        font-weight: 600;
         margin-bottom: 2px;
     }
 
@@ -2418,10 +2418,9 @@ def get_styles() -> str:
 
     .history-section-title {
         font-size: 0.85rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        color: var(--text-muted);
-        letter-spacing: 0.05em;
+        font-weight: 600;
+        color: var(--text-secondary);
+        letter-spacing: 0.01em;
         margin-bottom: 0.75rem;
     }
 
@@ -3051,7 +3050,7 @@ def get_styles() -> str:
     }
 
     .media-screen {
-        background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
+        background: #0b1120;
         min-height: 220px;
         padding: 2rem;
         display: flex;
@@ -3122,7 +3121,8 @@ def get_styles() -> str:
         border-radius: 50%;
         background: var(--accent-gold);
         cursor: pointer;
-        box-shadow: 0 0 6px rgba(217, 119, 6, 0.5);
+        border: 2px solid #ffffff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
     }
 
     .media-time-display {
@@ -3434,26 +3434,12 @@ def get_styles() -> str:
 
     .admin-health-dot.pulse-green {
         background: #10b981;
-        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
-        animation: pulse-green 2s infinite;
+        border: 1px solid rgba(16, 185, 129, 0.4);
     }
 
     .admin-health-dot.pulse-amber {
         background: #f59e0b;
-        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6);
-        animation: pulse-amber 2s infinite;
-    }
-
-    @keyframes pulse-green {
-        0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
-        70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-    }
-
-    @keyframes pulse-amber {
-        0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
-        70% { box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        border: 1px solid rgba(245, 158, 11, 0.4);
     }
 
     .admin-activity-chart {

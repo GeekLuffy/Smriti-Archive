@@ -19,6 +19,24 @@ from sih_archive.ui.fixtures import (
 from sih_archive.ui.scripts import get_scripts
 from sih_archive.ui.styles import get_styles
 
+SVG_MONUMENT = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M4 18h16M4 10h16M12 2l9 7H3l9-7zM7 10v8M12 10v8M17 10v8"/></svg>'
+SVG_SEARCH = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>'
+SVG_DOCUMENT = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>'
+SVG_COMPASS = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>'
+SVG_TIMELINE = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>'
+SVG_MEDIA = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>'
+SVG_ADMIN = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>'
+SVG_KIOSK = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>'
+SVG_HOME = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>'
+SVG_BOOK = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>'
+SVG_PHOTO = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>'
+SVG_FILTER = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>'
+SVG_ZOOM_IN = '<svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>'
+SVG_ZOOM_OUT = '<svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>'
+SVG_LINK = '<svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>'
+SVG_SPEAKER = '<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>'
+
+
 
 def build_kiosk_html(
     title: str = "Smriti Archive — Memorial Touch Kiosk",
@@ -34,7 +52,7 @@ def build_kiosk_html(
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico">
     <meta name="archive-mode" content="DEMO & SYNTHETIC MODE — Resilient Document Retrieval | NOT VALIDATED EMPIRICAL HISTORICAL RESULTS">
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -176,7 +194,7 @@ def build_kiosk_html(
             height: 8px;
             border-radius: 50%;
             background: #10b981;
-            box-shadow: 0 0 8px #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.4);
         }}
         .kiosk-container {{
             max-width: 1320px;
@@ -671,7 +689,7 @@ def build_kiosk_html(
 <body>
     <header>
         <div class="kiosk-brand-wrap">
-            <div class="kiosk-brand-emblem">🏛️</div>
+            <div class="kiosk-brand-emblem">{SVG_MONUMENT}</div>
             <div>
                 <div class="kiosk-title">{title}</div>
                 <div class="kiosk-subtitle">National Digital Heritage Infrastructure • Interactive Memorial Terminal</div>
@@ -681,7 +699,7 @@ def build_kiosk_html(
             <span class="kiosk-status-pill"><span class="kiosk-status-dot"></span>TOUCH KIOSK ACTIVE</span>
             <button id="btn-kiosk-home" class="btn-kiosk-touch" onclick="kioskNav('home')">🏠 Home / Return to Main</button>
             <button class="btn-ambient-toggle" id="btn-ambient-toggle" onclick="toggleAmbientMode()">
-                <span>🖥️</span>
+                <span>{SVG_KIOSK}</span>
                 <span>Smart Display Mode</span>
             </button>
         </div>
@@ -706,7 +724,7 @@ def build_kiosk_html(
                     </div>
                 </div>
                 <div class="kiosk-photogrid-text">
-                    <span class="kiosk-eyebrow-pill">🇮🇳 Smriti Archive • Memorial Exhibition</span>
+                    <span class="kiosk-eyebrow-pill">Smriti Archive • Memorial Exhibition</span>
                     <h1>Explore the Legacy of Dr. B. R. Ambedkar</h1>
                     <p>Touch any collection below to inspect 300 DPI manuscripts, listen to historic broadcasts, or query evidence-grounded archival records.</p>
                 </div>
@@ -735,23 +753,23 @@ def build_kiosk_html(
         <div class="kiosk-search-card">
             <div class="kiosk-search-header">
                 <div style="font-size: 1.05rem; font-weight: 700; color: #fef3c7;">
-                    🔍 Quick Archival Touch Search
+                    {SVG_SEARCH} Quick Archival Touch Search
                 </div>
                 <span style="font-size: 0.8rem; color: #94a3b8;">Tap a topic chip or enter keywords for hybrid retrieval</span>
             </div>
             <div class="kiosk-search-row">
                 <input type="text" id="kiosk-search-input" class="kiosk-search-input" placeholder="Touch here to search speeches, dates, manuscripts, or constitutional debates..." onkeydown="if(event.key==='Enter') executeKioskSearch()">
                 <button class="kiosk-search-btn" onclick="executeKioskSearch()">
-                    <span>🔍 Search Archive</span>
+                    <span>{SVG_SEARCH} Search Archive</span>
                 </button>
             </div>
             <div class="kiosk-topics-row">
                 <span style="font-size: 0.82rem; color: #94a3b8; font-weight: 600;">Popular Topics:</span>
-                <button class="topic-chip" onclick="searchTopic('Constituent Assembly')">🏛️ Constituent Assembly</button>
-                <button class="topic-chip" onclick="searchTopic('Mahad Satyagraha')">🌊 Mahad Satyagraha</button>
-                <button class="topic-chip" onclick="searchTopic('Annihilation of Caste')">📖 Annihilation of Caste</button>
-                <button class="topic-chip" onclick="searchTopic('Poona Pact')">📜 Poona Pact (1932)</button>
-                <button class="topic-chip" onclick="searchTopic('Democracy and Equality')">🎙️ BBC Interview (1953)</button>
+                <button class="topic-chip" onclick="searchTopic('Constituent Assembly')">Constituent Assembly</button>
+                <button class="topic-chip" onclick="searchTopic('Mahad Satyagraha')">Mahad Satyagraha</button>
+                <button class="topic-chip" onclick="searchTopic('Annihilation of Caste')">Annihilation of Caste</button>
+                <button class="topic-chip" onclick="searchTopic('Poona Pact')">Poona Pact (1932)</button>
+                <button class="topic-chip" onclick="searchTopic('Democracy and Equality')">BBC Interview (1953)</button>
             </div>
         </div>
 
@@ -763,7 +781,7 @@ def build_kiosk_html(
                     <span class="kiosk-tile-badge">24 Catalog Records</span>
                 </div>
                 <div class="kiosk-tile-body">
-                    <span class="icon">📖</span>
+                    <span class="icon">{SVG_BOOK}</span>
                     <div>
                         <div class="kiosk-btn-main">Start Exploring</div>
                         <div class="kiosk-btn-sub">Explore Heritage / Explore Manuscripts &amp; Curated Documents</div>
@@ -777,7 +795,7 @@ def build_kiosk_html(
                     <span class="kiosk-tile-badge">Synced Audio &amp; Video</span>
                 </div>
                 <div class="kiosk-tile-body">
-                    <span class="icon">🎙️</span>
+                    <span class="icon">{SVG_MEDIA}</span>
                     <div>
                         <div class="kiosk-btn-main">Listen</div>
                         <div class="kiosk-btn-sub">Listen Historic Audio &amp; Watch Archives with Timecoded Transcripts</div>
@@ -791,7 +809,7 @@ def build_kiosk_html(
                     <span class="kiosk-tile-badge">16 Milestones</span>
                 </div>
                 <div class="kiosk-tile-body">
-                    <span class="icon">⏳</span>
+                    <span class="icon">{SVG_TIMELINE}</span>
                     <div>
                         <div class="kiosk-btn-main">Timeline</div>
                         <div class="kiosk-btn-sub">Chronological Timeline (1916–1956) &amp; Archival Milestones</div>
@@ -805,7 +823,7 @@ def build_kiosk_html(
                     <span class="kiosk-tile-badge">Hybrid RRF Search</span>
                 </div>
                 <div class="kiosk-tile-body">
-                    <span class="icon">🔍</span>
+                    <span class="icon">{SVG_SEARCH}</span>
                     <div>
                         <div class="kiosk-btn-main">Search</div>
                         <div class="kiosk-btn-sub">Search Archive with Multi-Strategy Lexical &amp; Semantic Retrieval</div>
@@ -819,7 +837,7 @@ def build_kiosk_html(
                     <span class="kiosk-tile-badge">300 DPI Surrogates</span>
                 </div>
                 <div class="kiosk-tile-body">
-                    <span class="icon">📜</span>
+                    <span class="icon">{SVG_DOCUMENT}</span>
                     <div>
                         <div class="kiosk-btn-main">Featured Documents</div>
                         <div class="kiosk-btn-sub">Inspect Archival Master Folios &amp; Verified Evidence Bounding Boxes</div>
@@ -833,7 +851,7 @@ def build_kiosk_html(
                     <span class="kiosk-tile-badge">Citation Grounded</span>
                 </div>
                 <div class="kiosk-tile-body">
-                    <span class="icon">🧭</span>
+                    <span class="icon">{SVG_COMPASS}</span>
                     <div>
                         <div class="kiosk-btn-main">Ask Research Assistant</div>
                         <div class="kiosk-btn-sub">Ask Archival Questions with Primary Source Evidence Grounding</div>
@@ -849,8 +867,8 @@ def build_kiosk_html(
                 <div class="kiosk-quote-author">— Dr. B. R. Ambedkar • BBC London Broadcast (May 1953)</div>
             </div>
             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <a href="/#media" class="btn-kiosk-touch">🎙️ Play 1953 Broadcast</a>
-                <button class="btn-ambient-toggle" onclick="toggleAmbientMode()">🖼️ Launch Slideshow Exhibit</button>
+                <a href="/#media" class="btn-kiosk-touch">{SVG_MEDIA} Play 1953 Broadcast</a>
+                <button class="btn-ambient-toggle" onclick="toggleAmbientMode()">{SVG_KIOSK} Launch Slideshow Exhibit</button>
             </div>
         </div>
     </main>
@@ -870,7 +888,7 @@ def build_kiosk_html(
         <!-- Ambient Header -->
         <div class="ambient-header">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-size: 1.4rem;">🏛️</span>
+                {SVG_MONUMENT}
                 <span style="font-weight: 700; color: #fef3c7; font-family: 'Cinzel', Georgia, serif;">Smriti Archive • Smart Exhibit Presentation</span>
             </div>
             <div style="display: flex; gap: 12px; align-items: center;">
@@ -1085,18 +1103,18 @@ def build_portal_html() -> str:
 
     # Pathway icon map
     icon_map = {
-        "manuscripts_books": "📖",
-        "documents_debates": "📜",
-        "photographs_records": "📷",
-        "audio_video": "🎙️",
-        "timelines_stories": "⏳",
-        "research_assistant": "🧭",
+        "manuscripts_books": SVG_BOOK,
+        "documents_debates": SVG_DOCUMENT,
+        "photographs_records": SVG_PHOTO,
+        "audio_video": SVG_MEDIA,
+        "timelines_stories": SVG_TIMELINE,
+        "research_assistant": SVG_COMPASS,
     }
 
     # Render Discovery Pathways HTML
     pathways_html = []
     for p in pathways:
-        icon = icon_map.get(p["id"], "🏛️")
+        icon = icon_map.get(p["id"], SVG_MONUMENT)
         action_js = "switchTab('explorer')"
         if p["id"] == "audio_video":
             action_js = "switchTab('media')"
@@ -1263,7 +1281,7 @@ def build_portal_html() -> str:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico">
     <meta name="archive-mode" content="DEMO & SYNTHETIC MODE — Resilient Document Retrieval | NOT VALIDATED EMPIRICAL HISTORICAL RESULTS">
     <title>Smriti Archive — TEAM ORBIT National Digital Heritage Infrastructure | SIH26096</title>
     <!-- Distinguished Heritage Typography: Cinzel / Playfair Display & Inter -->
@@ -1280,7 +1298,7 @@ def build_portal_html() -> str:
     <header class="global-header">
         <div class="header-top">
             <a href="#portal" class="header-branding" onclick="switchTab('portal')">
-                <div class="header-emblem">🏛️</div>
+                <div class="header-emblem">{SVG_MONUMENT}</div>
                 <div class="header-title-block">
                     <h1 class="serif-heading">TEAM ORBIT — National Digital Heritage Infrastructure</h1>
                     <div class="header-subtitle">Memorials, Manuscripts & Archival Evidence • SIH26096 Research Platform</div>
@@ -1288,7 +1306,7 @@ def build_portal_html() -> str:
             </a>
             <div class="header-tools">
                 <a href="/kiosk" class="btn-kiosk-toggle" target="_blank" title="Launch Museum Touch Kiosk Interface">
-                    <span>🖥️</span>
+                    <span>{SVG_KIOSK}</span>
                     <span>Touch Kiosk (/kiosk)</span>
                 </a>
             </div>
@@ -1298,31 +1316,31 @@ def build_portal_html() -> str:
         <nav class="header-nav" aria-label="Main Navigation">
             <div class="nav-container">
                 <button class="nav-tab active" data-tab="portal" onclick="switchTab('portal')">
-                    <span>🏛️</span>
+                    <span class="tab-icon">{SVG_MONUMENT}</span>
                     <span>Portal</span>
                 </button>
                 <button class="nav-tab" data-tab="explorer" onclick="switchTab('explorer')">
-                    <span>🔍</span>
+                    <span class="tab-icon">{SVG_SEARCH}</span>
                     <span>Explorer & Search</span>
                 </button>
                 <button class="nav-tab" data-tab="viewer" onclick="switchTab('viewer')">
-                    <span>📜</span>
+                    <span class="tab-icon">{SVG_DOCUMENT}</span>
                     <span>Manuscript Viewer</span>
                 </button>
                 <button class="nav-tab" data-tab="assistant" onclick="switchTab('assistant')">
-                    <span>🧭</span>
+                    <span class="tab-icon">{SVG_COMPASS}</span>
                     <span>Research Assistant</span>
                 </button>
                 <button class="nav-tab" data-tab="timeline" onclick="switchTab('timeline')">
-                    <span>⏳</span>
+                    <span class="tab-icon">{SVG_TIMELINE}</span>
                     <span>Provenance & Timeline</span>
                 </button>
                 <button class="nav-tab" data-tab="media" onclick="switchTab('media')">
-                    <span>🎙️</span>
+                    <span class="tab-icon">{SVG_MEDIA}</span>
                     <span>Media Library</span>
                 </button>
                 <button class="nav-tab" data-tab="admin" onclick="switchTab('admin')">
-                    <span>⚙️</span>
+                    <span class="tab-icon">{SVG_ADMIN}</span>
                     <span>Admin Dashboard</span>
                 </button>
             </div>
@@ -1341,7 +1359,7 @@ def build_portal_html() -> str:
                 <div class="portal-hero-grid">
                     <div class="portal-hero-text-col">
                         <div class="portal-hero-badge">
-                            <span>🇮🇳 National Heritage Archive</span>
+                            <span>National Heritage Archive</span>
                         </div>
                         <h1 class="serif-heading">Explore the Life, Ideas & Legacy of Dr. B. R. Ambedkar</h1>
                         <div class="portal-hero-eyebrow">Explore, Preserve & Understand India's Digital Heritage</div>
@@ -1350,13 +1368,13 @@ def build_portal_html() -> str:
                         </p>
                         <div class="hero-cta-group">
                             <button class="btn-primary" onclick="switchTab('explorer')">
-                                <span>🔍 Explore Archive</span>
+                                <span>{SVG_SEARCH}</span> <span>Explore Archive</span>
                             </button>
                             <button class="btn-secondary" onclick="switchTab('explorer'); const s = document.getElementById('search-input'); if(s) s.focus();">
-                                <span>📑 Search Archive</span>
+                                <span>{SVG_DOCUMENT}</span> <span>Search Archive</span>
                             </button>
                             <button class="btn-secondary" onclick="switchTab('assistant')">
-                                <span>🧭 Research Assistant</span>
+                                <span>{SVG_COMPASS}</span> <span>Research Assistant</span>
                             </button>
                         </div>
                         <!-- Dual-Preservation Legacy Action Links -->
@@ -1538,7 +1556,7 @@ def build_portal_html() -> str:
 
                         <div class="featured-doc-actions">
                             <button class="btn-view-document" onclick="openDocumentInViewer('ambedkar_speech_vol1', 'ambedkar_speech_vol1_p0001')">
-                                <span>🔍 View Document</span>
+                                <span>{SVG_DOCUMENT}</span> <span>View Document</span>
                             </button>
                             <button class="btn-secondary" onclick="switchTab('explorer'); const f = document.getElementById('filter-search'); if(f) {{ f.value = 'Draft Constitution'; filterCatalog(); }}">
                                 <span>Catalog Record Details →</span>
@@ -1608,7 +1626,7 @@ def build_portal_html() -> str:
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <span style="font-size: 0.82rem; color: #94a3b8;">Attribution: Dr. B. R. Ambedkar with Francis Watson</span>
                                 <button class="btn-primary" onclick="switchTab('media')" style="padding: 6px 14px; font-size: 0.84rem;">
-                                    <span>🎙️ Listen in Studio</span>
+                                    <span>{SVG_MEDIA}</span> <span>Listen in Studio</span>
                                 </button>
                             </div>
                         </div>
@@ -1653,7 +1671,7 @@ def build_portal_html() -> str:
                     </div>
                 </div>
                 <div class="portal-research-query-box">
-                    <span style="font-size: 1.5rem;">🧭</span>
+                    {SVG_COMPASS}
                     <div style="flex-grow: 1;">
                         <div style="font-size: 0.76rem; text-transform: uppercase; font-weight: 700; color: var(--text-muted); letter-spacing: 0.04em;">Sample Archival Inquiry</div>
                         <div style="font-size: 1.05rem; font-weight: 600; color: var(--primary-dark);">
@@ -1733,7 +1751,7 @@ def build_portal_html() -> str:
             <!-- Faceted Browsing Controls -->
             <div class="explorer-toolbar">
                 <div class="toolbar-title">
-                    <span>🗂️ Faceted Archival Filters</span>
+                    <span>{SVG_FILTER}</span> <span>Faceted Archival Filters</span>
                 </div>
                 <div class="filter-grid">
                     <div class="filter-group">
@@ -1824,7 +1842,7 @@ def build_portal_html() -> str:
             <!-- Integrated Live Evidence-Grounded Search Section -->
             <div class="search-workspace-card">
                 <div class="card-title">
-                    <span>🔍 Resilient Document Retrieval (E2 Multi-Strategy Search)</span>
+                    <span>{SVG_SEARCH}</span> <span>Resilient Document Retrieval (E2 Multi-Strategy Search)</span>
                     <span class="gate-pill gate-locked">Benchmark Locked</span>
                 </div>
                 <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
@@ -1862,7 +1880,7 @@ def build_portal_html() -> str:
                 <!-- Evidence-Grounded QA -->
                 <div class="card">
                     <div class="card-title">
-                        <span>💡 Evidence-Grounded Archival QA (E3 Preview)</span>
+                        <span>{SVG_COMPASS}</span> <span>Evidence-Grounded Archival QA (E3 Preview)</span>
                         <span class="gate-pill gate-locked">Benchmark Locked</span>
                     </div>
                     <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
@@ -1969,10 +1987,10 @@ def build_portal_html() -> str:
                         </div>
                         <div class="viewer-tool-group">
                             <button class="viewer-tool-btn" id="btn-zoom-in" onclick="zoomIn()" title="Zoom In (125%)">
-                                <span>🔍+ Zoom In</span>
+                                {SVG_ZOOM_IN} Zoom In
                             </button>
                             <button class="viewer-tool-btn" id="btn-zoom-out" onclick="zoomOut()" title="Zoom Out (80%)">
-                                <span>🔍- Zoom Out</span>
+                                {SVG_ZOOM_OUT} Zoom Out
                             </button>
                             <button class="viewer-tool-btn" id="btn-zoom-reset" onclick="resetZoom()" title="Reset to 100%">
                                 <span>↺ Reset 100%</span>
@@ -2085,7 +2103,7 @@ def build_portal_html() -> str:
 
             <!-- Institutional Truthful Framing Disclaimer Banner (R5) -->
             <div class="assistant-truthful-framing-banner">
-                <span class="banner-icon">📜</span>
+                <span class="banner-icon">{SVG_DOCUMENT}</span>
                 <div class="banner-content">
                     <strong class="banner-title">Institutional Archival Integrity Notice</strong>
                     Archival Research Synthesis is grounded strictly in retrieved historical primary sources and does not claim infallible historical omniscience.
@@ -2152,7 +2170,7 @@ def build_portal_html() -> str:
                         <!-- Research Answer Stream -->
                         <div id="assistant-answer-stream" class="assistant-answer-stream">
                             <div style="background: var(--bg-parchment); border: 1px dashed var(--border-bronze); border-radius: 8px; padding: 1.5rem; text-align: center; color: var(--text-muted);">
-                                <div style="font-size: 1.5rem; margin-bottom: 6px;">🧭</div>
+                                <div style="font-size: 1.5rem; margin-bottom: 6px;">{SVG_COMPASS}</div>
                                 <div>Click <strong>Submit Question</strong> or select a query above to synthesize an evidence-grounded answer.</div>
                             </div>
                         </div>
@@ -2250,7 +2268,7 @@ def build_portal_html() -> str:
             <div class="media-selector-bar">
                 <div class="media-selector-card active" id="media-card-bbc" data-id="media_ambedkar_bbc_1953" onclick="loadMediaRecord('media_ambedkar_bbc_1953')">
                     <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-dark);">
-                        🎙️ BBC Radio Interview (1953)
+                        BBC Radio Interview (1953)
                     </div>
                     <div style="font-size: 0.8rem; color: var(--text-muted); margin: 4px 0;">
                         Democracy, Fraternity & Equality
@@ -2263,7 +2281,7 @@ def build_portal_html() -> str:
 
                 <div class="media-selector-card" id="media-card-cad" data-id="media_cad_speech_1949" onclick="loadMediaRecord('media_cad_speech_1949')">
                     <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-dark);">
-                        🎞️ Constituent Assembly Address (1949)
+                        Constituent Assembly Address (1949)
                     </div>
                     <div style="font-size: 0.8rem; color: var(--text-muted); margin: 4px 0;">
                         Final Motion: The Three Warnings
@@ -2276,7 +2294,7 @@ def build_portal_html() -> str:
 
                 <div class="media-selector-card" id="media-card-mahad" data-id="media_mahad_memorial_audio_1927" onclick="loadMediaRecord('media_mahad_memorial_audio_1927')">
                     <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-dark);">
-                        📢 Mahad Satyagraha Proclamation (1927)
+                        Mahad Satyagraha Proclamation (1927)
                     </div>
                     <div style="font-size: 0.8rem; color: var(--text-muted); margin: 4px 0;">
                         Chavdar Tale Human Dignity Declaration
@@ -2352,7 +2370,7 @@ def build_portal_html() -> str:
                                 </div>
 
                                 <div class="media-volume-wrap">
-                                    <span id="media-volume-btn" style="cursor: pointer; font-size: 1.1rem;" onclick="setMediaVolume(mediaVolume === 0 ? 80 : 0)">🔊</span>
+                                    <span id="media-volume-btn" style="cursor: pointer; display: inline-flex; align-items: center;" onclick="setMediaVolume(mediaVolume === 0 ? 80 : 0)">{SVG_SPEAKER}</span>
                                     <input type="range" class="media-volume-slider" min="0" max="100" value="80" oninput="setMediaVolume(this.value)">
                                 </div>
                             </div>
@@ -2361,8 +2379,8 @@ def build_portal_html() -> str:
 
                     <!-- Historical Context & Speaker Notes -->
                     <div class="media-context-card">
-                        <div style="font-weight: 700; color: var(--primary-dark); font-size: 0.95rem; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
-                            <span>📜</span>
+                        <div style="font-weight: 600; color: var(--primary-dark); font-size: 0.95rem; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                            <span>{SVG_DOCUMENT}</span>
                             <span>Historical Context & Speaker Notes</span>
                         </div>
                         <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
@@ -2377,7 +2395,7 @@ def build_portal_html() -> str:
                             </span>
                             <div id="media-related-records" style="display: flex; gap: 6px; flex-wrap: wrap;">
                                 <button class="btn-sm btn-sm-secondary" onclick="openDocumentInViewer('ambedkar_speech_vol1', 'ambedkar_speech_vol1_p0001')">
-                                    📄 Inspect Catalog Record (ambedkar_speech_vol1) →
+                                    Inspect Catalog Record (ambedkar_speech_vol1) →
                                 </button>
                             </div>
                         </div>
@@ -2771,7 +2789,7 @@ def build_portal_html() -> str:
             <!-- 6-Stage Cryptographic Provenance Chain Summary -->
             <div class="footer-provenance-chain-box">
                 <div class="footer-provenance-chain-title">
-                    <span>🔗 Cryptographic Provenance Chain & Archival Custody Architecture</span>
+                    <span>{SVG_LINK}</span> <span>Cryptographic Provenance Chain & Archival Custody Architecture</span>
                 </div>
                 <div class="footer-provenance-steps">
                     <span>SOURCE OBJECT → DIGITAL COPY → PAGE → OCR/LAYOUT → RETRIEVAL → ANSWER/DERIVATIVE</span>
