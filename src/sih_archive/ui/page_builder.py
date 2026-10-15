@@ -34,6 +34,7 @@ def build_kiosk_html(
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
     <meta name="archive-mode" content="DEMO & SYNTHETIC MODE — Resilient Document Retrieval | NOT VALIDATED EMPIRICAL HISTORICAL RESULTS">
     <title>{title}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1262,6 +1263,7 @@ def build_portal_html() -> str:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏛️</text></svg>">
     <meta name="archive-mode" content="DEMO & SYNTHETIC MODE — Resilient Document Retrieval | NOT VALIDATED EMPIRICAL HISTORICAL RESULTS">
     <title>Smriti Archive — TEAM ORBIT National Digital Heritage Infrastructure | SIH26096</title>
     <!-- Distinguished Heritage Typography: Cinzel / Playfair Display & Inter -->
@@ -2246,7 +2248,7 @@ def build_portal_html() -> str:
 
             <!-- Media Item Selector Bar -->
             <div class="media-selector-bar">
-                <div class="media-selector-card active" id="media-card-bbc" onclick="loadMediaRecord('bbc_interview_1953')">
+                <div class="media-selector-card active" id="media-card-bbc" data-id="media_ambedkar_bbc_1953" onclick="loadMediaRecord('media_ambedkar_bbc_1953')">
                     <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-dark);">
                         🎙️ BBC Radio Interview (1953)
                     </div>
@@ -2259,7 +2261,7 @@ def build_portal_html() -> str:
                     </div>
                 </div>
 
-                <div class="media-selector-card" id="media-card-cad" onclick="loadMediaRecord('constituent_assembly_speech_1949')">
+                <div class="media-selector-card" id="media-card-cad" data-id="media_cad_speech_1949" onclick="loadMediaRecord('media_cad_speech_1949')">
                     <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-dark);">
                         🎞️ Constituent Assembly Address (1949)
                     </div>
@@ -2272,7 +2274,7 @@ def build_portal_html() -> str:
                     </div>
                 </div>
 
-                <div class="media-selector-card" id="media-card-mahad" onclick="loadMediaRecord('mahad_memorial_address_1927')">
+                <div class="media-selector-card" id="media-card-mahad" data-id="media_mahad_memorial_audio_1927" onclick="loadMediaRecord('media_mahad_memorial_audio_1927')">
                     <div style="font-weight: 700; font-size: 0.95rem; color: var(--primary-dark);">
                         📢 Mahad Satyagraha Proclamation (1927)
                     </div>
@@ -2454,9 +2456,8 @@ def build_portal_html() -> str:
 
             <!-- Dynamic Workspace Content (populated live by loadAdminWorkspace() and pre-rendered for instant verification) -->
             <div id="admin-workspace-content">
-                <!-- Top Summary Metrics Row -->
-                <!-- T9: SYSTEM HEALTH STRIP -->
-            <div class="admin-health-strip">
+                <!-- T9: SYSTEM HEALTH STRIP (PRESERVED) -->
+                <div class="admin-health-strip">
                 <div class="admin-health-pill ok"><span class="admin-health-dot pulse-green"></span>System API: Online</div>
                 <div class="admin-health-pill ok"><span class="admin-health-dot pulse-green"></span>Search Index: Active</div>
                 <div class="admin-health-pill ok"><span class="admin-health-dot pulse-green"></span>Provenance Chain: Verified</div>

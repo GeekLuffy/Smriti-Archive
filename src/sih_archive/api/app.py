@@ -23,7 +23,7 @@ from typing import Any, Dict, List, Optional
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, UploadFile, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response
 from pydantic import BaseModel, Field
 
 from sih_archive.ui.fixtures import (
@@ -173,6 +173,13 @@ app.add_middleware(
 # ---------------------------------------------------------
 # Operational & Health Endpoints (Northflank Liveness/Readiness)
 # ---------------------------------------------------------
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon() -> Response:
+    """Serves an SVG monument icon as the official archive favicon to prevent 404s."""
+    svg_icon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🏛️</text></svg>'
+    return Response(content=svg_icon, media_type="image/svg+xml", headers={"Cache-Control": "public, max-age=86400"})
+
 
 @app.get("/health", tags=["Health & Observability"])
 async def health_check() -> Dict[str, Any]:
